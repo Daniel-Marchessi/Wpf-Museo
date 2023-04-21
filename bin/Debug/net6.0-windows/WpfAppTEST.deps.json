@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "WpfAppTEST/1.0.0": {
+        "runtime": {
+          "WpfAppTEST.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WpfAppTEST/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
