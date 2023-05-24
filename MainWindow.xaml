@@ -8,121 +8,95 @@
         Title="MainWindow" 
         Height="600" 
         Width="1000"
-        Background="Transparent"
+        WindowState="Maximized"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
 
 
 
-    <Border CornerRadius="10"
-          Background="GhostWhite">
-
-        <Grid Name="Principal"
-          Background="Transparent">
-            <!--HEADER -->
-
-            <Grid Name="Header"
-              Height="35"
-              Background="Transparent"
-              VerticalAlignment="Top">
-                <Border
-                Background="WhiteSmoke"
-                CornerRadius="10,10,0,0"/>
+    <Grid
+            
+            Name="Principal"
+           
+            Background="Transparent"
+            >
 
 
-                <Grid>
-
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-
-                    <Button  Width="50px"
-                             Height="35px"
-                             Margin="0 0 5 0"
-                             HorizontalAlignment="Right"
-                            BorderBrush="Transparent"
-                            Background="Transparent"
-                       Grid.Column="2">
-
-
-
-                        <TextBlock
-                            
-                            Text="X"
-                            FontSize="25px"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
-
-                    </Button>
-
-
-                </Grid>
-
-
-
-
-            </Grid>
-
-
-            <Grid Height="570"
-                  VerticalAlignment="Top"
-                  Background="SteelBlue" Margin="0,35,0,0"
+        <Grid Height="600" 
+                  VerticalAlignment="Center"
                   
                   >
-               
-                    
+            <Grid.Background>
 
-                
-               
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="974*"/>
-                    <ColumnDefinition Width="27*"/>
-                </Grid.ColumnDefinitions>
+                <ImageBrush ImageSource="/Harmonic Energy.jpg"/>
+            </Grid.Background>
 
-               
-                        
-                   
-                    <Grid Background="CornflowerBlue" Height="300" Width="500
-                      ">
-                    <Border CornerRadius="20" BorderBrush="#FFDE3434">
-                        <Button x:Name="Btn_enviar" Content="Ingresar" Margin="148,206,239,66" Click="Btn_enviar_Click"/>
 
-                    </Border>
-                   
-                        
-                    
-                </Grid>
-                   
+
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="974*"/>
+                <ColumnDefinition Width="27*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+
+
+
+
+            <Grid Margin="70,10,73,28" Width="auto" Height="auto" Background="#FFFA4900">
+
+                <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,-14,0,472" Width="auto">
+                    <TextBlock HorizontalAlignment="Center"
+                            VerticalAlignment="Top" 
+                            Margin="0,10,0,0" RenderTransformOrigin="-1.073,-0.188"
+                         Text="BIENVENIDO"
+                             FontSize="48" Foreground="White" FontWeight="Bold" Height="88" Width="auto"
+                           />
+                </Border>
+                <TextBlock RenderTransformOrigin="0.472,0.556"
+                           Text="Contraseña"
+                           FontSize="24" Foreground="White" FontWeight="Bold" Height="26" Width="393">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="3.374"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="1.045"/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBox VerticalAlignment="Top" FontSize="23" x:Name="contra" Height="38" Width="418" RenderTransformOrigin="0.502,0.632" Margin="212,328,200,0"/>
+                <Border Background="#FFFD9A0D" CornerRadius="10,10,10,10" Width="auto" Margin="206,416,200,60">
+
+
+                    <Button x:Name="Btn_enviar" Click="Btn_enviar_Click"  RenderTransformOrigin="0.5,0.5" Content="Enviar" Background="Transparent" Panel.ZIndex="3000005" Grid.Column="1" BorderThickness="0,0,0,0" Foreground="White" FontSize="22" FontWeight="Bold" Width="auto" Margin="10,0,10,0" />
+                </Border>
+
+
+
+
+
                 <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top" 
-                           Margin="386,239,0,0" RenderTransformOrigin="-1.073,-0.188"
+                           Margin="206,155,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Usuario"
-                           FontSize="15px"
-                           FontWeight="Bold"
+                           FontSize="24"
+                           FontWeight="Bold" Foreground="White" Width="111" Height="35"
                            >
 
                 </TextBlock>
 
-                <TextBox x:Name="contra" Margin="491,286,260,266"  Height="18px"/>
-                <TextBlock HorizontalAlignment="Left"
-                           VerticalAlignment="Top" 
-                           Margin="386,285,0,0" RenderTransformOrigin="-1.073,-0.188"
-                           Text="Contraseña"
-                           FontSize="15px"
-                           FontWeight="Bold">
+                <TextBox x:Name="user" FontSize="23" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="33" />
 
-                </TextBlock>
-
-                <TextBox x:Name="user" VerticalAlignment="Top" Margin="491,241,260,0" Height="18px" />
-                </Grid>
-            
-            
+            </Grid>
         </Grid>
-    </Border>
+
+
+    </Grid>
+
 
 </Window>

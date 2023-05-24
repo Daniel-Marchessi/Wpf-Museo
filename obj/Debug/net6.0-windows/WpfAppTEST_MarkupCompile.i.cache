@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\Lenovo\source\repos\WpfAppTEST\App.xaml
-11407045341
+31911745138
 
-5-298380539
+82042621487
 195-1683643156
-MainWindow.xaml;
+MainWindow.xaml;Views\Coleccion.xaml;Views\Home.xaml;
 
 True
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -14,9 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
-
+using WpfAppTEST.Views;
 
 namespace WpfAppTEST
 {
@@ -44,25 +42,26 @@ namespace WpfAppTEST
             SqlCommand comand = new SqlCommand(query, conexion);
 
             SqlDataReader registro = comand.ExecuteReader();
-            while (registro.Read())
+            if (registro.Read())
             {
+                
+                
+                    if ((registro.GetString(0) == usuario) && registro.GetString(1) == contrasenia)
+                    {
+                        Home inicio = new Home();
+                        inicio.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("no se encontrro");
 
-               if((registro.GetString(0) == usuario) && registro.GetString(1) == contrasenia)
-                {
-
-                    MessageBox.Show("USUARIO CORRECTO", usuario);
-
-                }
-                else
-                {
-                    MessageBox.Show("no se encontrro");
-                }
-
+                    }
+                
             }
             //MessageBox.Show("Se abrió la conexión con el servidor SQL Server y se seleccionó la base de datos");
 
             conexion.Close();
-            MessageBox.Show("Se cerró la conexión.");
+           // MessageBox.Show("Se cerró la conexión.");
         }
 
         
