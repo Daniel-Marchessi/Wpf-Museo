@@ -1,0 +1,21 @@
+﻿<Window x:Name="Home1" x:Class="WpfAppTEST.Views.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTEST.Views"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="Home" Height="600" Width="1000">
+    
+    <Grid>
+        <Menu HorizontalAlignment="Center" Height="33" VerticalAlignment="Top" Width="980">
+            <MenuItem x:Name="Crear" Header="Crear" Height="33" HorizontalAlignment="Left" Width="42" >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro"/>
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
+            </MenuItem>
+        </Menu>
+
+
+    </Grid>
+</Window>
