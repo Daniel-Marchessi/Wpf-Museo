@@ -1,4 +1,4 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,14 +26,14 @@ namespace WpfAppTEST
         public MainWindow()
         {
             InitializeComponent();
+            user.Focus();
         }
 
         private void Btn_enviar_Click(object sender, RoutedEventArgs e)
         {
             string usuario = user.Text.ToString();
-           string  contrasenia = contra.Text.ToString();
-
-            var conexion  = new SqlConnection("server=DESKTOP-9MTUTME ; database=Museo1 ; integrated security = true");
+           string  contrasenia = contra.Password.ToString();
+            var conexion  = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 
@@ -44,19 +44,27 @@ namespace WpfAppTEST
             SqlDataReader registro = comand.ExecuteReader();
             if (registro.Read())
             {
-                
-                
-                    if ((registro.GetString(0) == usuario) && registro.GetString(1) == contrasenia)
+
+                //Validacion por usuario y por contraseña
+                if (registro.GetString(0) == usuario)
+                {
+                    if (registro.GetString(1) == contrasenia)
                     {
                         Home inicio = new Home();
                         inicio.Show();
+                        this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("no se encontrro");
-
+                        MessageBox.Show("La contraseña es incorrecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                
+                }
+                else
+                {
+                    MessageBox.Show("El usuario es incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
             }
             //MessageBox.Show("Se abrió la conexión con el servidor SQL Server y se seleccionó la base de datos");
 

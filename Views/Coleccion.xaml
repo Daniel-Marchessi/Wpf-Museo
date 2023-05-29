@@ -5,36 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTEST.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
-        Title="Coleccion" Height="600" Width="1000">
-    <Grid>
-        <Rectangle HorizontalAlignment="Center" Height="496" Stroke="Black" VerticalAlignment="Center" Width="816" Fill="#FF5D0000"/>
-        <Label   Content="Nombre" HorizontalAlignment="Left" Height="28" Margin="140,82,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Nombre" HorizontalAlignment="Left" Height="28" Margin="259,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="Cantidad"   Content="Cantidad" HorizontalAlignment="Left" Height="28" Margin="140,141,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <Label x:Name="Periodo"   Content="Periodo" HorizontalAlignment="Left" Height="28" Margin="140,200,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Cantidad1" HorizontalAlignment="Left" Height="28" Margin="259,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="Periodo1" HorizontalAlignment="Left" Height="28" Margin="259,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="Alto"   Content="Alto" HorizontalAlignment="Left" Height="28" Margin="140,257,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <Label x:Name="Ancho"   Content="Ancho" HorizontalAlignment="Left" Height="28" Margin="140,319,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Alto1" HorizontalAlignment="Left" Height="28" Margin="259,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="Ancho1" HorizontalAlignment="Left" Height="28" Margin="259,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="Diametro"   Content="Diametro" HorizontalAlignment="Left" Height="28" Margin="140,386,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <Label x:Name="Integridad"   Content="Integridad" HorizontalAlignment="Left" Height="28" Margin="140,449,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Diametro1" HorizontalAlignment="Left" Height="28" Margin="259,386,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <TextBox x:Name="Integridad1" HorizontalAlignment="Left" Height="28" Margin="259,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
-        <Label x:Name="Ingreso"   Content="Forma de ingreso" HorizontalAlignment="Left" Height="28" Margin="564,82,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Ingreso1" HorizontalAlignment="Left" Height="28" Margin="684,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <Label x:Name="Conservacion"   Content="Conservacion" HorizontalAlignment="Left" Height="28" Margin="564,141,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <Label x:Name="Ubicacion"   Content="Ubicacion" HorizontalAlignment="Left" Height="28" Margin="564,200,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Conservacion1" HorizontalAlignment="Left" Height="28" Margin="684,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <TextBox x:Name="Ubicacion1" HorizontalAlignment="Left" Height="28" Margin="684,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <Label x:Name="Alias"   Content="Alias" HorizontalAlignment="Left" Height="28" Margin="564,257,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <Label x:Name="LugarProc"   Content="Lugar" HorizontalAlignment="Left" Height="28" Margin="564,319,0,0" VerticalAlignment="Top" Width="92" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Alias1" HorizontalAlignment="Left" Height="28" Margin="684,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <TextBox x:Name="Lugarprocedencia" HorizontalAlignment="Left" Height="28" Margin="684,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <Label x:Name="Imagen"   Content="Imagen" HorizontalAlignment="Left" Height="28" Margin="564,386,0,0" VerticalAlignment="Top" Width="114" Background="Transparent" FontWeight="Bold" BorderBrush="#FFA07777" Foreground="#FFF1F1F1"/>
-        <TextBox x:Name="Diametro1_Copy" HorizontalAlignment="Left" Height="28" Margin="684,386,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142"/>
-        <Button x:Name="EnviarColeccion" Content="Enviar" HorizontalAlignment="Left" Height="53" Margin="621,463,0,0" VerticalAlignment="Top" Width="220" Click="EnviarColeccion_Click_1"/>
-    </Grid>
+        Title="Coleccion"  MinWidth="1200" MinHeight="800" WindowStartupLocation="CenterScreen">
+	<!--WindowStyle="None"-->
+	<Window.Background>
+		<ImageBrush ImageSource="E:\TESIS\Colecciones.jpg" />
+	</Window.Background>
+
+	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition  Width="Auto" />
+				<ColumnDefinition />
+				<ColumnDefinition  Width="Auto"  />
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+			<Label Content="Nombre" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="50,50,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24"/>
+			<TextBox x:Name="Nombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,50,50,0"   MaxWidth="500"  FontSize="24"/>
+
+			<Label x:Name="Cantidad" Content="Cantidad" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Cantidad1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"   MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Periodo" Content="Periodo" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Periodo1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"   MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Alto" Content="Alto" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Alto1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"   MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Ancho" Content="Ancho" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Ancho1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"   MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Diametro" Content="Diametro" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Diametro1" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,30,50,0"  MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Integridad" Content="Integridad" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,50,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Integridad1" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,50,50,0"  MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Ingreso" Content="Ingreso" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Ingreso1" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,30,50,0"  MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Conservacion" Content="Conservacion" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Conservacion1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,30,50,0" MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Ubicacion" Content="Ubicacion" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Ubicacion1" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"  MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Alias" Content="Alias" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Alias1" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0"  MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="LugarProc" Content="Lugar" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Lugarprocedencia" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,30,50,0" MaxWidth="500" FontSize="24"/>
+
+			<Label x:Name="Imagen" Content="Imagen" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,30,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+			<TextBox x:Name="Diametro1_Copy" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,30,50,0" MaxWidth="500"  FontSize="24"/>
+
+			<Button x:Name="EnviarColeccion"  Grid.ColumnSpan="2" Content="Enviar" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30" Height="53" Width="220" Click="EnviarColeccion_Click_1"/>
+			
+		</Grid>
+	</ScrollViewer>
 </Window>

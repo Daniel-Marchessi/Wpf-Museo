@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:WpfAppTEST.Views"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="Home" Height="600" Width="1000">
-    
+        Title="Home" Height="auto" Width="auto"  WindowStartupLocation="CenterScreen" >
+    <Window.Background>
+        <ImageBrush ImageSource="E:\TESIS\home.jpg" />
+    </Window.Background>
     <Grid>
-        <Menu HorizontalAlignment="Center" Height="33" VerticalAlignment="Top" Width="980">
+        <Menu Height="auto" VerticalAlignment="Top" Width="auto">
             <MenuItem x:Name="Crear" Header="Crear" Height="33" HorizontalAlignment="Left" Width="42" >
                 <MenuItem x:Name="CrearLibro" Header="Crear libro"/>
                 <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>

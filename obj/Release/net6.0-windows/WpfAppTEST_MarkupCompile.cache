@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Lenovo\source\repos\WpfAppTEST\obj\Release\net6.0-windows\
+E:\TESIS\obj\Release\net6.0-windows\
 WpfAppTEST
 none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
-C:\Users\Lenovo\source\repos\WpfAppTEST\App.xaml
-11407045341
+E:\TESIS\App.xaml
+4712930467
 
-3-1233169557
-195-1683643156
-MainWindow.xaml;
+71227920882
+195-1790799760
+MainWindow.xaml;Messageforms\MessageLogin.xaml;Views\Coleccion.xaml;Views\Home.xaml;
 
 True
 

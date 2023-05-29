@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Messageforms\**" />
+    <EmbeddedResource Remove="Messageforms\**" />
+    <None Remove="Messageforms\**" />
+    <Page Remove="Messageforms\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="background.jpg" />
+    <None Remove="Harmonic Energy.jpg" />
+    <None Remove="Img\background.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="background.jpg" />
+    <Resource Include="Harmonic Energy.jpg" />
+    <Resource Include="Img\background.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+
+</Project>

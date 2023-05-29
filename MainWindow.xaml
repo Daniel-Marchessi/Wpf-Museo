@@ -6,97 +6,98 @@
         xmlns:local="clr-namespace:WpfAppTEST"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="600" 
+        Height="800" 
         Width="1000"
         WindowState="Maximized"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
 
+        <!--El atributo Stretch de <Viewbox> define cómo se ajustará el contenido dentro del área disponible. 
+		El valor UniformToFill indica que el contenido se escalará uniformemente tanto-->
+    <Viewbox Stretch="UniformToFill">
+        <Grid Name="Principal" Background="Transparent">
 
 
-    <Grid
-            
-            Name="Principal"
-           
-            Background="Transparent"
-            >
+            <Grid Height="auto" Width="auto" VerticalAlignment="Center">
+                
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Harmonic Energy.jpg"/>
+                </Grid.Background>
 
 
-        <Grid Height="600" 
-                  VerticalAlignment="Center"
-                  
-                  >
-            <Grid.Background>
+                <Grid Margin="200,180,180,180"  Width="auto" Height="auto" Background="#FFFA4900">
 
-                <ImageBrush ImageSource="/Harmonic Energy.jpg"/>
-            </Grid.Background>
-
-
-
-
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="974*"/>
-                <ColumnDefinition Width="27*"/>
-            </Grid.ColumnDefinitions>
-
-
-
-
-
-
-
-            <Grid Margin="70,10,73,28" Width="auto" Height="auto" Background="#FFFA4900">
-
-                <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,-14,0,472" Width="auto">
-                    <TextBlock HorizontalAlignment="Center"
+                    <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,-14,0,472" Width="auto">
+                        <TextBlock HorizontalAlignment="Center"
                             VerticalAlignment="Top" 
                             Margin="0,10,0,0" RenderTransformOrigin="-1.073,-0.188"
-                         Text="BIENVENIDO"
-                             FontSize="48" Foreground="White" FontWeight="Bold" Height="88" Width="auto"
-                           />
-                </Border>
-                <TextBlock RenderTransformOrigin="0.472,0.556"
-                           Text="Contraseña"
-                           FontSize="24" Foreground="White" FontWeight="Bold" Height="26" Width="393">
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleX="3.374"/>
-                            <RotateTransform/>
-                            <TranslateTransform X="1.045"/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
-                <TextBox VerticalAlignment="Top" FontSize="23" x:Name="contra" Height="38" Width="418" RenderTransformOrigin="0.502,0.632" Margin="212,328,200,0"/>
-                <Border Background="#FFFD9A0D" CornerRadius="10,10,10,10" Width="auto" Margin="206,416,200,60">
-
-
-                    <Button x:Name="Btn_enviar" Click="Btn_enviar_Click"  RenderTransformOrigin="0.5,0.5" Content="Enviar" Background="Transparent" Panel.ZIndex="3000005" Grid.Column="1" BorderThickness="0,0,0,0" Foreground="White" FontSize="22" FontWeight="Bold" Width="auto" Margin="10,0,10,0" />
-                </Border>
+                            Text="BIENVENIDO"
+                             FontSize="70" Foreground="White" FontWeight="Bold" Height="auto" Width="auto"
+                         />
+                    </Border>
 
 
 
-
-
-                <TextBlock HorizontalAlignment="Left"
+                    <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top" 
-                           Margin="206,155,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="327,165,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Usuario"
-                           FontSize="24"
-                           FontWeight="Bold" Foreground="White" Width="111" Height="35"
+                           FontSize="44"
+                           FontWeight="Bold" Foreground="White" Width="auto" Height="auto" 
                            >
 
-                </TextBlock>
+                    </TextBlock>
 
-                <TextBox x:Name="user" FontSize="23" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="33" />
+                    <TextBox x:Name="user" Background="#FFCA7D" FontSize="43" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="auto"  MaxWidth="600" />
 
+
+
+
+                    <TextBlock HorizontalAlignment="Left"
+                           VerticalAlignment="Top" 
+                           Margin="329,288,0,0" RenderTransformOrigin="0.495,0.707"
+                           Text="Contraseña"
+                           FontSize="44"
+                           FontWeight="Bold" Foreground="White"  Width="auto" Height="auto">
+
+                    </TextBlock>
+
+                    <PasswordBox VerticalAlignment="Top" FontSize="43" x:Name="contra" Height="auto" Width="auto"
+                         RenderTransformOrigin="0.502,0.632" Margin="212,340,200,0"
+                         MaxWidth="600" Background="#FFCA7D"
+                    />
+
+
+
+                
+
+                     
+                        <Button x:Name="Btn_enviar"
+                             Content="Enviar"
+                             Background="#FFFD9A0D"
+                             BorderThickness="1"
+                             Foreground="White"
+                             FontSize="44"
+                             FontWeight="Bold"
+                             Width="250" Height="80"
+                             Margin="500,446,500,60"
+                             HorizontalAlignment="Center"
+							 Click="Btn_enviar_Click"
+                         
+                                
+                        />
+
+                    
+
+                </Grid>
             </Grid>
+
+
         </Grid>
+    </Viewbox>
 
 
-    </Grid>
 
 
 </Window>
