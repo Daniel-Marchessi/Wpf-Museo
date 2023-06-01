@@ -5,6 +5,16 @@
       "taskLabel": "tarea-WpfAppTEST",
       "appliesTo": "/",
       "type": "launch"
+    },
+    {
+      "taskLabel": "tarea-Colecciones",
+      "appliesTo": "img/Colecciones.jpg",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "tarea-FondoLogin",
+      "appliesTo": "img/FondoLogin.jpg",
+      "type": "launch"
     }
   ]
 }

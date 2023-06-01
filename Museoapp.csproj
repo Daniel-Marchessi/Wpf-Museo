@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,23 +16,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="background.jpg" />
-    <None Remove="Harmonic Energy.jpg" />
-    <None Remove="Img\background.jpg" />
+    <None Remove="img\biblioteca.png" />
+    <None Remove="img\Colecciones.jpg" />
+    <None Remove="img\FondoLogin.jpg" />
+    <None Remove="img\home.jpg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="background.jpg" />
-    <Resource Include="Harmonic Energy.jpg" />
-    <Resource Include="Img\background.jpg" />
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\biblioteca.png" />
+    <Resource Include="img\Colecciones.jpg" />
+    <Resource Include="img\FondoLogin.jpg" />
+    <Resource Include="img\home.jpg" />
   </ItemGroup>
 
 </Project>

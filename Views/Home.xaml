@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTEST.Views"
         mc:Ignorable="d"
-        WindowStyle="None"
-        Title="Home" Height="auto" Width="auto"  WindowStartupLocation="CenterScreen" >
+        
+        Title="Home"  MinWidth="800" MinHeight="600" WindowStartupLocation="CenterScreen" >
+    <!--WindowStyle="None"-->
     <Window.Background>
-        <ImageBrush ImageSource="E:\TESIS\home.jpg" />
+        <ImageBrush ImageSource="../img/home.jpg"/> 
     </Window.Background>
     <Grid>
         <Menu Height="auto" VerticalAlignment="Top" Width="auto">
-            <MenuItem x:Name="Crear" Header="Crear" Height="33" HorizontalAlignment="Left" Width="42" >
-                <MenuItem x:Name="CrearLibro" Header="Crear libro"/>
+            <MenuItem x:Name="Crear" Header="Crear" Height="33" HorizontalAlignment="Left" Width="42"  >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
                 <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
             </MenuItem>
         </Menu>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Museoapp.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,12 @@ namespace WpfAppTEST.Views
             Coleccion coleccion = new Coleccion();
 
             coleccion.Show();
+        }
+
+        private void CrearLibro_Click(object sender, RoutedEventArgs e)
+        {
+            Libro libro = new Libro();
+            libro.Show();
         }
     }
 }

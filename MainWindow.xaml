@@ -22,7 +22,7 @@
             <Grid Height="auto" Width="auto" VerticalAlignment="Center">
                 
                 <Grid.Background>
-                    <ImageBrush ImageSource="/Harmonic Energy.jpg"/>
+                    <ImageBrush ImageSource="/img/FondoLogin.jpg" />
                 </Grid.Background>
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -26,32 +27,20 @@ namespace WpfAppTEST.Views
             InitializeComponent();
         }
 
-        private void Largo1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Integridad1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
         private void EnviarColeccion_Click_1(object sender, RoutedEventArgs e)
         {
 
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME ; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
-            piezas piezas1 = new piezas();
 
-            piezas1.Nombrep = Nombre.Text;
-           
 
-            string query = "insert into coleccion(Nombre, Cantidad, Lugar_proce," +
-             "Periodo, Alto, Ancho, Diametro, Integridad, Conservacion,Ubicacion, Ingreso)" +
-                "Values ('" + Nombre.Text + "' , " + Cantidad1.Text + " ,'" + Lugarprocedencia.Text + "','" + Periodo1.Text + "'," + Alto1.Text + "," +
-                Ancho1.Text + "," + Diametro1.Text + ",'" + Integridad1.Text + "','" + Conservacion1.Text + "','" +
-                Ubicacion1.Text + "','" + Ingreso1.Text + "')";
+            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho, Diametro, Integridad, Conservacion, Ubicacion, Ingreso, Foto) " +
+                "Values ('" + Nombre.Text + "', " + Cantidad1.Text + ", '" + TituloA.Text + "', '" + Lugarprocedencia.Text + "', '" + Periodo1.Text + "', " + Alto1.Text + ", " +
+                Ancho1.Text + ", " + Diametro1.Text + ", '" + Integridad1.Text + "', '" + Conservacion1.Text + "', '" +
+                Ubicacion1.Text + "', '" + Ingreso1.Text + "', '" + Url_Foto.Text + "')";
 
 
             SqlCommand comand = new SqlCommand(query, conexion);
@@ -70,6 +59,35 @@ namespace WpfAppTEST.Views
             MessageBox.Show("Se ingreso una pieza");
             conexion.Close();
 
+        }
+
+        private void ImagenEdit_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif;*.bmp|Todos los archivos|*.*";
+            ofd.FilterIndex = 1;
+            ofd.Multiselect = false;
+
+            if(ofd.ShowDialog() == true)
+            {
+                Url_Foto.Text = "";
+
+                try
+                {
+                    BitmapImage foto = new BitmapImage();
+                    foto.BeginInit();
+                    foto.UriSource = new Uri(ofd.FileName);
+                    foto.EndInit();
+                    foto.Freeze();
+
+                    imgFoto.Source = foto;
+                    Url_Foto.Text = ofd.FileName;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Error al cargar la imagen:" + ex.Message, "Error");
+                }
+            }
         }
     }
 }

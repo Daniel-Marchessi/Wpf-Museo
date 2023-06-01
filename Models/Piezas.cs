@@ -14,6 +14,16 @@ namespace WpfAppTEST.Models
             get { return Nombre; }
             set { Nombre = value; }
         }
+
+        private string Cantidad;
+        public string Cantidadp
+        {
+            get { return Cantidad; }
+            set { Cantidad = value; }
+        }
+
+
+
         private string Tipo;
 
         public string Tipop {
@@ -67,11 +77,22 @@ namespace WpfAppTEST.Models
 
         public string Ubicacionp
         {
-            get { return Ubicacionp; }
-
+            get { return Ubicacion; }
+            set
+            {
+                Ubicacion = value;
+            }
         }
-        private string Alias { get; set; }
-        private string Imagen { get; set; }
+        private string Titulo { get; set; }
+        public string Titulop
+        {
+            get { return Titulo; }
+            set
+            {
+                Titulo = value;
+            }
+        }
+
 
         public piezas() { }
 

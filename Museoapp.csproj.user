@@ -8,12 +8,18 @@
     <Compile Update="Views\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Libro.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Coleccion.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Libro.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

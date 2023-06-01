@@ -18,9 +18,7 @@ using WpfAppTEST.Views;
 
 namespace WpfAppTEST
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+ 
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -66,12 +64,10 @@ namespace WpfAppTEST
 
 
             }
-            //MessageBox.Show("Se abrió la conexión con el servidor SQL Server y se seleccionó la base de datos");
 
             conexion.Close();
-           // MessageBox.Show("Se cerró la conexión.");
+          
         }
-
         
     }
 }
