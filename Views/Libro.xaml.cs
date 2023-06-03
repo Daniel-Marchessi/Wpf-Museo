@@ -42,7 +42,12 @@ namespace Museoapp.Views
             MessageBox.Show("Se ingreso un libro");
             conexion.Close();
 
-        
-    }
+            //Limpiar campos al ingresar
+            Titulo1.Text = "";
+            Origen1.Text = "";
+            Numpaginas1.Text = "";
+            Descripcion1.Text = "";
+
+        }
     }
 }

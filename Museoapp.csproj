@@ -16,10 +16,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ico\bookshelf_icon-icons.com_54414.ico" />
+    <None Remove="ico\Colecciones.ico" />
+    <None Remove="ico\Home.ico" />
+    <None Remove="ico\icon-icons.com_75967.png" />
+    <None Remove="ico\Libros.ico" />
+    <None Remove="ico\museum_roman_temple_buildings_monuments_greek_icon_128571.png" />
+    <None Remove="ico\Usuarios.ico" />
     <None Remove="img\biblioteca.png" />
     <None Remove="img\Colecciones.jpg" />
     <None Remove="img\FondoLogin.jpg" />
     <None Remove="img\home.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ico\Colecciones.ico" />
+    <Resource Include="ico\Home.ico" />
+    <Resource Include="ico\Libros.ico" />
   </ItemGroup>
 
  
@@ -32,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="ico\Usuarios.ico" />
     <Resource Include="img\biblioteca.png" />
     <Resource Include="img\Colecciones.jpg" />
     <Resource Include="img\FondoLogin.jpg" />

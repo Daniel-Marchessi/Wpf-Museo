@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTEST.Views"
         mc:Ignorable="d"
+         Icon="../ico/Colecciones.ico"
         Title="Coleccion"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
     <!--WindowStyle="None"-->
     <Window.Background>
@@ -80,13 +81,13 @@
             <Label x:Name="Imagen" Content="Imagen" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,1,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
 
             <Border  Margin="5,30,0,0" Background="White" BorderThickness="2"  Grid.Row="6"  Grid.RowSpan="5" Grid.Column="1" BorderBrush="Black" CornerRadius="5" Width="400" Height="300">
-                <Image Source="E:\TESIS\SIGNO.png" x:Name="imgFoto" Grid.Column="1"  MinHeight="300" MaxHeight="300" Grid.Row="6" VerticalAlignment="Top" MaxWidth="400"  MinWidth="400" Grid.RowSpan="5"/>
+                <Image  x:Name="imgFoto" Grid.Column="1"  MinHeight="300" MaxHeight="300" Grid.Row="6" VerticalAlignment="Top" MaxWidth="400"  MinWidth="400" Grid.RowSpan="5"/>
             </Border>
             <TextBox x:Name="Url_Foto" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="center" Margin="5,30,0,0" VerticalAlignment="Center" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
-            
-            <Button x:Name="ImagenEdit" Grid.Column="1" Content="Editar" HorizontalAlignment="Center" Height="50" Margin="0,20,0,20" Grid.Row="13" VerticalAlignment="Top" Width="216" Click="ImagenEdit_Click"/>
 
-            <Button x:Name="EnviarColeccion" Content="Enviar" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,105,20,10" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
+            <Button x:Name="ImagenEdit" Background=" #ecf0f3" FontSize="30" Grid.Column="1" Content="Seleccionar imagen" HorizontalAlignment="Center" Height="50" Margin="0,20,0,20" Grid.Row="13" VerticalAlignment="Top" Width="300" Click="ImagenEdit_Click"/>
+
+            <Button x:Name="EnviarColeccion" Background=" #ecf0f3" FontSize="30" Content="Guardar" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,105,20,10" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
 
         </Grid>
     </ScrollViewer>

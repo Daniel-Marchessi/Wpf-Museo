@@ -59,6 +59,21 @@ namespace WpfAppTEST.Views
             MessageBox.Show("Se ingreso una pieza");
             conexion.Close();
 
+            //Limpiar campos al ingresar
+            Nombre.Text = "";
+            Cantidad1.Text = "";
+            TituloA.Text = "";
+            Lugarprocedencia.Text = "";
+            Periodo1.Text = "";
+            Alto1.Text = "";
+            Ancho1.Text = "";
+            Diametro1.Text = "";
+            Integridad1.Text = "";
+            Conservacion1.Text = "";
+            Ubicacion1.Text = "";
+            Ingreso1.Text = "";
+            Url_Foto.Text = "";
+            imgFoto.Source = null;
         }
 
         private void ImagenEdit_Click(object sender, RoutedEventArgs e)

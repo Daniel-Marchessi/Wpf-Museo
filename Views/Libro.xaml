@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+         Icon="../ico/Libros.ico"
         Title="Libro"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize">
     <Window.Background>
         <ImageBrush ImageSource="../img/biblioteca.png" />
@@ -22,18 +23,18 @@
         </Grid.ColumnDefinitions>
 
 
-        <Label Content="Titulo" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24"/>
-        <TextBox x:Name="Titulo1" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"   MaxWidth="500"  FontSize="24"/>
+        <Label Content="Titulo" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="30"/>
+        <TextBox x:Name="Titulo1" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"   MaxWidth="500"  FontSize="30"/>
 
-        <Label x:Name="Origen" Content="Origen" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-        <TextBox x:Name="Origen1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"  MaxWidth="500" FontSize="24"/>
+        <Label x:Name="Origen" Content="Origen" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30"/>
+        <TextBox x:Name="Origen1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"  MaxWidth="500" FontSize="30"/>
 
-        <Label x:Name="Numpaginas" Content="Numpaginas" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-        <TextBox x:Name="Numpaginas1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"     MaxWidth="500" FontSize="24"/>
+        <Label x:Name="Numpaginas" Content="Numpaginas" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30"/>
+        <TextBox x:Name="Numpaginas1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"     MaxWidth="500" FontSize="30"/>
 
-        <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-        <TextBox x:Name="Descripcion1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"   MaxWidth="500" FontSize="24"/>
+        <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="100,40,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30"/>
+        <TextBox x:Name="Descripcion1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,40,50,0"   MaxWidth="500" FontSize="30"/>
 
-        <Button x:Name="Enviarlibro" Content="Enviar" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="53" Width="220" Click="EnviarLibro_Click" />
+        <Button x:Name="Enviarlibro" Content="Guardar" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,40,0,0" Height="53"  Background=" #ecf0f3" FontSize="30" Width="220" Click="EnviarLibro_Click" />
     </Grid>
 </Window>

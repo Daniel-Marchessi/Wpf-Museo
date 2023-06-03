@@ -3,18 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfAppTEST"
         mc:Ignorable="d"
+          Icon="/ico/Usuarios.ico"
         Title="MainWindow" 
-        Height="800" 
-        Width="1000"
-        WindowState="Maximized"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        MinWidth="800" MinHeight="600"   MaxWidth="1000" MaxHeight="764" WindowStartupLocation="CenterScreen"
+         ResizeMode="NoResize">
 
-        <!--El atributo Stretch de <Viewbox> define cómo se ajustará el contenido dentro del área disponible. 
-		El valor UniformToFill indica que el contenido se escalará uniformemente tanto-->
+     
     <Viewbox Stretch="UniformToFill">
         <Grid Name="Principal" Background="Transparent">
 
@@ -26,7 +21,7 @@
                 </Grid.Background>
 
 
-                <Grid Margin="200,180,180,180"  Width="auto" Height="auto" Background="#FFFA4900">
+                <Grid Margin="362,302,362,362"  Width="auto" Height="auto" Background="#FFFA4900">
 
                     <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,-14,0,472" Width="auto">
                         <TextBlock HorizontalAlignment="Center"
@@ -41,30 +36,30 @@
 
                     <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top" 
-                           Margin="327,165,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="327,155,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Usuario"
-                           FontSize="44"
+                           FontSize="54"
                            FontWeight="Bold" Foreground="White" Width="auto" Height="auto" 
                            >
 
                     </TextBlock>
 
-                    <TextBox x:Name="user" Background="#FFCA7D" FontSize="43" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="auto"  MaxWidth="600" />
+                    <TextBox x:Name="user" Background="#FFCA7D" FontSize="53" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="auto"  MaxWidth="600" />
 
 
 
 
                     <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Top" 
-                           Margin="329,288,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="329,298,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Contraseña"
-                           FontSize="44"
+                           FontSize="54"
                            FontWeight="Bold" Foreground="White"  Width="auto" Height="auto">
 
                     </TextBlock>
 
-                    <PasswordBox VerticalAlignment="Top" FontSize="43" x:Name="contra" Height="auto" Width="auto"
-                         RenderTransformOrigin="0.502,0.632" Margin="212,340,200,0"
+                    <PasswordBox VerticalAlignment="Top" FontSize="53" x:Name="contra" Height="auto" Width="auto"
+                         RenderTransformOrigin="0.502,0.632" Margin="212,360,200,0"
                          MaxWidth="600" Background="#FFCA7D"
                     />
 
@@ -81,7 +76,7 @@
                              FontSize="44"
                              FontWeight="Bold"
                              Width="250" Height="80"
-                             Margin="500,446,500,60"
+                             Margin="500,470,500,60"
                              HorizontalAlignment="Center"
 							 Click="Btn_enviar_Click"
                          
