@@ -33,3 +33,7 @@ E:\TESIS\obj\Debug\net6.0-windows\refint\Museoapp.dll
 E:\TESIS\obj\Debug\net6.0-windows\Museoapp.pdb
 E:\TESIS\obj\Debug\net6.0-windows\Museoapp.genruntimeconfig.cache
 E:\TESIS\obj\Debug\net6.0-windows\ref\Museoapp.dll
+E:\TESIS\obj\Debug\net6.0-windows\Views\ListaLibros.g.cs
+E:\TESIS\obj\Debug\net6.0-windows\Views\ListaLibros.baml
+E:\TESIS\obj\Debug\net6.0-windows\Views\ListaColecciones.g.cs
+E:\TESIS\obj\Debug\net6.0-windows\Views\ListaColecciones.baml

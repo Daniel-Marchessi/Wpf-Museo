@@ -24,10 +24,10 @@
                 <MenuItem x:Name="EliminarPieza" Header="Eliminar pieza"  />
             </MenuItem>-->
 
-            <!--<MenuItem x:Name="Ver" Header="Ver">
+            <MenuItem x:Name="Ver" Header="Ver">
                 <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
                 <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
-            </MenuItem>-->
+            </MenuItem>
 
             <!--<MenuItem x:Name="Buscar" Header="Buscar">
                 <MenuItem x:Name="BuscarLibro" Header="Buscar libro">

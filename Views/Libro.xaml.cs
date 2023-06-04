@@ -29,8 +29,7 @@ namespace Museoapp.Views
         {
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM ; database=Museo1 ; integrated security = true");
             conexion.Open();
-
-
+            
 
             string query = "insert into Libros(Titulo, Origen, N_paginas, Descripcion) " +
                 "Values ('" + Titulo1.Text + "', '" + Origen1.Text + "', '" + Numpaginas1.Text + "', '" + Descripcion1.Text + "')";

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\TESIS\App.xaml
-4-658383443
+6-1859694362
 
-10292637714
+12572470215
 1951022881328
-MainWindow.xaml;Views\Coleccion.xaml;Views\Home.xaml;Views\Libro.xaml;
+MainWindow.xaml;Views\Coleccion.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;
 
 False
 

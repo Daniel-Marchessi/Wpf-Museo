@@ -38,15 +38,16 @@ namespace WpfAppTEST.Views
             libro.Show();
         }
 
-        //private void CrearListaLibro_Click(object sender, RoutedEventArgs e)
-        //{
-        //    ListaLibros listalibro = new ListaLibros();
-        //    listalibro.Show();
-        //}
+        private void CrearListaLibro_Click(object sender, RoutedEventArgs e)
+        {
+            ListaLibros listalibro = new ListaLibros();
+            listalibro.Show();
+        }
 
-        //private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
+        private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
+        {
+            ListaColecciones listaColeccion = new ListaColecciones();
+            listaColeccion.Show();
+        }
     }
 }

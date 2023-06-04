@@ -11,6 +11,12 @@
     <Compile Update="Views\Libro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ListaColecciones.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ListaLibros.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Coleccion.xaml">
@@ -20,6 +26,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Libro.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListaColecciones.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ListaLibros.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
