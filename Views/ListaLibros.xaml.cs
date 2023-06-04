@@ -13,8 +13,8 @@ namespace Museoapp.Views
         {
             InitializeComponent();
 
-            // Conectarse a la base de datos y recuperar los datos
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true"; // Reemplaza con tu cadena de conexión
+           
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true"; 
             string query = "SELECT [id_libro],[Titulo],[Origen] ,[Autor_id],[N_paginas] ,[Descripcion],[Categoria_id],[Editorial_id] FROM [dbo].[Libros]"; // Reemplaza con tu consulta SQL
 
             using (SqlConnection connection = new SqlConnection(connectionString))

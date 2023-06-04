@@ -24,7 +24,7 @@ namespace Museoapp.Views
         public ListaColecciones()
         {
             InitializeComponent();
-            // Conectarse a la base de datos y recuperar los datos
+           
             string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true"; 
             string query = "SELECT[Coleccion_id],[Nombre],[Cantidad],[Titulo_alias],[Lugar_proce]" +
                 ",[Periodo],[Material_id],[Alto],[Ancho],[Largo],[Diametro],[Integridad]," +
