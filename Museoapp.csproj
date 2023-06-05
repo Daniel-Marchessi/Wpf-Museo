@@ -27,6 +27,8 @@
     <None Remove="img\Colecciones.jpg" />
     <None Remove="img\FondoLogin.jpg" />
     <None Remove="img\home.jpg" />
+    <None Remove="img\Lupa.png" />
+    <None Remove="img\NoDisponible.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +52,8 @@
     <Resource Include="img\Colecciones.jpg" />
     <Resource Include="img\FondoLogin.jpg" />
     <Resource Include="img\home.jpg" />
+    <Resource Include="img\Lupa.png" />
+    <Resource Include="img\NoDisponible.jpg" />
   </ItemGroup>
 
 </Project>

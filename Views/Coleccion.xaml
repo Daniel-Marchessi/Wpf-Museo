@@ -11,7 +11,7 @@
     <Window.Background>
         <ImageBrush ImageSource="../img/Colecciones.jpg" />
     </Window.Background>
-   
+
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
         <Grid>
             <Grid.RowDefinitions>
@@ -54,10 +54,15 @@
 
             <Label x:Name="Diametro" Content="Diametro" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
             <TextBox x:Name="Diametro1" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,20,50,0"    MaxWidth="500" FontSize="24"/>
-            
-       
-            <Label x:Name="Integridad" Content="Integridad" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="50,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-            <TextBox x:Name="Integridad1" Grid.Row="0" Grid.Column="3"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,20,50,0"   MaxWidth="500" FontSize="24"/>
+
+            <Border  Margin="5,30,0,0" Background="White" BorderThickness="2"  Grid.Row="6"  Grid.RowSpan="5" Grid.Column="1" BorderBrush="Black" CornerRadius="5" Width="400" Height="300">
+                <Image  x:Name="imgFoto" Grid.Column="1"  MinHeight="300" MaxHeight="300" Grid.Row="6" VerticalAlignment="Top" MaxWidth="400"  MinWidth="400" Grid.RowSpan="5"/>
+            </Border>
+
+            <Button x:Name="ImagenEdit" Background=" #ecf0f3" FontSize="30" Grid.Column="1" Content="Seleccionar imagen" HorizontalAlignment="Center" Height="50" Margin="0,20,0,20" Grid.Row="13" VerticalAlignment="Top" Width="300" Click="ImagenEdit_Click"/>
+
+            <TextBox x:Name="Largo1" Grid.Column="3"  Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,28,50,0"   MaxWidth="500" FontSize="24" Grid.RowSpan="2"/>
+            <Label Content="Largo" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,28,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
 
             <Label x:Name="Ingreso" Content="Ingreso" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
             <TextBox x:Name="Ingreso1" Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="5,20,50,0"    MaxWidth="500" FontSize="24"/>
@@ -68,26 +73,24 @@
             <Label x:Name="Ubicacion" Content="Ubicacion" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
             <TextBox x:Name="Ubicacion1" Grid.Row="3" Grid.Column="3"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,20,50,0"   MaxWidth="500" FontSize="24"/>
 
-            <Label x:Name="Alias" Content="Alias" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-            <TextBox x:Name="Alias1" Grid.Row="4" Grid.Column="3"  Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,20,50,0"   MaxWidth="500" FontSize="24"/>
+            <Label x:Name="Integridad" Content="Integridad" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+            <TextBox x:Name="Integridad1" Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
 
-            <Label x:Name="LugarProc" Content="Lugar" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+            <Label x:Name="LugarProc" Content="Lugar" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" RenderTransformOrigin="0.476,-1.288"/>
             <TextBox x:Name="Lugarprocedencia" Grid.Row="5" Grid.Column="3"   Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5,20,50,0"  MaxWidth="500" FontSize="24"/>
 
             <Label Content="Titulo" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top"  Margin="5,20,5,0"    FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
             <TextBox x:Name="TituloA" Grid.Row="6" Grid.Column="3"  Grid.ColumnSpan="1" VerticalAlignment="Top"    Margin="5,20,50,0"  FontSize="24" Grid.RowSpan="2"  MaxWidth="500"/>
-      
+           
+           
 
             <Label x:Name="Imagen" Content="Imagen" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,1,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
 
-            <Border  Margin="5,30,0,0" Background="White" BorderThickness="2"  Grid.Row="6"  Grid.RowSpan="5" Grid.Column="1" BorderBrush="Black" CornerRadius="5" Width="400" Height="300">
-                <Image  x:Name="imgFoto" Grid.Column="1"  MinHeight="300" MaxHeight="300" Grid.Row="6" VerticalAlignment="Top" MaxWidth="400"  MinWidth="400" Grid.RowSpan="5"/>
-            </Border>
-            <TextBox x:Name="Url_Foto" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="center" Margin="5,30,0,0" VerticalAlignment="Center" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
-
-            <Button x:Name="ImagenEdit" Background=" #ecf0f3" FontSize="30" Grid.Column="1" Content="Seleccionar imagen" HorizontalAlignment="Center" Height="50" Margin="0,20,0,20" Grid.Row="13" VerticalAlignment="Top" Width="300" Click="ImagenEdit_Click"/>
+            
 
             <Button x:Name="EnviarColeccion" Background=" #ecf0f3" FontSize="30" Content="Guardar" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,105,20,10" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
+            <TextBox x:Name="Url_Foto" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="center" Margin="5,30,0,0" VerticalAlignment="Center" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
+
 
         </Grid>
     </ScrollViewer>

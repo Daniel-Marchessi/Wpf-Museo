@@ -3,103 +3,142 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace WpfAppTEST.Models
 {
-    class piezas
+    class Piezas
     {
-        private string Nombre;
-        public string Nombrep
+        private int id;
+        public int Coleccion_id
         {
-            get { return Nombre; }
-            set { Nombre = value; }
+            get { return id; }
+            set { id = value; }
         }
-
-        private string Cantidad;
-        public string Cantidadp
+            
+        private string nombre;
+        public string Nombre
         {
-            get { return Cantidad; }
-            set { Cantidad = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
 
-
-
-        private string Tipo;
-
-        public string Tipop {
-            get { return Tipo; }
-            set { Tipo = value; }
-
-        }
-        private string Periodo { get; set; }
-        public string Periodop
+        private int cantidad;
+        public int Cantidad
         {
-            get { return Periodo; }
-            set { Periodo = value; }
+            get { return cantidad; }
+            set { cantidad = value; }
         }
-        private int Alto { get; set; }
 
-        public int Altop
+        private string titulo;
+        public string Titulo_alias
         {
-            get { return Alto; }
-            set
-            {
-                Alto = value;
-            }
+            get { return titulo; }
+            set { titulo = value; }
         }
-        private float Diametro { get; set; }
 
-        public float Diametrop
+        private string lugarprocedencia;
+        public string Lugar_proce
         {
-            get { return Diametro; }
-            set { Diametro = value; }
+            get { return lugarprocedencia; }
+            set { lugarprocedencia = value; }
         }
-        private string Forma_ingreso { get; set; }
-        public string Forma_ingresop
+
+
+        private string periodo;
+        public string Periodo
         {
-            get { return Forma_ingreso; }
-            set
-            {
-                Forma_ingreso = value;
-            }
+            get { return periodo; }
+            set { periodo = value; }
         }
-        private string Conservacion { get; set; }
 
-        public string Conservacionp
+        private int materialid;
+        public int Material_id
         {
-            get { return Conservacion; }
-            set
-            {
-                Conservacion = value;
-            }
+            get { return materialid; }
+            set { materialid = value; }
         }
-        private string Ubicacion { get; set; }
 
-        public string Ubicacionp
+        private int alto;
+        public int Alto
         {
-            get { return Ubicacion; }
-            set
-            {
-                Ubicacion = value;
-            }
+            get { return alto; }
+            set { alto = value; }
         }
-        private string Titulo { get; set; }
-        public string Titulop
+
+        private int ancho;
+        public int Ancho
         {
-            get { return Titulo; }
-            set
-            {
-                Titulo = value;
-            }
+            get { return ancho; }
+            set { ancho = value; }
+        }
+
+        private int largo;
+        public int Largo
+        {
+            get { return largo; }
+            set { largo = value; }
+        }
+
+        private double diametro;
+        public double Diametro
+        {
+            get { return diametro; }
+            set { diametro = value; }
         }
 
 
-        public piezas() { }
+        private string integridad;
+        public string Integridad
+        {
+            get { return integridad; }
+            set { integridad = value; }
+        }
 
+        private string conservacion;
+        public string Conservacion
+        {
+            get { return conservacion; }
+            set { conservacion = value; }
+        }
+
+        private string ubicacion;
+        public string Ubicacion
+        {
+            get { return ubicacion; }
+            set { ubicacion = value; }
+        }
+
+        private string forma_ingreso;
+        public string Ingreso
+        {
+            get { return forma_ingreso; }
+            set { forma_ingreso = value; }
+        }
+
+        private int localidadid;
+        public int Localidad_id
+        {
+            get { return localidadid; }
+            set { localidadid = value; }
+        }
+
+        private int autorid;
+        public int Autor_id
+        {
+            get { return autorid; }
+            set { autorid = value; }
+        }
+
+        private ImageSource foto;
+        public ImageSource Foto
+        {
+            get { return foto; }
+            set { foto = value; }
+        }
+
+
+
+        public Piezas() { }
     }
-
-
-
-
-
 }

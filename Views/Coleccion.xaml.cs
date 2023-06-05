@@ -17,29 +17,29 @@ using WpfAppTEST.Models;
 
 namespace WpfAppTEST.Views
 {
-    /// <summary>
-    /// Lógica de interacción para Coleccion.xaml
-    /// </summary>
+   
     public partial class Coleccion : Window
     {
         public Coleccion()
         {
             InitializeComponent();
+            Nombre.Focus();
         }
 
        
 
         private void EnviarColeccion_Click_1(object sender, RoutedEventArgs e)
         {
+            
 
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 
 
-            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho, Diametro, Integridad, Conservacion, Ubicacion, Ingreso, Foto) " +
+            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho,Largo, Diametro, Integridad, Conservacion, Ubicacion, Ingreso, Foto) " +
                 "Values ('" + Nombre.Text + "', " + Cantidad1.Text + ", '" + TituloA.Text + "', '" + Lugarprocedencia.Text + "', '" + Periodo1.Text + "', " + Alto1.Text + ", " +
-                Ancho1.Text + ", " + Diametro1.Text + ", '" + Integridad1.Text + "', '" + Conservacion1.Text + "', '" +
+                Ancho1.Text + ", "+Largo1.Text +", " + Diametro1.Text + ", '" + Integridad1.Text + "', '" + Conservacion1.Text + "', '" +
                 Ubicacion1.Text + "', '" + Ingreso1.Text + "', '" + Url_Foto.Text + "')";
 
 
@@ -73,6 +73,7 @@ namespace WpfAppTEST.Views
             Ubicacion1.Text = "";
             Ingreso1.Text = "";
             Url_Foto.Text = "";
+            Largo1.Text = "";
             imgFoto.Source = null;
         }
 

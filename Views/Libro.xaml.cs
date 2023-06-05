@@ -23,10 +23,13 @@ namespace Museoapp.Views
         public Libro()
         {
             InitializeComponent();
+            Titulo1.Focus();
         }
 
         private void EnviarLibro_Click(object sender, RoutedEventArgs e)
         {
+            
+
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM ; database=Museo1 ; integrated security = true");
             conexion.Open();
             

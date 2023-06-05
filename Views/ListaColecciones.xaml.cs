@@ -1,35 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfAppTEST.Models;
 
 namespace Museoapp.Views
 {
-    /// <summary>
-    /// Lógica de interacción para ListaColecciones.xaml
-    /// </summary>
+
     public partial class ListaColecciones : Window
     {
         public ListaColecciones()
         {
             InitializeComponent();
-           
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true"; 
-            string query = "SELECT[Coleccion_id],[Nombre],[Cantidad],[Titulo_alias],[Lugar_proce]" +
-                ",[Periodo],[Material_id],[Alto],[Ancho],[Largo],[Diametro],[Integridad]," +
-                "[Conservacion],[Ubicacion],[Ingreso],[Localidad_id],[Autor_id],[Foto] " +
-                "FROM[dbo].[Coleccion]"; 
+
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
+            string query = "SELECT [Coleccion_id], [Nombre], [Cantidad], [Titulo_alias], [Lugar_proce], " +
+                "[Periodo], [Material_id], [Alto], [Ancho], [Largo], [Diametro], [Integridad], " +
+                "[Conservacion], [Ubicacion], [Ingreso], [Localidad_id], [Autor_id], [Foto] " +
+                "FROM [dbo].[Coleccion]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -38,39 +29,122 @@ namespace Museoapp.Views
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                // Crear un DataTable para almacenar los datos
-                DataTable table = new DataTable();
-                table.Load(reader);
+               
+                List<Piezas> piezas = new List<Piezas>();
 
-                // Convertir la URL de la foto en una imagen en el DataTable
-                ConvertUrlsToImages(table);
-
-
-                // Asignar el DataTable como origen de datos de la ListView
-                listView.ItemsSource = table.DefaultView;
-            }
-
-        }
-        private void ConvertUrlsToImages(DataTable table)
-        {
-            DataColumn fotoColumn = table.Columns["Foto"];
-            foreach (DataRow row in table.Rows)
-            {
-                string url = row.Field<string>(fotoColumn);
-                if (!string.IsNullOrEmpty(url))
+                while (reader.Read())
                 {
-                    try
+                    Piezas coleccion = new Piezas();
+                    coleccion.Coleccion_id = reader.GetInt32(0);
+                    coleccion.Nombre = reader.GetString(1);
+                    coleccion.Cantidad = reader.GetInt32(2);
+                    coleccion.Titulo_alias = reader.GetString(3);
+                    coleccion.Lugar_proce = reader.GetString(4);
+                    coleccion.Periodo = reader.GetString(5);
+                    //coleccion.MaterialId = reader.GetInt32(6);
+                    coleccion.Alto = reader.GetInt32(7);
+                    coleccion.Ancho = reader.GetInt32(8);
+                    coleccion.Largo = reader.GetInt32(9);
+                    coleccion.Diametro = reader.GetDouble(10);
+                    coleccion.Integridad = reader.GetString(11);
+                    coleccion.Conservacion = reader.GetString(12);
+                    coleccion.Ubicacion = reader.GetString(13);
+                    coleccion.Ingreso = reader.GetString(14);
+                    //coleccion.LocalidadId = reader.GetInt32(15);
+                    //coleccion.AutorId = reader.GetInt32(16);
+
+                    if (!reader.IsDBNull(17))
                     {
-                        BitmapImage image = new BitmapImage(new Uri(url));
-                        row.SetField(fotoColumn, image);
+                        string fotoUrl = reader.GetString(17);
+                        coleccion.Foto = LoadImageFromUrl(fotoUrl);
                     }
-                    catch (Exception)
+                    else
                     {
-                        // Si ocurre algún error al cargar la imagen, puedes asignar una imagen de "imagen no disponible" o null
+                        coleccion.Foto = null;
                     }
+
+                    piezas.Add(coleccion);
+                }
+
+                listView.ItemsSource = piezas;
+            }
+        }
+
+        private ImageSource LoadImageFromUrl(string url)
+        {
+            try
+            {
+                BitmapImage image = new BitmapImage(new Uri(url));
+                return image;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private void BuscarPorNombre(object sender, EventArgs e)
+        {
+            string textoBusqueda = PorNombre.Text;
+
+           
+            listView.SelectedItems.Clear();
+
+          
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                Piezas item = (Piezas)listView.Items[i];
+                if (item.Nombre.Contains(textoBusqueda))
+                {
+                    listView.SelectedItem = item;
+                    listView.Focus();
+                    listView.ScrollIntoView(item);
+                    PorNombre.Text = "";
+
                 }
             }
         }
+        private void BuscarPorlugar(object sender, EventArgs e)
+        {
+            string textoBusqueda = Porlugar.Text;
+
+            listView.SelectedItems.Clear();
+
+      
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                Piezas item = (Piezas)listView.Items[i];
+                if (item.Lugar_proce.Contains(textoBusqueda))
+                {
+                    listView.SelectedItem = item;
+                    listView.Focus();
+                    listView.ScrollIntoView(item);
+                    Porlugar.Text = "";
+
+                }
+            }
+        }
+        private void BuscarPorTituloAlias(object sender, EventArgs e)
+        {
+            string textoBusqueda = PorTitulo.Text;
+
+      
+            listView.SelectedItems.Clear();
+
+           
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                Piezas item = (Piezas)listView.Items[i];
+                if (item.Titulo_alias.Contains(textoBusqueda))
+                {
+                    listView.SelectedItem = item;
+                    listView.Focus();
+                    listView.ScrollIntoView(item);
+                    PorTitulo.Text = "";
+                }
+            }
+        }
+
+
     }
 }
-  

@@ -3,15 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         Icon="../ico/Colecciones.ico"
         WindowState="Maximized"
         Title="Colecciones" MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="../img/Colecciones.jpg" />
     </Window.Background>
+    
     <Grid>
-        <ListView x:Name="listView" Margin="100">
-            <ListView.View>
-                <GridView>
+
+        <Border Background="White" HorizontalAlignment="Center" Margin="25,25,0,0" VerticalAlignment="Top">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Por nombre" Margin="5"  FontSize="24" />
+                <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
+                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre" >
+                    <Image Source="../img/Lupa.png" Width="37" />
+                </Button>
+
+                <Label Grid.Row="1" Grid.Column="3" Content="Por lugar de procedencia" Margin="5"  FontSize="24"/>
+                <TextBox  x:Name="Porlugar" Grid.Row="1" Grid.Column="4" Text=""  Width="200" Margin="5"  FontSize="24"/>
+                <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorlugar">
+                    <Image Source="../img/Lupa.png" Width="37" />
+                </Button>
+
+                <Label Grid.Row="1" Grid.Column="6" Content="Por Titulo/Alias" Margin="5" FontSize="24" />
+                <TextBox  x:Name="PorTitulo" Grid.Row="1" Grid.Column="7" Text=""  Width="200" Margin="5"  FontSize="24"/>
+                <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorTituloAlias">
+                    <Image Source="../img/Lupa.png" Width="37" />
+                </Button>
+                
+                
+            </Grid>
+        </Border>
+
+
+        <ListView x:Name="listView" Width="900" Height="400">
+            <ListView.View >
+                <GridView >
                     <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Nombre}" />
                     <GridViewColumn Header="Cantidad" DisplayMemberBinding="{Binding Cantidad}" />
                     <GridViewColumn Header="Titulo Alias" DisplayMemberBinding="{Binding Titulo_alias}" />
@@ -35,5 +85,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        
+
     </Grid>
 </Window>

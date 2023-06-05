@@ -22,5 +22,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox HorizontalAlignment="Left" Margin="203,29,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" />
+        <Label Content="Por Titulo" HorizontalAlignment="Left" Margin="115,25,0,0" VerticalAlignment="Top" Background="White" />
+        <Button Background="Transparent" HorizontalAlignment="Left" Height="26" Margin="345,25,0,0" VerticalAlignment="Top" Width="53">
+            <Image Source="../img/Lupa.png" Width="54" />
+        </Button>
     </Grid>
 </Window>
