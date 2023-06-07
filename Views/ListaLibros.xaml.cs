@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Windows.Controls;
 using WpfAppTEST.Models;
 
 namespace Museoapp.Views
@@ -11,7 +13,11 @@ namespace Museoapp.Views
         public ListaLibros()
         {
             InitializeComponent();
+            ListarLibros();
 
+        }
+        private void ListarLibros()
+        {
             string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
             string query = "SELECT [id_libro],[Titulo],[Origen] ,[Autor_id],[N_paginas] ,[Descripcion],[Categoria_id],[Editorial_id] FROM [dbo].[Libros]";
 
@@ -43,9 +49,74 @@ namespace Museoapp.Views
                 // Asignar la lista de libros como origen de datos de la ListView
                 listView.ItemsSource = libros;
             }
+        }
+            private void BuscarPorTitulo(object sender, RoutedEventArgs e)
+        {
+            string textoBusqueda = PorTitulo.Text.Trim();
+
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                Libros item = (Libros)listView.Items[i];
+                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+
+                if (item.Titulo.Contains(textoBusqueda))
+                {
+                    // Mostrar el elemento si coincide con la búsqueda
+                    listViewItem.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    // Ocultar el elemento si no coincide con la búsqueda
+                    listViewItem.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            PorTitulo.Text = "";
+        }
 
 
+        private void BuscarPorDescripcion(object sender, RoutedEventArgs e)
+        {
+            string textoBusqueda = PorDescripcion.Text.Trim();
 
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                Libros item = (Libros)listView.Items[i];
+                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+
+                if (item.Descripcion.Contains(textoBusqueda))
+                {
+                    // Mostrar el elemento si coincide con la búsqueda
+                    listViewItem.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    // Ocultar el elemento si no coincide con la búsqueda
+                    listViewItem.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            PorDescripcion.Text = "";
+        }
+
+        //private void BuscarPorCategoria(object sender, RoutedEventArgs e) { }
+
+
+        private void Refrescar(Object sender, RoutedEventArgs e)
+        {
+            // Mostrar todos los elementos de la lista nuevamente
+            for (int i = 0; i < listView.Items.Count; i++)
+            {
+                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+                if (listViewItem != null)
+                {
+                    // Mostrar el elemento
+                    listViewItem.Visibility = Visibility.Visible;
+                }
+            }
+
+            // Limpiar el campo de búsqueda
+            PorTitulo.Text = "";
         }
     }
 }

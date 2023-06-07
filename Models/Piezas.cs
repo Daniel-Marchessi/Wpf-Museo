@@ -137,6 +137,21 @@ namespace WpfAppTEST.Models
             set { foto = value; }
         }
 
+        private string urlfoto;
+        public string UrlFoto
+        {
+            get { return urlfoto; }
+            set { urlfoto = value; }
+        }
+
+        private string mate;
+        public string Materiales
+        {
+            get { return mate; }
+            set { mate = value; }
+        }
+
+
 
 
         public Piezas() { }

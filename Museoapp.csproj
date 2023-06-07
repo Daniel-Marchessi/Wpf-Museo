@@ -23,12 +23,15 @@
     <None Remove="ico\Libros.ico" />
     <None Remove="ico\museum_roman_temple_buildings_monuments_greek_icon_128571.png" />
     <None Remove="ico\Usuarios.ico" />
+    <None Remove="img\Autor.jpg" />
     <None Remove="img\biblioteca.png" />
     <None Remove="img\Colecciones.jpg" />
     <None Remove="img\FondoLogin.jpg" />
     <None Remove="img\home.jpg" />
     <None Remove="img\Lupa.png" />
+    <None Remove="img\Materiales.jpg" />
     <None Remove="img\NoDisponible.jpg" />
+    <None Remove="img\Refresh.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +42,8 @@
 
  
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
@@ -48,12 +53,15 @@
 
   <ItemGroup>
     <Resource Include="ico\Usuarios.ico" />
+    <Resource Include="img\Autor.jpg" />
     <Resource Include="img\biblioteca.png" />
     <Resource Include="img\Colecciones.jpg" />
     <Resource Include="img\FondoLogin.jpg" />
     <Resource Include="img\home.jpg" />
     <Resource Include="img\Lupa.png" />
+    <Resource Include="img\Materiales.jpg" />
     <Resource Include="img\NoDisponible.jpg" />
+    <Resource Include="img\Refresh.png" />
   </ItemGroup>
 
 </Project>

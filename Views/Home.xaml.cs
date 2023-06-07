@@ -1,6 +1,8 @@
-﻿using Museoapp.Views;
+﻿using Museoapp.Models;
+using Museoapp.Views;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +32,7 @@ namespace WpfAppTEST.Views
             Coleccion coleccion = new Coleccion();
 
             coleccion.Show();
+            
         }
 
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
@@ -49,5 +52,20 @@ namespace WpfAppTEST.Views
             ListaColecciones listaColeccion = new ListaColecciones();
             listaColeccion.Show();
         }
+
+        private void CrearAutor_Click(object sender, RoutedEventArgs e)
+        {
+            Autor autor = new Autor();
+            autor.Show();
+        }
+
+     
+        private void CrearMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            Material material = new Material();
+            material.Show();
+        }
+
+     
     }
 }

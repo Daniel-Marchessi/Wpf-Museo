@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\Autor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Coleccion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,8 +20,14 @@
     <Compile Update="Views\ListaLibros.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Material.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Autor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Coleccion.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -32,6 +41,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ListaLibros.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Material.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

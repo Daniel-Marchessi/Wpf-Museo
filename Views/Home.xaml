@@ -13,49 +13,20 @@
     </Window.Background>
     <Grid>
         <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
-            <MenuItem x:Name="Registrar" Header="Registrar" Height="33" HorizontalAlignment="Left" Width="60" >
+            <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
                 <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
-                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
-            </MenuItem>
-            <!--<MenuItem x:Name="Editar" Header="Editar">
-                <MenuItem x:Name="EditarLibro" Header="Editar libro" />
-                <MenuItem x:Name="EditarPieza" Header="Editar pieza"  />
-                <MenuItem x:Name="EliminarLibro" Header="Eliminar libro"  />
-                <MenuItem x:Name="EliminarPieza" Header="Eliminar pieza"  />
-            </MenuItem>-->
-
-            <MenuItem x:Name="Ver" Header="Ver">
                 <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
+            </MenuItem>
+            
+            <MenuItem x:Name="Coleccion" Header="Coleccion">
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
                 <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
             </MenuItem>
 
-            <!--<MenuItem x:Name="Buscar" Header="Buscar">
-                <MenuItem x:Name="BuscarLibro" Header="Buscar libro">
-                    <MenuItem x:Name="PorTitulo" Header="Por título"  />
-                    <MenuItem x:Name="PorAutor" Header="Por autor" />
-                    <MenuItem x:Name="PorGenero" Header="Por género" />
-                    <MenuItem x:Name="PorAnio" Header="Por año de publicación"  />
-                    <MenuItem x:Name="PorISBN" Header="Por ISBN u otro identificador único" />
-                </MenuItem>
-                <MenuItem x:Name="BuscarPieza" Header="Buscar pieza">
-                    <MenuItem x:Name="PorNombre" Header="Por nombre"  />
-                    <MenuItem x:Name="PorFabricante" Header="Por fabricante" />
-                    <MenuItem x:Name="PorTipo" Header="Por tipo de pieza" />
-                    <MenuItem x:Name="PorNumeroSerie" Header="Por número de serie u otro identificador único" />
-                </MenuItem>
-            </MenuItem>
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
 
-            <MenuItem x:Name="Informes" Header="Informes">
-                <MenuItem x:Name="InformeLibros" Header="Generar informe de libros"  />
-                <MenuItem x:Name="InformePiezas" Header="Generar informe de piezas"  />
-                <MenuItem x:Name="InformeGeneral" Header="Generar informe general" />
-            </MenuItem>
 
-            <MenuItem x:Name="Ayuda" Header="Ayuda">
-                <MenuItem x:Name="AcercaDe" Header="Acerca de"  />
-                <MenuItem x:Name="Documentacion" Header="Documentación" />
-                <MenuItem x:Name="SoporteTecnico" Header="Soporte técnico"  />
-            </MenuItem-->
         </Menu>
         
         

@@ -1,0 +1,91 @@
+﻿<Window x:Class="Museoapp.Views.Autor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museoapp.Views"
+        mc:Ignorable="d"
+        Icon="../ico/Home.ico"
+        Title="Autor"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="../img/Autor.jpg" />
+    </Window.Background>
+
+    <Grid>
+
+        <Border Background="White" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="192" Width="595">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="1" Grid.Row="0" Content="Crear" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-2,0,0" FontWeight="Bold" Foreground="Black"  FontSize="40"/>
+                <Label Content="Apellido" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,80,0,0" FontWeight="Bold" Foreground="Black"  FontSize="20"/>
+                <TextBox x:Name="Apellido1"  Grid.Column="1" VerticalAlignment="Top" Margin="0,80,0,0"   MaxWidth="500"  FontSize="20" HorizontalAlignment="Center" Width="292"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Nombre" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="47,18,0,0" FontWeight="Bold" Foreground="Black"  FontSize="20" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="Nombre1"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0,26,0,0"  MaxWidth="500"  FontSize="20" HorizontalAlignment="Center" Width="292"/>
+                <Button x:Name="EnviarAutor" Grid.Column="2" Grid.Row="1"  Background=" #ecf0f3" FontSize="20" Content="Guardar" HorizontalAlignment="Left" Margin="29,26,0,0" Width="135"  RenderTransformOrigin="2.015,6.747" Click="EnviarAutor_Click" />
+
+            </Grid>
+        </Border>
+
+        <Border Background="White" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Width="426">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="40"/>
+                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="40" FontSize="40" Click="Refrescar" >
+                    <Image Source="../img/Refresh.png" Width="37" />
+                </Button>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Por Nombre" Margin="5"   FontSize="20" />
+                <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="20"/>
+                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="20" Click="BuscarPorNombre" >
+                    <Image Source="../img/Lupa.png" Width="37" />
+                </Button>
+
+
+
+
+            </Grid>
+        </Border>
+
+
+        <ListView x:Name="listView" Margin="760,186,165,30">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Width="100" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"  />
+                    <GridViewColumn Width="100" Header="Apellido" DisplayMemberBinding="{Binding Apellido}"  />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+    </Grid>
+
+</Window>

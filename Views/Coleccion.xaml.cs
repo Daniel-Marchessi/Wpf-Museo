@@ -1,81 +1,148 @@
 ﻿using Microsoft.Win32;
+using Museoapp.Models;
+using Museoapp.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfAppTEST.Models;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace WpfAppTEST.Views
 {
-   
+
     public partial class Coleccion : Window
     {
         public Coleccion()
         {
             InitializeComponent();
             Nombre.Focus();
+            TraerAutores();
+            TraerMateriales();
+
         }
 
-       
+        private void TraerAutores()
+        {
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+
+
+            while (reader.Read())
+            {
+                var autor = new Autores
+                {
+                    
+                    NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString()
+                };
+
+                Autores.Items.Add(autor);
+            }
+
+            conexion.Close();
+        }
+
+        private void TraerMateriales()
+        {
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+
+            conexion.Open();
+
+            string query = "SELECT [Nombre], [id_material] FROM [dbo].[Material]";
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                var material = new Materiales
+                {
+                    id_material = Convert.ToInt32(reader["id_material"]),
+                    Nombre= reader["Nombre"].ToString()
+                };
+
+                Materiales.Items.Add(material);
+            }
+
+            conexion.Close();
+        }
+
 
         private void EnviarColeccion_Click_1(object sender, RoutedEventArgs e)
         {
-            
+
 
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 
+            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho,Largo, Diametro, Integridad, Conservacion, Ubicacion, Ingreso,Foto, Material_id) " +
+               "Values (@Nombre, @Cantidad, @TituloAlias, @LugarProcedencia, @Periodo, @Alto, @Ancho, @Largo, @Diametro, @Integridad, @Conservacion, @Ubicacion, @Ingreso,@UrlFoto,@Material_id)";
 
-            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho,Largo, Diametro, Integridad, Conservacion, Ubicacion, Ingreso, Foto) " +
-                "Values ('" + Nombre.Text + "', " + Cantidad1.Text + ", '" + TituloA.Text + "', '" + Lugarprocedencia.Text + "', '" + Periodo1.Text + "', " + Alto1.Text + ", " +
-                Ancho1.Text + ", "+Largo1.Text +", " + Diametro1.Text + ", '" + Integridad1.Text + "', '" + Conservacion1.Text + "', '" +
-                Ubicacion1.Text + "', '" + Ingreso1.Text + "', '" + Url_Foto.Text + "')";
 
+            //string query2 = "insert into Coleccion_Material(id_material)  Values(@Material_id)";
+
+
+            Piezas pieza = new Piezas();
 
             SqlCommand comand = new SqlCommand(query, conexion);
-            //comand.Parameters.AddWithValue("@Nombre", Nombre.Text);
-            //comand.Parameters.AddWithValue("@Cantidad", Cantidad1.Text);
-            //comand.Parameters.AddWithValue("Lugar_proce", Lugarprocedencia.Text);
-            //comand.Parameters.AddWithValue("@Periodo", Periodo1.Text);
-            //comand.Parameters.AddWithValue("@Alto", Alto1.Text);
-            //comand.Parameters.AddWithValue("@Ancho", Ancho1.Text);
-            //comand.Parameters.AddWithValue("@Diametro", Diametro1.Text);
-            //comand.Parameters.AddWithValue("@Integridad", Integridad1.Text);
-            //comand.Parameters.AddWithValue("@Conservacion", Conservacion1.Text);
-            //comand.Parameters.AddWithValue("@Ubicacion", Ubicacion1.Text);
-            //comand.Parameters.AddWithValue("@Ingreso", Ingreso1.Text);
+            ////SqlCommand comand2 = new SqlCommand(query2, conexion);
+
+
+
+            //comand2.Parameters.AddWithValue("@Material_id", Convert.ToInt32(Materiales.Text));
+
+            pieza.Nombre = Nombre.Text;
+            pieza.Cantidad = Convert.ToInt32(Cantidad1.Text);
+            pieza.Titulo_alias = TituloA.Text;
+            pieza.Lugar_proce = Lugarprocedencia.Text;
+            pieza.Periodo = Periodo1.Text;
+            pieza.Alto = Convert.ToInt32(Alto1.Text);
+            pieza.Ancho = Convert.ToInt32(Ancho1.Text);
+            pieza.Largo = Convert.ToInt32(Largo1.Text);
+            pieza.Diametro = Convert.ToDouble(Diametro1.Text);
+            pieza.Integridad = Integridad1.Text;
+            pieza.Conservacion = Conservacion1.Text;
+            pieza.Ubicacion = Ubicacion1.Text;
+            pieza.Ingreso = Ingreso1.Text;
+            pieza.UrlFoto = Url_Foto.Text;
+            //pieza.Materiales = Materiales.Text;
+            pieza.Material_id = Convert.ToInt32(Materiales.Text);
+
+            comand.Parameters.AddWithValue("@Nombre", pieza.Nombre);
+            comand.Parameters.AddWithValue("@Cantidad", pieza.Cantidad);
+            comand.Parameters.AddWithValue("@TituloAlias", pieza.Titulo_alias);
+            comand.Parameters.AddWithValue("@LugarProcedencia", pieza.Lugar_proce);
+            comand.Parameters.AddWithValue("@Periodo", pieza.Periodo);
+            comand.Parameters.AddWithValue("@Alto", pieza.Alto);
+            comand.Parameters.AddWithValue("@Ancho", pieza.Ancho);
+            comand.Parameters.AddWithValue("@Largo", pieza.Largo);
+            comand.Parameters.AddWithValue("@Diametro", pieza.Diametro);
+            comand.Parameters.AddWithValue("@Integridad", pieza.Integridad);
+            comand.Parameters.AddWithValue("@Conservacion", pieza.Conservacion);
+            comand.Parameters.AddWithValue("@Ubicacion", pieza.Ubicacion);
+            comand.Parameters.AddWithValue("@Ingreso", pieza.Ingreso);
+            comand.Parameters.AddWithValue("@UrlFoto", pieza.UrlFoto);
+            comand.Parameters.AddWithValue("@Material_id", pieza.Material_id);
+
             comand.ExecuteNonQuery();
+            //comand2.ExecuteNonQuery();
             MessageBox.Show("Se ingreso una pieza");
             conexion.Close();
 
-            //Limpiar campos al ingresar
-            Nombre.Text = "";
-            Cantidad1.Text = "";
-            TituloA.Text = "";
-            Lugarprocedencia.Text = "";
-            Periodo1.Text = "";
-            Alto1.Text = "";
-            Ancho1.Text = "";
-            Diametro1.Text = "";
-            Integridad1.Text = "";
-            Conservacion1.Text = "";
-            Ubicacion1.Text = "";
-            Ingreso1.Text = "";
-            Url_Foto.Text = "";
-            Largo1.Text = "";
-            imgFoto.Source = null;
+            LimpiarCampos();
         }
+
+
 
         private void ImagenEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +151,7 @@ namespace WpfAppTEST.Views
             ofd.FilterIndex = 1;
             ofd.Multiselect = false;
 
-            if(ofd.ShowDialog() == true)
+            if (ofd.ShowDialog() == true)
             {
                 Url_Foto.Text = "";
 
@@ -99,11 +166,31 @@ namespace WpfAppTEST.Views
                     imgFoto.Source = foto;
                     Url_Foto.Text = ofd.FileName;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar la imagen:" + ex.Message, "Error");
                 }
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            Nombre.Text = "";
+            Cantidad1.Text = "";
+            TituloA.Text = "";
+            Lugarprocedencia.Text = "";
+            Periodo1.Text = "";
+            Alto1.Text = "";
+            Ancho1.Text = "";
+            Diametro1.Text = "";
+            Integridad1.Text = "";
+            Conservacion1.Text = "";
+            Ubicacion1.Text = "";
+            Ingreso1.Text = "";
+            Url_Foto.Text = "";
+            Largo1.Text = "";
+            Materiales.Text = "";
+            imgFoto.Source = null;
         }
     }
 }

@@ -1,0 +1,85 @@
+﻿<Window x:Class="Museoapp.Views.Material"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museoapp.Views"
+        mc:Ignorable="d"
+        Icon="../ico/Home.ico"
+        Title="Material"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="../img/Materiales.jpg" />
+    </Window.Background>
+    <Grid>
+
+        <Border Background="White" HorizontalAlignment="Center" Margin="25,25,0,0" VerticalAlignment="Top">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Tipo de Material" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,43,0,0" FontWeight="Bold" Foreground="Black"  FontSize="30"/>
+                <TextBox x:Name="Nombre1"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="28,51,28,0"  Width="500"  MaxWidth="500"  FontSize="30"/>
+                <Button x:Name="EnviarMaterial" Grid.Row="0" Grid.Column="2" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,51,0,0" Height="45" Width="220"  RenderTransformOrigin="2.015,6.747" Click="EnviarMaterial_Click" />
+
+            </Grid>
+        </Border>
+
+        <Border Background="White" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="426">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
+                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
+                    <Image Source="../img/Refresh.png" Width="37" />
+                </Button>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Por Nombre" Margin="5"  FontSize="24" />
+                <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
+                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre" >
+                    <Image Source="../img/Lupa.png" Width="37" />
+                </Button>
+
+            
+
+
+            </Grid>
+        </Border>
+        
+        
+            <ListView x:Name="listView" Width="200" Height="400" Margin="562,154,338,30">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="200" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"  />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

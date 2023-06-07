@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          Icon="../ico/Colecciones.ico"
         WindowState="Maximized"
-        Title="Colecciones" MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen" >
+        Title="Colecciones" MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen" >
     <Window.Background>
         <ImageBrush ImageSource="../img/Colecciones.jpg" />
     </Window.Background>
@@ -36,21 +36,24 @@
                 </Grid.RowDefinitions>
 
                 <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
+                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
+                    <Image Source="../img/Refresh.png" Width="37" />
+                </Button>
                 <Label Grid.Row="1" Grid.Column="0" Content="Por nombre" Margin="5"  FontSize="24" />
                 <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre" >
+                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre"  >
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>
 
                 <Label Grid.Row="1" Grid.Column="3" Content="Por lugar de procedencia" Margin="5"  FontSize="24"/>
                 <TextBox  x:Name="Porlugar" Grid.Row="1" Grid.Column="4" Text=""  Width="200" Margin="5"  FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorlugar">
+                <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorLugar" >
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>
 
                 <Label Grid.Row="1" Grid.Column="6" Content="Por Titulo/Alias" Margin="5" FontSize="24" />
                 <TextBox  x:Name="PorTitulo" Grid.Row="1" Grid.Column="7" Text=""  Width="200" Margin="5"  FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorTituloAlias">
+                <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorTitulo">
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>
                 
@@ -75,8 +78,9 @@
                     <GridViewColumn Header="Conservacion" DisplayMemberBinding="{Binding Conservacion}" />
                     <GridViewColumn Header="Ubicacion" DisplayMemberBinding="{Binding Ubicacion}" />
                     <GridViewColumn Header="Ingreso" DisplayMemberBinding="{Binding Ingreso}" />
+                    <GridViewColumn Header="Materiales" DisplayMemberBinding="{Binding Materiales}" />
                     <GridViewColumn Header="Foto">
-                        <GridViewColumn.CellTemplate>
+                    <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Foto}" Width="100" Height="100" />
                             </DataTemplate>
