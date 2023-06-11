@@ -26,7 +26,7 @@ namespace WpfAppTEST.Views
 
         private void TraerAutores()
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -35,25 +35,32 @@ namespace WpfAppTEST.Views
             SqlDataReader reader = comand.ExecuteReader();
 
 
-
-
             while (reader.Read())
             {
                 var autor = new Autores
                 {
-                    
-                    NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString()
-                };
+                    id_autor = Convert.ToInt32(reader["id_autor"]),
 
+                    NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString(),
+                  
+                 };
+                
                 Autores.Items.Add(autor);
             }
 
+            Autores.DisplayMemberPath = "NombreCompleto";
+            Autores.SelectedValue = "id_autor";
+
+            //int idSeleccionado = Convert.ToInt32(Materiales.SelectedValue);
+
+            //int idAutorSelecccionado = Convert.ToInt32(Autores.SelectedValue);
+            //int idAutorSelec = (int)Autores.SelectedValue;
             conexion.Close();
         }
 
         private void TraerMateriales()
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
 
             conexion.Open();
 
@@ -72,6 +79,8 @@ namespace WpfAppTEST.Views
 
                 Materiales.Items.Add(material);
             }
+            Materiales.DisplayMemberPath = "Nombre";
+            Materiales.SelectedValue= "id_material";
 
             conexion.Close();
         }
@@ -81,26 +90,37 @@ namespace WpfAppTEST.Views
         {
 
 
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 
-            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho,Largo, Diametro, Integridad, Conservacion, Ubicacion, Ingreso,Foto, Material_id) " +
-               "Values (@Nombre, @Cantidad, @TituloAlias, @LugarProcedencia, @Periodo, @Alto, @Ancho, @Largo, @Diametro, @Integridad, @Conservacion, @Ubicacion, @Ingreso,@UrlFoto,@Material_id)";
+            string query = "insert into Coleccion(Nombre, Cantidad, Titulo_alias, Lugar_proce, Periodo, Alto, Ancho,Largo, Diametro, Integridad, Conservacion, Ubicacion, Ingreso, Material_id, Autor_id, Coleccion_id) " +
+               "Values (@Nombre, @Cantidad, @TituloAlias, @LugarProcedencia, @Periodo, @Alto, @Ancho, @Largo, @Diametro, @Integridad, @Conservacion, @Ubicacion, @Ingreso,@Material_id, @Autor_id, @Coleccion_id)";
 
 
-            //string query2 = "insert into Coleccion_Material(id_material)  Values(@Material_id)";
+
+            string query3 = "insert into Coleccion_autor(id_autor, id_coleccion) Values (@Autor_id, @id_coleccion)";
+            string query2 = "insert into Coleccion_Material(id_material, id_coleccion)  Values(@Material_id, @id_coleccion)";
 
 
             Piezas pieza = new Piezas();
 
             SqlCommand comand = new SqlCommand(query, conexion);
-            ////SqlCommand comand2 = new SqlCommand(query2, conexion);
+            SqlCommand comand2 = new SqlCommand(query2, conexion);
+            SqlCommand comand3 = new SqlCommand(query3, conexion);
+
+            int idAutorSelecccionado = Convert.ToInt32(Autores.SelectedValue);
+
+            int idSeleccionado = Convert.ToInt32(Materiales.SelectedValue);
+
+            comand2.Parameters.AddWithValue("@Material_id", idSeleccionado);
+            comand2.Parameters.AddWithValue("@id_coleccion", Convert.ToInt32(Codigo.Text));
 
 
+            comand3.Parameters.AddWithValue("@Autor_id", idAutorSelecccionado);
+            comand3.Parameters.AddWithValue("@id_coleccion", Convert.ToInt32(Codigo.Text));
 
-            //comand2.Parameters.AddWithValue("@Material_id", Convert.ToInt32(Materiales.Text));
-
+            pieza.id = Convert.ToInt32(Codigo.Text);
             pieza.Nombre = Nombre.Text;
             pieza.Cantidad = Convert.ToInt32(Cantidad1.Text);
             pieza.Titulo_alias = TituloA.Text;
@@ -114,9 +134,12 @@ namespace WpfAppTEST.Views
             pieza.Conservacion = Conservacion1.Text;
             pieza.Ubicacion = Ubicacion1.Text;
             pieza.Ingreso = Ingreso1.Text;
-            pieza.UrlFoto = Url_Foto.Text;
+            //pieza.UrlFoto = Url_Foto.Text;
             //pieza.Materiales = Materiales.Text;
-            pieza.Material_id = Convert.ToInt32(Materiales.Text);
+            pieza.Material_id = idSeleccionado;
+            pieza.Autor_id = idAutorSelecccionado;
+          
+                
 
             comand.Parameters.AddWithValue("@Nombre", pieza.Nombre);
             comand.Parameters.AddWithValue("@Cantidad", pieza.Cantidad);
@@ -131,11 +154,15 @@ namespace WpfAppTEST.Views
             comand.Parameters.AddWithValue("@Conservacion", pieza.Conservacion);
             comand.Parameters.AddWithValue("@Ubicacion", pieza.Ubicacion);
             comand.Parameters.AddWithValue("@Ingreso", pieza.Ingreso);
-            comand.Parameters.AddWithValue("@UrlFoto", pieza.UrlFoto);
+            //comand.Parameters.AddWithValue("@UrlFoto", pieza.UrlFoto);
             comand.Parameters.AddWithValue("@Material_id", pieza.Material_id);
+            comand.Parameters.AddWithValue("@Autor_id", pieza.Autor_id);
+            comand.Parameters.AddWithValue("@id", pieza.Autor_id);
+            comand.Parameters.AddWithValue("@Coleccion_id", pieza.id);
 
             comand.ExecuteNonQuery();
-            //comand2.ExecuteNonQuery();
+            comand3.ExecuteNonQuery();
+            comand2.ExecuteNonQuery();
             MessageBox.Show("Se ingreso una pieza");
             conexion.Close();
 

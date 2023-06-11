@@ -41,7 +41,8 @@
 
             <Label Content="Nombre" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24" Grid.RowSpan="2"/>
             <TextBox x:Name="Nombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500"  FontSize="24"/>
-
+            
+ 
             <Label x:Name="Cantidad" Content="Cantidad" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
             <TextBox x:Name="Cantidad1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"  MaxWidth="500" FontSize="24"/>
 
@@ -119,8 +120,8 @@
                     MaxWidth="500"
                     FontWeight="Black"
                     Foreground="Black"
-                     DisplayMemberPath="NombreCompleto"
-                    ValueMemberPath="NombreCompleto"
+                     DisplayMemberPath="id_autor"
+                    ValueMemberPath="id_autor"
                     SelectedValue="{Binding SelectedValue}"
                     SelectedItemsOverride="{Binding SelectedItems}"
             />
@@ -141,12 +142,14 @@
                     SelectedValue="{Binding SelectedValue}"
                     SelectedItemsOverride="{Binding SelectedItems}"
             />
+            <Label Content="Codigo" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24" Grid.RowSpan="2"/>
+            <TextBox x:Name="Codigo" Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500"  FontSize="24"/>
 
             <Label x:Name="Imagen" Content="Imagen" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,1,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
 
 
 
-            <Button x:Name="EnviarColeccion" Background=" #ecf0f3" FontSize="30" Content="Guardar" Grid.Row="8" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,106,0,0" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
+            <Button x:Name="EnviarColeccion" Background=" #ecf0f3" FontSize="30" Content="Guardar" Grid.Row="10" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,106,0,0" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
             <TextBox x:Name="Url_Foto" Visibility="Collapsed" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Margin="16,38,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
 
 

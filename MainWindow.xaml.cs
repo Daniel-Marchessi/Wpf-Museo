@@ -31,7 +31,7 @@ namespace WpfAppTEST
         {
             string usuario = user.Text.ToString();
            string  contrasenia = contra.Password.ToString();
-            var conexion  = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion  = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 

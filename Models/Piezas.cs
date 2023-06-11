@@ -9,7 +9,7 @@ namespace WpfAppTEST.Models
 {
     class Piezas
     {
-        private int id;
+        public int id;
         public int Coleccion_id
         {
             get { return id; }
