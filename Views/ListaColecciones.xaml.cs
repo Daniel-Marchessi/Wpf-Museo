@@ -18,49 +18,50 @@ namespace Museoapp.Views
             InitializeComponent();
             ListarColecciones();
         }
+
         private void ListarColecciones()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
 
-            string query = "SELECT [Coleccion_id], [Nombre], [Cantidad], [Titulo_alias], [Lugar_proce], " +
-                "[Periodo], [Material_id], [Alto], [Ancho], [Largo], [Diametro], [Integridad], " +
-                "[Conservacion], [Ubicacion], [Ingreso], [Localidad_id], [Autor_id], [Foto], [Materiales] " +
-                "FROM [dbo].[Coleccion]";
+            string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores
+                     FROM dbo.Coleccion";
+            //string queryMateriales = @"SELECT Material.Nombre
+            //                   FROM Material
+            //                   JOIN Coleccion_Material ON Material.id_material = Coleccion_Material.id_material
+            //                   WHERE Coleccion_Material.id_coleccion = @ColeccionId";
+
+            List<Piezas> piezas = new List<Piezas>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
 
+                SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
-
-
-                List<Piezas> piezas = new List<Piezas>();
 
                 while (reader.Read())
                 {
                     Piezas coleccion = new Piezas();
-                    coleccion.Coleccion_id = reader.GetInt32(0);
-                    coleccion.Nombre = reader.GetString(1);
-                    coleccion.Cantidad = reader.GetInt32(2);
-                    coleccion.Titulo_alias = reader.GetString(3);
-                    coleccion.Lugar_proce = reader.GetString(4);
-                    coleccion.Periodo = reader.GetString(5);
-                    //coleccion.MaterialId = reader.GetInt32(6);
-                    coleccion.Alto = reader.GetInt32(7);
-                    coleccion.Ancho = reader.GetInt32(8);
-                    coleccion.Largo = reader.GetInt32(9);
-                    coleccion.Diametro = reader.GetDouble(10);
+                    coleccion.Nombre = reader.GetString(0);
+                    coleccion.Cantidad = reader.GetInt32(1);
+                    coleccion.Periodo = reader.GetString(2);
+                    coleccion.Alto = reader.GetInt32(3);
+                    coleccion.Ancho = reader.GetInt32(4);
+                    coleccion.Diametro = reader.GetDouble(5);
+                    coleccion.UrlFoto = reader.GetString(6);
+                    coleccion.Largo = reader.GetInt32(7);
+                    coleccion.Ingreso = reader.GetString(8);
+                    coleccion.Conservacion = reader.GetString(9);
+                    coleccion.Ubicacion = reader.GetString(10);
                     coleccion.Integridad = reader.GetString(11);
-                    coleccion.Conservacion = reader.GetString(12);
-                    coleccion.Ubicacion = reader.GetString(13);
-                    coleccion.Ingreso = reader.GetString(14);
-                    //coleccion.LocalidadId = reader.GetInt32(15);
-                    //coleccion.AutorId = reader.GetInt32(16);
-                  
-                    if (!reader.IsDBNull(17))
+                    coleccion.Lugar_proce = reader.GetString(12);
+                    coleccion.Titulo_alias = reader.GetString(13);
+                    coleccion.Materiales = reader.GetString(14);
+                    coleccion.Autores = reader.GetString(15);
+
+                    if (!reader.IsDBNull(6))
                     {
-                        string fotoUrl = reader.GetString(17);
+                        string fotoUrl = reader.GetString(6);
                         coleccion.Foto = LoadImageFromUrl(fotoUrl);
                     }
                     else
@@ -68,24 +69,17 @@ namespace Museoapp.Views
                         coleccion.Foto = null;
                     }
 
-                    if (!reader.IsDBNull(18))
-                    {
-                        coleccion.Materiales = reader.GetString(18);
-                    }
-                    else
-                    {
-                        coleccion.Materiales = string.Empty;
-                    }
-
-
                     piezas.Add(coleccion);
                 }
-                connection.Close();
 
-                listView.ItemsSource = piezas;
+                reader.Close();
+
+                connection.Close();
             }
+
+            listView.ItemsSource = piezas;
         }
-            private ImageSource LoadImageFromUrl(string url)
+        private ImageSource LoadImageFromUrl(string url)
             {
                 try
                 {

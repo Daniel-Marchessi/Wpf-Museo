@@ -6,69 +6,59 @@
         mc:Ignorable="d"
           Icon="/ico/Usuarios.ico"
         Title="MainWindow" 
-        MinWidth="800" MinHeight="600"   MaxWidth="1000" MaxHeight="764" WindowStartupLocation="CenterScreen"
-         ResizeMode="NoResize">
-
-     
-    <Viewbox Stretch="UniformToFill">
-        <Grid Name="Principal" Background="Transparent">
+        MinWidth="400" MinHeight="400"   MaxWidth="800" MaxHeight="600" WindowStartupLocation="CenterScreen"
+         ResizeMode="NoResize" WindowStyle="None" Width="540">
 
 
-            <Grid Height="auto" Width="auto" VerticalAlignment="Center">
-                
-                <Grid.Background>
-                    <ImageBrush ImageSource="/img/FondoLogin.jpg" />
-                </Grid.Background>
+    <Grid Name="Principal" Background="Transparent"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="283*"/>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
 
 
-                <Grid Margin="362,302,362,362"  Width="auto" Height="auto" Background="#FFFA4900">
+        <Grid Width="auto" Height="600" Background="#A9A594" VerticalAlignment="Center" Grid.ColumnSpan="2">
 
-                    <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,-14,0,472" Width="auto">
-                        <TextBlock HorizontalAlignment="Center"
-                            VerticalAlignment="Top" 
-                            Margin="0,10,0,0" RenderTransformOrigin="-1.073,-0.188"
-                            Text="BIENVENIDO"
-                             FontSize="70" Foreground="White" FontWeight="Bold" Height="auto" Width="auto"
-                         />
-                    </Border>
+            <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,0,0,418" Width="auto">
+                <Image Source="/img/User.png" HorizontalAlignment="Center" Height="187" VerticalAlignment="Center" Width="160"/>
+            </Border>
 
 
 
-                    <TextBlock HorizontalAlignment="Left"
+            <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Top" 
-                           Margin="327,155,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="0,187,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Usuario"
                            FontSize="54"
                            FontWeight="Bold" Foreground="White" Width="auto" Height="auto" 
                            >
 
-                    </TextBlock>
+            </TextBlock>
 
-                    <TextBox x:Name="user" Background="#FFCA7D" FontSize="53" VerticalAlignment="Top" Width="auto" Margin="212,217,200,0" Height="auto"  MaxWidth="600" />
-
-
+            <TextBox x:Name="user" Background="#FFCA7D" FontSize="53" VerticalAlignment="Center" Width="auto" Margin="75,0,57,0" Height="auto"  MaxWidth="600" />
 
 
-                    <TextBlock HorizontalAlignment="Left"
+
+
+            <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Top" 
-                           Margin="329,298,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="0,326,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Contraseña"
                            FontSize="54"
                            FontWeight="Bold" Foreground="White"  Width="auto" Height="auto">
 
-                    </TextBlock>
+            </TextBlock>
 
-                    <PasswordBox VerticalAlignment="Top" FontSize="53" x:Name="contra" Height="auto" Width="auto"
-                         RenderTransformOrigin="0.502,0.632" Margin="212,360,200,0"
+            <PasswordBox VerticalAlignment="Top" FontSize="53" x:Name="contra" Height="auto" Width="auto"
+                         RenderTransformOrigin="0.502,0.632" Margin="75,403,57,0"
                          MaxWidth="600" Background="#FFCA7D"
                     />
 
 
 
-                
 
-                     
-                        <Button x:Name="Btn_enviar"
+            <Button x:Name="Btn_enviar"
                              Content="Enviar"
                              Background="#FFFD9A0D"
                              BorderThickness="1"
@@ -76,21 +66,18 @@
                              FontSize="44"
                              FontWeight="Bold"
                              Width="250" Height="80"
-                             Margin="500,470,500,60"
+                             Margin="0,510,0,10"
                              HorizontalAlignment="Center"
 							 Click="Btn_enviar_Click"
                          
                                 
                         />
 
-                    
-
-                </Grid>
-            </Grid>
-
 
         </Grid>
-    </Viewbox>
+
+
+    </Grid>
 
 
 

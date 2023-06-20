@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,21 +61,34 @@ namespace Museoapp.Views
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
-            string query = "insert into Material(Nombre) " +
-            "Values (@Nombre)";
-            Materiales materialin = new Materiales();
-            SqlCommand comand = new SqlCommand(query, conexion);
+            string query = "SELECT COUNT(*) FROM Material WHERE Nombre = @Nombre";
+            SqlCommand verificarComando = new SqlCommand(query, conexion);
+            verificarComando.Parameters.AddWithValue("@Nombre", Nombre1.Text.ToLower());
 
-            materialin.Nombre = Nombre1.Text;
+            int count = (int)verificarComando.ExecuteScalar();
 
-            comand.Parameters.AddWithValue("@Nombre", materialin.Nombre);
+            if (count > 0)
+            {
+                MessageBox.Show("El material ya existe");
+            }
+            else
+            {
+                string insertQuery = "INSERT INTO Material (Nombre) VALUES (@Nombre)";
+                Materiales materialin = new Materiales();
+                SqlCommand insertComando = new SqlCommand(insertQuery, conexion);
 
-            comand.ExecuteNonQuery();
-            MessageBox.Show("Se ingreso un Material");
+                TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+                materialin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
+
+                insertComando.Parameters.AddWithValue("@Nombre", materialin.Nombre);
+
+                insertComando.ExecuteNonQuery();
+                MessageBox.Show("Se ingresó un material");
+            }
+
             conexion.Close();
 
-            //Limpiar campos al ingresar
-            Nombre1.Text = "";
+            LimpiarCampos();
             ListarMateriales();
         }
         private void BuscarPorNombre(object sender, RoutedEventArgs e)
@@ -116,6 +130,12 @@ namespace Museoapp.Views
             // Limpiar el campo de búsqueda
             PorNombre.Text = "";
         }
+        private void LimpiarCampos()
+        {
+            Nombre1.Text = "";
+
+        }
+
 
     }
 }

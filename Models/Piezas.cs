@@ -15,7 +15,8 @@ namespace WpfAppTEST.Models
             get { return id; }
             set { id = value; }
         }
-            
+
+
         private string nombre;
         public string Nombre
         {
@@ -51,13 +52,14 @@ namespace WpfAppTEST.Models
             get { return periodo; }
             set { periodo = value; }
         }
+        public List<int> Material_id { get; set; }
 
-        private int materialid;
-        public int Material_id
-        {
-            get { return materialid; }
-            set { materialid = value; }
-        }
+        //private int materialid;
+        //public int Material_id
+        //{
+        //    get { return materialid; }
+        //    set { materialid = value; }
+        //}
 
         private int alto;
         public int Alto
@@ -151,7 +153,12 @@ namespace WpfAppTEST.Models
             set { mate = value; }
         }
 
-
+        private string auto;
+        public string Autores
+        {
+            get { return auto; }
+            set { auto = value; }
+        }
 
 
         public Piezas() { }

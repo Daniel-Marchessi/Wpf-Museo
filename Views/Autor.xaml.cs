@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,37 +61,35 @@ namespace Museoapp.Views
 
         private void EnviarAutor_Click(object sender, RoutedEventArgs e)
         {
-
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-     
 
-            string query = "insert into Autor(Nombre, Apellido) " +
-               "Values (@Nombre, @Apellido)";
+            string query = "SELECT COUNT(*) FROM Autor WHERE Nombre = @Nombre AND Apellido = @Apellido";
+            SqlCommand checkCommand = new SqlCommand(query, conexion);
+            checkCommand.Parameters.AddWithValue("@Nombre", Nombre1.Text);
+            checkCommand.Parameters.AddWithValue("@Apellido", Apellido1.Text);
 
-            Autores autorin = new Autores();
+            int existingRecordsCount = (int)checkCommand.ExecuteScalar();
 
-            SqlCommand comand = new SqlCommand(query, conexion);
+            if (existingRecordsCount > 0)
+            {
+                MessageBox.Show("El autor ya existe");
+                conexion.Close();
+                return;
+            }
 
+            string insertQuery = "INSERT INTO Autor (Nombre, Apellido) VALUES (@Nombre, @Apellido)";
+            SqlCommand insertCommand = new SqlCommand(insertQuery, conexion);
+            insertCommand.Parameters.AddWithValue("@Nombre", Nombre1.Text);
+            insertCommand.Parameters.AddWithValue("@Apellido", Apellido1.Text);
+            insertCommand.ExecuteNonQuery();
 
-            autorin.Nombre = Nombre1.Text;
-            autorin.Apellido = Apellido1.Text;
-
-
-
-            comand.Parameters.AddWithValue("@Nombre", autorin.Nombre);
-            comand.Parameters.AddWithValue("@Apellido", autorin.Apellido);
-          
-
-            comand.ExecuteNonQuery();
-            MessageBox.Show("Se ingreso un Autor");
+            MessageBox.Show("Se ingresó un Autor");
             conexion.Close();
 
-            //Limpiar campos al ingresar
-            Nombre1.Text = "";
-            Apellido1.Text = "";
+            LimpiarCampos();
+            ListarAutores();
         }
-
         private void BuscarPorNombre(object sender, RoutedEventArgs e)
         {
             string textoBusqueda = PorNombre.Text.Trim();
@@ -130,6 +129,12 @@ namespace Museoapp.Views
             // Limpiar el campo de búsqueda
             PorNombre.Text = "";
         }
+        private void LimpiarCampos()
+        {
+            Nombre1.Text = "";
+            Apellido1.Text = "";
+        }
+
 
     }
 }

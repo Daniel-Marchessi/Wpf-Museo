@@ -79,6 +79,7 @@
                     <GridViewColumn Header="Ubicacion" DisplayMemberBinding="{Binding Ubicacion}" />
                     <GridViewColumn Header="Ingreso" DisplayMemberBinding="{Binding Ingreso}" />
                     <GridViewColumn Header="Materiales" DisplayMemberBinding="{Binding Materiales}" />
+                    <GridViewColumn Header="Autores" DisplayMemberBinding="{Binding Autores}" />
                     <GridViewColumn Header="Foto">
                     <GridViewColumn.CellTemplate>
                             <DataTemplate>

@@ -77,7 +77,7 @@ namespace Museoapp.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Museoapp;V1.0.0.0;component/views/listalibros.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Museoapp;component/views/listalibros.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\ListaLibros.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
