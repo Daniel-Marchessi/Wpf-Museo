@@ -7,12 +7,25 @@
         mc:Ignorable="d"
         Icon="../ico/Home.ico"
         Title="Material"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
-    <Window.Background>
-        <ImageBrush ImageSource="../img/Materiales.jpg" />
-    </Window.Background>
-    <Grid>
 
-        <Border Background="White" HorizontalAlignment="Center" Margin="25,25,0,0" VerticalAlignment="Top">
+    <Grid Background="#7182B3">
+        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+            <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
+                <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
+            </MenuItem>
+
+            <MenuItem x:Name="Coleccion" Header="Coleccion">
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
+                <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
+            </MenuItem>
+
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            
+
+
+        </Menu>
+        <Border Background="White" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top">
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -32,7 +45,7 @@
             </Grid>
         </Border>
 
-        <Border Background="White" HorizontalAlignment="Left" Margin="10,154,0,0" VerticalAlignment="Top" Width="426">
+        <Border Background="White" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Width="426">
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -66,14 +79,14 @@
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>
 
-            
+
 
 
             </Grid>
         </Border>
-        
-        
-            <ListView x:Name="listView" Width="200" Height="400" Margin="562,154,338,30">
+
+
+        <ListView x:Name="listView" Width="200" Height="400" Margin="648,184,252,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"  />

@@ -125,7 +125,7 @@ namespace WpfAppTEST.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Museoapp;component/views/home.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Museo;component/views/home.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\Home.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

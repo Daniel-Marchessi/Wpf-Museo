@@ -7,115 +7,134 @@
         xmlns:local="clr-namespace:WpfAppTEST.Views" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
          Icon="../ico/Colecciones.ico"
-        Title="Coleccion"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
+        Title="Coleccion"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen" Background="#7182B3">
     <!--WindowStyle="None"-->
-    <Window.Background>
-        <ImageBrush ImageSource="../img/Colecciones.jpg" />
-    </Window.Background>
+    <!--<Window.Background>
+        -->
+    <!--<ImageBrush ImageSource="../img/Colecciones.jpg" />-->
+    <!--
+    </Window.Background>-->
+    <Grid>
+        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+            <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
+                <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
+            </MenuItem>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="Auto" SharedSizeGroup="LeftColumn" />
-                <ColumnDefinition />
-                <ColumnDefinition  Width="16.86" SharedSizeGroup="RightColumn"  />
-                <ColumnDefinition Width="149.457"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                
+                <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
+           
 
-            <Label Content="Nombre" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Nombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500"  FontSize="24"/>
-            
- 
-            <Label x:Name="Cantidad" Content="Cantidad" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Cantidad1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"  MaxWidth="500" FontSize="24"/>
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
 
-            <Label x:Name="Periodo" Content="Periodo" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Periodo1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"     MaxWidth="500" FontSize="24"/>
 
-            <Label x:Name="Alto" Content="Alto" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Alto1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
+        </Menu>
+    
 
-            <Label x:Name="Ancho" Content="Ancho" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Ancho1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
+    <Grid Margin="25,20,0,0">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
 
-            <Label x:Name="Diametro" Content="Diametro" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Diametro1" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,24,50,0"    MaxWidth="500" FontSize="24"/>
 
-            <Border Margin="5,30,17,90" Background="White" BorderThickness="2" Grid.Row="6" Grid.RowSpan="8" Grid.Column="1" BorderBrush="Black" CornerRadius="5" Width="400" Height="300" Grid.ColumnSpan="2">
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="Auto" SharedSizeGroup="LeftColumn" />
+            <ColumnDefinition />
+            <ColumnDefinition  Width="16.86" SharedSizeGroup="RightColumn"  />
+            <ColumnDefinition Width="149.457"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Nombre" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Nombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500"  FontSize="24"/>
+
+
+        <Label x:Name="Cantidad" Content="Cantidad" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Cantidad1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"  MaxWidth="500" FontSize="24"/>
+
+        <Label x:Name="Periodo" Content="Periodo" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Periodo1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"     MaxWidth="500" FontSize="24"/>
+
+        <Label x:Name="Alto" Content="Alto" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Alto1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
+
+        <Label x:Name="Ancho" Content="Ancho" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Ancho1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
+
+        <Label x:Name="Diametro" Content="Diametro" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Diametro1" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,24,50,0"    MaxWidth="500" FontSize="24"/>
+
+        <!--<Border Margin="5,30,17,90" Background="White" BorderThickness="2" Grid.Row="6" Grid.RowSpan="8" Grid.Column="1" BorderBrush="Black" CornerRadius="5" Width="400" Height="300" Grid.ColumnSpan="2">
                 <Image x:Name="imgFoto" Grid.Column="1" Grid.Row="6" VerticalAlignment="Top" MaxWidth="400" MinWidth="400" Grid.RowSpan="5" Stretch="Fill"/>
-            </Border>
+            </Border>-->
+        <Label x:Name="Imagen" Content="Imagen" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
 
-            <Button x:Name="ImagenEdit" Background=" #ecf0f3" FontSize="30" Grid.Column="1" Content="Seleccionar imagen" HorizontalAlignment="Center" Height="50" Grid.Row="13" VerticalAlignment="Center" Width="300" Click="ImagenEdit_Click"/>
+        <Button x:Name="ImagenEdit" Background="#FFF1F1F1" Content="Seleccionar Imagen" FontWeight="Bold" Grid.Row="6" Grid.Column="1"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,24,50,0"    MaxWidth="500"   FontSize="24" Click="ImagenEdit_Click" Height="37" />
 
-            <TextBox x:Name="Largo1" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,28,50,0"   MaxWidth="500" FontSize="24" Grid.RowSpan="2"/>
-            <Label Content="Largo" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,28,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Largo1" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="4,24,51,0"   MaxWidth="500" FontSize="24" Grid.RowSpan="2"/>
+        <Label Content="Largo" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,16,1,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
 
-            <Label x:Name="Ingreso" Content="Ingreso" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <ComboBox x:Name="Ingreso1" Grid.Row="1" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,22,50,0"    MaxWidth="500" FontSize="24">
-                <ComboBox.Items>
-                    <ComboBoxItem Content="Donación" />
-                    <ComboBoxItem Content="Prestamo" />
-                    <ComboBoxItem Content="Compra" />
-                    <ComboBoxItem Content="Adquisición" />
-                </ComboBox.Items>
-            </ComboBox>
-
-         
-
-            <Label x:Name="Conservacion" Content="Conservacion" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-            <ComboBox x:Name="Conservacion1" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,22,50,0"  MaxWidth="500" FontSize="24">
-                <ComboBox.Items>
-                    <ComboBoxItem Content="Buen estado" />
-                    <ComboBoxItem Content="Regular" />
-                    <ComboBoxItem Content="Mal estado" />
-                </ComboBox.Items>
-            </ComboBox>
+        <Label x:Name="Ingreso" Content="Ingreso" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <ComboBox x:Name="Ingreso1" Grid.Row="1" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,22,50,0"    MaxWidth="500" FontSize="24">
+            <ComboBox.Items>
+                <ComboBoxItem Content="Donación" />
+                <ComboBoxItem Content="Prestamo" />
+                <ComboBoxItem Content="Compra" />
+                <ComboBoxItem Content="Adquisición" />
+            </ComboBox.Items>
+        </ComboBox>
 
 
 
-            <Label x:Name="Ubicacion" Content="Ubicacion" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <TextBox x:Name="Ubicacion1" Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
-
-            <Label x:Name="Integridad" Content="Integridad" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
-            <ComboBox  x:Name="Integridad1" Grid.Row="4" Grid.Column="4" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24" Grid.RowSpan="2" >
-                <ComboBox.Items>
-                    <ComboBoxItem Content="Buen estado" />
-                    <ComboBoxItem Content="Regular" />
-                    <ComboBoxItem Content="Mal estado" />
-                </ComboBox.Items>
-            </ComboBox>
-
-            <Label x:Name="LugarProc" Content="Lugar" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" RenderTransformOrigin="0.476,-1.288" Grid.RowSpan="2"/>
-            <TextBox x:Name="Lugarprocedencia" Grid.Row="5" Grid.Column="4"   Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"  MaxWidth="500" FontSize="24"/>
-
-            <Label Content="Titulo" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="68,0,0,0"    FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-            <TextBox x:Name="TituloA" Grid.Row="6" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top"    Margin="5,20,50,0"  FontSize="24"  MaxWidth="500"/>
+        <Label x:Name="Conservacion" Content="Conservacion" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <ComboBox x:Name="Conservacion1" Grid.Row="2" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top"  Margin="5,22,50,0"  MaxWidth="500" FontSize="24">
+            <ComboBox.Items>
+                <ComboBoxItem Content="Buen estado" />
+                <ComboBoxItem Content="Regular" />
+                <ComboBoxItem Content="Mal estado" />
+            </ComboBox.Items>
+        </ComboBox>
 
 
-         
-            <Label Content="Autores" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" />
-            <xctk:CheckComboBox x:Name="Autores"
-                    Grid.Row="7"
+
+        <Label x:Name="Ubicacion" Content="Ubicacion" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <TextBox x:Name="Ubicacion1" Grid.Row="3" Grid.Column="4"  Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"   MaxWidth="500" FontSize="24"/>
+
+        <Label x:Name="Integridad" Content="Integridad" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Grid.RowSpan="2"/>
+        <ComboBox  x:Name="Integridad1" Grid.Row="4" Grid.Column="4" VerticalAlignment="Top" Margin="5,18,50,0"   MaxWidth="500" FontSize="24" >
+            <ComboBox.Items>
+                <ComboBoxItem Content="Buen estado" />
+                <ComboBoxItem Content="Regular" />
+                <ComboBoxItem Content="Mal estado" />
+                
+            </ComboBox.Items>
+        </ComboBox>
+
+        <Label x:Name="LugarProc" Content="Lugar" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" RenderTransformOrigin="0.476,-1.288" Grid.RowSpan="2"/>
+        <TextBox x:Name="Lugarprocedencia" Grid.Row="5" Grid.Column="4"   Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="5,24,50,0"  MaxWidth="500" FontSize="24"/>
+
+        <Label Content="Titulo" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="40,11,0,0"    FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" RenderTransformOrigin="0.498,1.23"/>
+        <TextBox x:Name="TituloA" Grid.Row="7" Grid.Column="1"  Grid.ColumnSpan="1" VerticalAlignment="Top"    Margin="5,18,50,0"  FontSize="24"  MaxWidth="500"/>
+
+
+
+        <Label Content="Autores" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,23,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" />
+        <xctk:CheckComboBox x:Name="Autores"
+                    Grid.Row="6"
                     Grid.Column="4"
                     Grid.ColumnSpan="1"
-                    Margin="5,20,50,0"
+                    Margin="4,26,51,4"
                     FontSize="24"
                     MaxWidth="500"
                     FontWeight="Black"
@@ -127,12 +146,12 @@
             />
 
 
-            <Label Content="Materiales" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,26,5,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" />
-            <xctk:CheckComboBox x:Name="Materiales" 
-                    Grid.Row="8"
+        <Label Content="Materiales" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top"  FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Margin="0,11,1,0" />
+        <xctk:CheckComboBox x:Name="Materiales" 
+                    Grid.Row="7"
                     Grid.Column="4"
                     Grid.ColumnSpan="1"
-                    Margin="5,19,50,75"
+                    Margin="4,16,51,5"
                     FontSize="24"
                     MaxWidth="500"
                     FontWeight="Black"
@@ -142,16 +161,15 @@
                     SelectedValue="{Binding SelectedValue}"
                     SelectedItemsOverride="{Binding SelectedItems}"
             />
-          
-
-            <Label x:Name="Imagen" Content="Imagen" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="42,1,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
 
 
 
-            <Button x:Name="EnviarColeccion" Background=" #ecf0f3" FontSize="30" Content="Guardar" Grid.Row="10" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="35,106,0,0" Height="53" Width="220" Click="EnviarColeccion_Click_1" Grid.RowSpan="4"/>
-            <TextBox x:Name="Url_Foto" Visibility="Collapsed" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Margin="16,38,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
 
 
-        </Grid>
-    </ScrollViewer>
+        <Button x:Name="EnviarColeccion" Background="#FFFD9A0D" FontSize="30" Content="Guardar" Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left" Margin="4,10,0,0" Width="220" Click="EnviarColeccion_Click_1"/>
+        <TextBox x:Name="Url_Foto" Visibility="Collapsed" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Margin="16,38,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
+
+
+    </Grid>
+    </Grid>
 </Window>

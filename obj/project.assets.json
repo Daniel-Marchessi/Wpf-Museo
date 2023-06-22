@@ -758,7 +758,7 @@
     "version": "1.0.0",
     "restore": {
       "projectUniqueName": "E:\\MUSEO\\Museoapp.csproj",
-      "projectName": "Museoapp",
+      "projectName": "Museo",
       "projectPath": "E:\\MUSEO\\Museoapp.csproj",
       "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
       "outputPath": "E:\\MUSEO\\obj\\",

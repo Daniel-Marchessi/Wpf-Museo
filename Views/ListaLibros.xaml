@@ -6,78 +6,93 @@
       xmlns:local="clr-namespace:Museoapp.Views"
       mc:Ignorable="d" 
        Icon="../ico/Libros.ico"
-        Title="Libros"  MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize">
-    <Window.Background>
-        <ImageBrush ImageSource="../img/biblioteca.png" />
-    </Window.Background>
+        Title="Libros"  MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize"  Background="#7182B3">
 
     <Grid>
+        <Menu Height="46" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+
+            <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
 
 
-        <Border Background="White" HorizontalAlignment="Center" Margin="25,25,0,0" VerticalAlignment="Top">
-            <Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+            <MenuItem x:Name="Coleccion" Header="Coleccion" Height="46">
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
+                <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
+            </MenuItem>
 
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
 
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
 
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-    
-                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
-                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
-                    <Image Source="../img/Refresh.png" Width="37" />
-                </Button>
-                
-                <Label Grid.Row="1" Grid.Column="0" Content="Por Titulo" Margin="5"  FontSize="24" />
-                <TextBox x:Name="PorTitulo" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorTitulo" >
-                    <Image Source="../img/Lupa.png" Width="37" />
-                </Button>
+        </Menu>
 
-                <Label Grid.Row="1" Grid.Column="3" Content="Por Descripcion" Margin="5"  FontSize="24"/>
-                <TextBox  x:Name="PorDescripcion" Grid.Row="1" Grid.Column="4" Text=""  Width="200" Margin="5"  FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorDescripcion">
-                    <Image Source="../img/Lupa.png" Width="37" />
-                </Button>
+ 
 
-                <!--<Label Grid.Row="1" Grid.Column="6" Content="Por Categoria" Margin="5" FontSize="24" />
+            <Border Background="White" HorizontalAlignment="Left" Margin="112,117,0,0" VerticalAlignment="Top">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
+                    <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
+                        <Image Source="../img/Refresh.png" Width="37" />
+                    </Button>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Por Titulo" Margin="5"  FontSize="24" />
+                    <TextBox x:Name="PorTitulo" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
+                    <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorTitulo" >
+                        <Image Source="../img/Lupa.png" Width="37" />
+                    </Button>
+
+                    <Label Grid.Row="1" Grid.Column="3" Content="Por Descripcion" Margin="5"  FontSize="24"/>
+                    <TextBox  x:Name="PorDescripcion" Grid.Row="1" Grid.Column="4" Text=""  Width="200" Margin="5"  FontSize="24"/>
+                    <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorDescripcion">
+                        <Image Source="../img/Lupa.png" Width="37" />
+                    </Button>
+
+                    <!--<Label Grid.Row="1" Grid.Column="6" Content="Por Categoria" Margin="5" FontSize="24" />
                 <TextBox  x:Name="PorCategoria" Grid.Row="1" Grid.Column="7" Text=""  Width="200" Margin="5"  FontSize="24"/>
                 <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorCategoria">
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>-->
 
 
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
 
 
 
 
 
-        <ListView x:Name="listView" Width="900" Height="400">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Titulo" DisplayMemberBinding="{Binding Titulo}"  />
-                    <GridViewColumn Header="Origen" DisplayMemberBinding="{Binding Origen}"  />
-                    <GridViewColumn Header="Numpaginas" DisplayMemberBinding="{Binding N_paginas}"  />
-                    <GridViewColumn Header="Descripcion" DisplayMemberBinding="{Binding Descripcion}"  />
-                </GridView>
-            </ListView.View>
-        </ListView>
-      
-    </Grid>
+            <ListView x:Name="listView" Width="900" Height="400" Margin="112,339,88,45">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Titulo" DisplayMemberBinding="{Binding Titulo}"  />
+                        <GridViewColumn Header="Origen" DisplayMemberBinding="{Binding Origen}"  />
+                        <GridViewColumn Header="Numpaginas" DisplayMemberBinding="{Binding N_paginas}"  />
+                        <GridViewColumn Header="Descripcion" DisplayMemberBinding="{Binding Descripcion}"  />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+  
 </Window>

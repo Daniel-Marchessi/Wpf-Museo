@@ -1,26 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>E:\MUSEO\Properties\PublishProfiles\ClickOnceProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Views\Autor.xaml.cs">
+    <Compile Update="Controllers\Autor.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Coleccion.xaml.cs">
+    <Compile Update="Controllers\Coleccion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Home.xaml.cs">
+    <Compile Update="Controllers\Home.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Libro.xaml.cs">
+    <Compile Update="Controllers\Libro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ListaColecciones.xaml.cs">
+    <Compile Update="Controllers\ListaColecciones.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ListaLibros.xaml.cs">
+    <Compile Update="Controllers\ListaLibros.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Material.xaml.cs">
+    <Compile Update="Controllers\Material.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

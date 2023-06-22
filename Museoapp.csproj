@@ -6,12 +6,18 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
+    <AssemblyName>Museo</AssemblyName>
+    <RootNamespace>Museo</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Fonts\**" />
     <Compile Remove="Messageforms\**" />
+    <EmbeddedResource Remove="Fonts\**" />
     <EmbeddedResource Remove="Messageforms\**" />
+    <None Remove="Fonts\**" />
     <None Remove="Messageforms\**" />
+    <Page Remove="Fonts\**" />
     <Page Remove="Messageforms\**" />
   </ItemGroup>
 
@@ -35,6 +41,7 @@
     <None Remove="img\User.png" />
   </ItemGroup>
 
+
   <ItemGroup>
     <Resource Include="ico\Colecciones.ico" />
     <Resource Include="ico\Home.ico" />
@@ -46,10 +53,6 @@
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Fonts\" />
   </ItemGroup>
 
   <ItemGroup>

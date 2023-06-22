@@ -5,31 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          Icon="../ico/Colecciones.ico"
         WindowState="Maximized"
-        Title="Colecciones" MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen" >
-    <Window.Background>
-        <ImageBrush ImageSource="../img/Colecciones.jpg" />
-    </Window.Background>
+        Title="Colecciones" MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"  Background="#7182B3" >
     
-    <Grid>
 
-        <Border Background="White" HorizontalAlignment="Center" Margin="25,25,0,0" VerticalAlignment="Top">
+    <Grid>
+        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+            <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
+                <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
+            </MenuItem>
+
+            
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
+                
+           
+
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
+
+
+        </Menu>
+
+        <Border Background="White" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top">
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    
+
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    
+
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    
+
                 </Grid.ColumnDefinitions>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -56,13 +71,13 @@
                 <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorTitulo">
                     <Image Source="../img/Lupa.png" Width="37" />
                 </Button>
-                
-                
+
+
             </Grid>
         </Border>
 
 
-        <ListView x:Name="listView" Width="900" Height="400">
+        <ListView x:Name="listView" Width="900" Height="400" Margin="275,330,250,54">
             <ListView.View >
                 <GridView >
                     <GridViewColumn Header="Nombre" DisplayMemberBinding="{Binding Nombre}" />
@@ -81,7 +96,7 @@
                     <GridViewColumn Header="Materiales" DisplayMemberBinding="{Binding Materiales}" />
                     <GridViewColumn Header="Autores" DisplayMemberBinding="{Binding Autores}" />
                     <GridViewColumn Header="Foto">
-                    <GridViewColumn.CellTemplate>
+                        <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding Foto}" Width="100" Height="100" />
                             </DataTemplate>
@@ -90,7 +105,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        
+
 
     </Grid>
 </Window>
