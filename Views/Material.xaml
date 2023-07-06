@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Museoapp.Views"
         mc:Ignorable="d"
         Icon="../ico/Home.ico"
+        WindowState="Maximized"
         Title="Material"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#7182B3">
@@ -19,74 +20,56 @@
                 <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
                 <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
             </MenuItem>
+            <MenuItem x:Name="Archivo" Header="Archivo" Click="CrearArchivo_Click"/>
+
 
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
-            
+
 
 
         </Menu>
-        <Border Background="White" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top">
+        <Border Background="#7182B3" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top">
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Content="Tipo de Material" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,43,0,0" FontWeight="Bold" Foreground="Black"  FontSize="30"/>
-                <TextBox x:Name="Nombre1"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Margin="28,51,28,0"  Width="500"  MaxWidth="500"  FontSize="30"/>
-                <Button x:Name="EnviarMaterial" Grid.Row="0" Grid.Column="2" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,51,0,0" Height="45" Width="220"  RenderTransformOrigin="2.015,6.747" Click="EnviarMaterial_Click" />
-
-            </Grid>
-        </Border>
-
-        <Border Background="White" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top" Width="426">
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
-                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
-                    <Image Source="../img/Refresh.png" Width="37" />
+                <Label Grid.Column="0" Grid.Row="0"  Content="Material" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,42,0,0" FontWeight="Bold" Foreground="white"  FontSize="30"/>
+                <TextBox x:Name="Nombre1"  Grid.Row="0" VerticalAlignment="Top" Margin="143,45,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left"/>
+                <Button x:Name="EnviarMaterial" Grid.Row="0" Grid.Column="1" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,45,0,0" Height="42" Width="192"  RenderTransformOrigin="2.015,6.747" Click="EnviarMaterial_Click" Grid.ColumnSpan="2" />
+                <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0"  Margin="304,-3,114,102" Height="43" Width="47" FontSize="24" Click="Refrescar" >
+                    <Image Source="../img/Refresh.png"   />
                 </Button>
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Por Nombre" Margin="5"  FontSize="24" />
-                <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre" >
-                    <Image Source="../img/Lupa.png" Width="37" />
+                <Label Grid.Column="4" Grid.Row="0" Content="Por Nombre" FontWeight="Bold"  Foreground="White" Margin="52,42,386,50"  FontSize="30" Grid.ColumnSpan="2" />
+                <Label Grid.Column="5" Content="Buscar" FontWeight="Bold"  Foreground="White" Margin="28,-6,385,98"  FontSize="30" />
+                <TextBox x:Name="PorNombre" Grid.Column="5" Margin="260,49,130,0" FontSize="24" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.101"/>
+                <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorNombre" Margin="506,35,56,63" RenderTransformOrigin="0.543,0.472" >
+                    <Image Source="../img/Lupa.png" Width="52" RenderTransformOrigin="0.405,-0.16" Height="40" />
                 </Button>
-
-
-
-
             </Grid>
         </Border>
 
 
-        <ListView x:Name="listView" Width="200" Height="400" Margin="648,184,252,0">
+
+
+
+
+
+        <ListView x:Name="listView" Width="200" Height="338" Margin="702,184,305,0" VerticalAlignment="Top" Foreground="Blue">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="200" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"  />

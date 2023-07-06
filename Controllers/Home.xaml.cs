@@ -1,4 +1,5 @@
-﻿using Museoapp.Models;
+﻿using Museo.Views;
+using Museoapp.Models;
 using Museoapp.Views;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,11 @@ namespace WpfAppTEST.Views
             ListaColecciones listaColeccion = new ListaColecciones();
             listaColeccion.Show();
         }
-
+        private void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            Archivo archivo = new Archivo();
+            archivo.Show();
+        }
         private void CrearAutor_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = new Autor();

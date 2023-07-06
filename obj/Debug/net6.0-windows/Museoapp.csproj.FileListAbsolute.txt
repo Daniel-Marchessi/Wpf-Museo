@@ -190,3 +190,11 @@ E:\MUSEO\obj\Debug\net6.0-windows\refint\Museo.dll
 E:\MUSEO\obj\Debug\net6.0-windows\Museo.pdb
 E:\MUSEO\obj\Debug\net6.0-windows\Museoapp.genruntimeconfig.cache
 E:\MUSEO\obj\Debug\net6.0-windows\ref\Museo.dll
+E:\MUSEO\obj\Debug\net6.0-windows\Views\Archivo.g.cs
+E:\MUSEO\obj\Debug\net6.0-windows\Views\Archivo.baml
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarArchivo.g.cs
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarArchivo.baml
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarColeccion.g.cs
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarLibro.g.cs
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarColeccion.baml
+E:\MUSEO\obj\Debug\net6.0-windows\Views\EditarLibro.baml

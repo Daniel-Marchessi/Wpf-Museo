@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Museo.Views;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Windows;
@@ -16,6 +18,15 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             Titulo1.Focus();
+             Cargaraños();
+        }
+
+        private void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            Archivo archivo = new Archivo();
+            archivo.Show();
+            this.Close();
+
         }
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {
@@ -72,7 +83,6 @@ namespace Museoapp.Views
                "VALUES (@Titulo, @Origen, @N_paginas, @Descripcion)";
 
             Libros librin = new Libros();
-
             SqlCommand comand = new SqlCommand(query, conexion);
 
             TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
@@ -86,15 +96,10 @@ namespace Museoapp.Views
             comand.Parameters.AddWithValue("@N_paginas", librin.N_paginas);
             comand.Parameters.AddWithValue("@Descripcion", librin.Descripcion);
 
-
             comand.ExecuteNonQuery();
             MessageBox.Show("Se ingreso un Libro");
             conexion.Close();
             LimpiarCampos();
-
-
-
-
 
         }
 
@@ -105,6 +110,20 @@ namespace Museoapp.Views
             Numpaginas1.Text = "";
             Descripcion1.Text = "";
         }
+        public void Cargaraños()
+        {
+            int anioInicial = 1990;
+            int anioFinal = DateTime.Now.Year;
+            List<int> anios = new List<int>();
+
+            for (int anio = anioInicial; anio <= anioFinal; anio++)
+            {
+                anios.Add(anio);
+            }
+
+            comboBoxaños.ItemsSource = anios;
+        }
+
 
     }
 }

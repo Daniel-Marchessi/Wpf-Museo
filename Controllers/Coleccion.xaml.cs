@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Museo.Views;
 using Museoapp.Models;
 using Museoapp.Views;
 using System;
@@ -31,8 +32,14 @@ namespace WpfAppTEST.Views
             selectedIds = new List<int>();
 
         }
-       
 
+        private void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            Archivo archivo = new Archivo();
+            archivo.Show();
+            this.Close();
+
+        }
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
         {
             Libro libro = new Libro();

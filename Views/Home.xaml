@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfAppTEST.Views"
         mc:Ignorable="d"
          Icon="../ico/Home.ico"
+        WindowState="Maximized"
         Title="Home"  MinWidth="800" MinHeight="600" WindowStartupLocation="CenterScreen" >
     <!--WindowStyle="None"-->
     <Window.Background>
@@ -23,6 +24,7 @@
                 <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
             </MenuItem>
 
+            <MenuItem x:Name="Archivo" Header="Archivo" Click="CrearArchivo_Click"/>
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
 

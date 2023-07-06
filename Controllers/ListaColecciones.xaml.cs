@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Museo.Views;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfAppTEST.Models;
@@ -17,6 +19,12 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarColecciones();
+        }
+        private void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            Archivo archivo = new Archivo();
+            archivo.Show();
+            this.Close();
         }
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {
@@ -68,7 +76,7 @@ namespace Museoapp.Views
         {
             string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
 
-            string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores
+            string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores, Coleccion_id
                      FROM dbo.Coleccion";
             //string queryMateriales = @"SELECT Material.Nombre
             //                   FROM Material
@@ -103,6 +111,7 @@ namespace Museoapp.Views
                     coleccion.Titulo_alias = reader.GetString(13);
                     coleccion.Materiales = reader.GetString(14);
                     coleccion.Autores = reader.GetString(15);
+                    coleccion.Coleccion_id = reader.GetInt32(16);
 
                     if (!reader.IsDBNull(6))
                     {
@@ -121,8 +130,8 @@ namespace Museoapp.Views
 
                 connection.Close();
             }
-
-            listView.ItemsSource = piezas;
+            dataGrid.AutoGenerateColumns = false;
+            dataGrid.ItemsSource = piezas;
         }
         private ImageSource LoadImageFromUrl(string url)
             {
@@ -141,22 +150,21 @@ namespace Museoapp.Views
         {
             string textoBusqueda = PorNombre.Text.Trim();
 
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Piezas item = (Piezas)listView.Items[i];
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-
-                if (listViewItem != null)
+                Piezas item = (Piezas)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
+                if (dataGrid != null)
                 {
                     if (item.Nombre.Contains(textoBusqueda))
                     {
                         // Mostrar el elemento si coincide con la búsqueda
-                        listViewItem.Visibility = Visibility.Visible;
+                        dataGrid.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         // Ocultar el elemento si no coincide con la búsqueda
-                        listViewItem.Visibility = Visibility.Collapsed;
+                        dataGrid.Visibility = Visibility.Collapsed;
                     }
                 }
             }
@@ -168,20 +176,20 @@ namespace Museoapp.Views
         {
             string textoBusqueda = Porlugar.Text.Trim();
 
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Piezas item = (Piezas)listView.Items[i];
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+                Piezas item = (Piezas)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
 
                 if (item.Lugar_proce.Contains(textoBusqueda))
                 {
                     // Mostrar el elemento si coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Visible;
+                    dataGridRow.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     // Ocultar el elemento si no coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Collapsed;
+                    dataGridRow.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -192,20 +200,20 @@ namespace Museoapp.Views
         {
             string textoBusqueda = PorTitulo.Text.Trim();
 
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Piezas item = (Piezas)listView.Items[i];
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+                Piezas item = (Piezas)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
 
                 if (item.Titulo_alias.Contains(textoBusqueda))
                 {
                     // Mostrar el elemento si coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Visible;
+                    dataGrid.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     // Ocultar el elemento si no coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Collapsed;
+                    dataGrid.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -214,13 +222,15 @@ namespace Museoapp.Views
         private void Refrescar(Object sender, RoutedEventArgs e)
         {
             // Mostrar todos los elementos de la lista nuevamente
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-                if (listViewItem != null)
+                Piezas item = (Piezas)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
+
+                if (dataGrid != null)
                 {
                     // Mostrar el elemento
-                    listViewItem.Visibility = Visibility.Visible;
+                    dataGrid.Visibility = Visibility.Visible;
                 }
             }
 
@@ -229,5 +239,76 @@ namespace Museoapp.Views
             Porlugar.Text = "";
             PorNombre.Text = "";
         }
+        private void dobleclikmagen(object sender, MouseButtonEventArgs e)
+        {
+            Button button = (Button)sender;
+
+            if (button.DataContext is Piezas selectedPieza)
+            {
+                // Verifica si hay una foto disponible
+                if (selectedPieza.Foto != null)
+                {
+                    // Crea una nueva ventana para mostrar la foto
+                    Window imageWindow = new Window
+                    {
+                        WindowState = WindowState.Normal,
+                        Content = new Image
+                        {
+                            Source = selectedPieza.Foto,
+                            Stretch = Stretch.Uniform,
+                        }
+                    };
+
+                    // Muestra la ventana
+                    imageWindow.ShowDialog();
+                }
+            }
+        }
+
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            Button eliminarButton = (Button)sender;
+            if (eliminarButton.CommandParameter is Piezas coleccion)
+            {
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string queryMaterial = "DELETE FROM [dbo].[Coleccion_Material] WHERE id_coleccion = @idColeccion; ";
+                    string queryColeccion = "DELETE FROM [dbo].[Coleccion] WHERE Coleccion_id = @idColeccion; ";
+                    string queryAutor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE id_coleccion = @idColeccion; ";
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        // Eliminar registros relacionados en la tabla Coleccion_Material
+                        SqlCommand commandMaterial = new SqlCommand(queryMaterial, connection);
+                        commandMaterial.Parameters.AddWithValue("@idColeccion", coleccion.Coleccion_id);
+                        commandMaterial.ExecuteNonQuery();
+
+                        // Eliminar el registro en la tabla Coleccion_Autor
+                        SqlCommand commandAutor = new SqlCommand(queryAutor, connection);
+                        commandAutor.Parameters.AddWithValue("@idColeccion", coleccion.Coleccion_id);
+                        commandAutor.ExecuteNonQuery();
+
+                        // Eliminar el registro en la tabla Coleccion
+                        SqlCommand commandColeccion = new SqlCommand(queryColeccion, connection);
+                        commandColeccion.Parameters.AddWithValue("@idColeccion", coleccion.Coleccion_id);
+                      
+                        int rowsAffectedColeccion = commandColeccion.ExecuteNonQuery();
+
+                        if (rowsAffectedColeccion > 0)
+                        {
+                            MessageBox.Show("El registro se eliminó correctamente.");
+                        }
+                    }
+
+                    ListarColecciones();
+                }
+            }
+        }
+        private void Editar_Click(object sender, RoutedEventArgs e) { }
+
     }
 }

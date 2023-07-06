@@ -1,4 +1,5 @@
-﻿using Museoapp.Models;
+﻿using Museo.Views;
+using Museoapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -29,6 +30,13 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarMateriales();
+        }
+        private void CrearArchivo_Click(object sender, RoutedEventArgs e)
+        {
+            Archivo archivo = new Archivo();
+            archivo.Show();
+            this.Close();
+
         }
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {

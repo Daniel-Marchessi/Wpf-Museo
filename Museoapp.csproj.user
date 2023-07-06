@@ -25,12 +25,36 @@
     <Compile Update="Controllers\Material.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controllers\Archivo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controllers\EditarArchivo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controllers\EditarColeccion.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controllers\EditarLibro.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Archivo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Autor.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Coleccion.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EditarArchivo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EditarColeccion.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EditarLibro.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Home.xaml">

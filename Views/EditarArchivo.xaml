@@ -1,0 +1,23 @@
+﻿<Window x:Class="Museo.Views.EditarArchivo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museo.Views"
+        mc:Ignorable="d"
+        Title="Editar" Height="450" Width="800">
+    <Grid Background="#7182B3">
+        <Label Content="Carpeta" HorizontalAlignment="Left" Height="29" Margin="111,68,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Carpeta"  HorizontalAlignment="Left" Height="42" Margin="111,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <Label Content="Categoria" HorizontalAlignment="Left" Height="30" Margin="111,182,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Categoria" HorizontalAlignment="Left" Height="42" Margin="111,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Codigo" HorizontalAlignment="Left" Height="30" Margin="400,79,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Codigo" HorizontalAlignment="Left" Height="42" Margin="400,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Titulo" HorizontalAlignment="Left" Height="30" Margin="400,179,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Titulo" HorizontalAlignment="Left" Height="42" Margin="400,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        
+        <Button Content="Button"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="509,319,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
+        <TextBox x:Name="id_archivo" Visibility="Hidden" IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="111,327,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+
+    </Grid>
+</Window>

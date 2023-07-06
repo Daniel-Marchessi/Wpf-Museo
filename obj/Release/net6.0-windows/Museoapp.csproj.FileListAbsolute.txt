@@ -55,7 +55,6 @@ E:\MUSEO\bin\Release\net6.0-windows\Museo.deps.json
 E:\MUSEO\bin\Release\net6.0-windows\Museo.runtimeconfig.json
 E:\MUSEO\bin\Release\net6.0-windows\Museo.dll
 E:\MUSEO\bin\Release\net6.0-windows\Museo.pdb
-E:\MUSEO\obj\Release\net6.0-windows\Museo_Content.g.cs
 E:\MUSEO\obj\Release\net6.0-windows\Museo_MarkupCompile.cache
 E:\MUSEO\obj\Release\net6.0-windows\Museo_MarkupCompile.lref
 E:\MUSEO\obj\Release\net6.0-windows\Museo.g.resources

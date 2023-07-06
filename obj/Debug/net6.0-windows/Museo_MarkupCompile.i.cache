@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\MUSEO\App.xaml
-8-1449469564
+121961918942
 
-16250948485
+21-1236081311
 203-1959094665
-Views\Autor.xaml;Views\Coleccion.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
+Views\Archivo.xaml;Views\Autor.xaml;Views\Coleccion.xaml;Views\EditarArchivo.xaml;Views\EditarColeccion.xaml;Views\EditarLibro.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
 
-True
+False
 
