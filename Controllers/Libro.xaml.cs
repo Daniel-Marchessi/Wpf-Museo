@@ -1,4 +1,6 @@
-﻿using Museo.Views;
+﻿using Museo.Models;
+using Museo.Views;
+using Museoapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -14,12 +16,114 @@ namespace Museoapp.Views
     /// </summary>
     public partial class Libro : Window
     {
+
+
         public Libro()
         {
             InitializeComponent();
             Titulo1.Focus();
-             Cargaraños();
+            Cargaraños();
+            TraerAutores();
+            TraerEditorial();
+            TraerCategorias();
         }
+        private void TraerAutores()
+        {
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                var autor = new Autores
+                {
+                    id_autor = Convert.ToInt32(reader["id_autor"]),
+
+                    NombreCompleto= reader["Nombre"].ToString() + " " + reader["Apellido"].ToString(),
+                    
+                    
+                };
+                Autores12.Items.Add(autor);
+               
+            }
+           
+            Autores12.DisplayMemberPath = "NombreCompleto";
+            Autores12.SelectedValue = "id_autor";
+            MessageBox.Show(Autores12.DisplayMemberPath);
+            conexion.Close();
+        }
+
+        private void TraerEditorial() {
+
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT Nombre, id_editorial FROM Editorial";
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                var editorial = new Editorial
+                {
+                    id_editorial = Convert.ToInt32(reader["id_editorial"]),
+
+                    Nombre = reader["Nombre"].ToString(),
+
+
+                };
+                Editorial.Items.Add(editorial);
+
+            }
+
+            Editorial.DisplayMemberPath = "Nombre";
+            Editorial.SelectedValue = "id_editorial";
+           
+            conexion.Close();
+
+        }
+
+
+        private void TraerCategorias()
+        {
+
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT Nombre, id_categoria FROM Categoria";
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                var categoria = new Categoria
+                {
+                    id_categoria = Convert.ToInt32(reader["id_categoria"]),
+
+                    Nombre = reader["Nombre"].ToString(),
+
+
+                };
+                Categoria.Items.Add(categoria);
+
+            }
+
+            Categoria.DisplayMemberPath = "Nombre";
+            Categoria.SelectedValue = "id_categoria";
+
+            conexion.Close();
+
+        }
+
 
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +179,7 @@ namespace Museoapp.Views
         {
 
 
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
 
@@ -126,4 +230,9 @@ namespace Museoapp.Views
 
 
     }
+
+
+
+
+
 }

@@ -106,7 +106,7 @@ namespace Museo.Views
 
         private void ListarCarpetas()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
             string query = "SELECT DISTINCT [Carpeta] FROM [dbo].[Archivos]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -137,7 +137,7 @@ namespace Museo.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
                     string query = "DELETE FROM [dbo].[Archivos] WHERE [id_archivo] = @idArchivo";
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -161,7 +161,7 @@ namespace Museo.Views
         private void ListarArchivos(string carpetaSeleccionada)
         {
             dataGrid.IsReadOnly = true;
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
             string query = "SELECT DISTINCT   [id_archivo], [carpeta],[Categoria], [Codigo], [Titulo] FROM [dbo].[Archivos]";
 
             if (!string.IsNullOrEmpty(carpetaSeleccionada))
@@ -201,7 +201,7 @@ namespace Museo.Views
         }
         private void EnviarArchivo_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1; integrated security = true");
             conexion.Open();
             string queryExists = "SELECT COUNT(*) FROM Archivos WHERE Codigo = @Codigo";
             SqlCommand commandExists = new SqlCommand(queryExists, conexion);

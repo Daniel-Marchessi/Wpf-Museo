@@ -61,7 +61,7 @@
             <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="175"/>
             <TextBox x:Name="Descripcion1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="93,13,59,0"   MaxWidth="500" FontSize="30" Height="42"/>
             <Label Content="Autores" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Height="42" Width="98" />
-            <xctk:CheckComboBox x:Name="Autores"
+            <xctk:CheckComboBox x:Name="Autores12"
                     Grid.Row="0"
                     Grid.Column="3"
                     Grid.ColumnSpan="1"
@@ -78,15 +78,31 @@
             <Label Content="Codigo" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Height="42" Width="98" Grid.RowSpan="2" />
             <TextBox x:Name="Codigo" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top"   MaxWidth="500"  FontSize="30" Height="38" HorizontalAlignment="Center" Width="146" Margin="0,12,0,0" Grid.RowSpan="2"/>
 
-            <Label Content="Categoria" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Height="42" Width="124" />
-            <ComboBox Grid.Row="2"    Margin="10,16,10,18" Grid.Column="3" Height="42"/>
+            <Label Content="Categoria" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Height="42" Width="124" Margin="0,14,0,0" Grid.RowSpan="3" />
+
+            <xctk:CheckComboBox x:Name="Categoria"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Margin="230,10,20,68"
+                    FontSize="24"
+                    MaxWidth="500"
+                    FontWeight="Black"
+                    Foreground="Black"
+                     DisplayMemberPath="id_categoria"
+                    ValueMemberPath="id_categoria"
+                    SelectedValue="{Binding SelectedValue}"
+                    SelectedItemsOverride="{Binding SelectedItems}" RenderTransformOrigin="0.629,0.176" Grid.RowSpan="3"
+            />
+
+
 
             <Label Content="Editorial" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Height="42" Width="124" Margin="0,13,0,0" />
             <xctk:CheckComboBox x:Name="Editorial"
                     Grid.Row="4"
-                    Grid.Column="3"
-                    Grid.ColumnSpan="1"
-                    Margin="10,13,10,15"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Margin="230,13,20,15"
                     FontSize="24"
                     MaxWidth="500"
                     FontWeight="Black"

@@ -43,7 +43,7 @@ namespace Museo.Views
             string nuevoTitulo = Mayuscula.ToTitleCase(Titulo.Text.ToLower());
             int idArchivo = Convert.ToInt32(id_archivo.Text.Trim());
             // Realizar las operaciones de actualización en la base de datos
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
             string queryUpdate = "UPDATE Archivos SET Carpeta = @Carpeta, Categoria = @Categoria, Titulo = @Titulo, Codigo = @Codigo WHERE id_archivo = @idArchivo";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

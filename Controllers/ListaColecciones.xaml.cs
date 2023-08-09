@@ -74,7 +74,7 @@ namespace Museoapp.Views
 
         private void ListarColecciones()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
 
             string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores, Coleccion_id
                      FROM dbo.Coleccion";
@@ -274,7 +274,7 @@ namespace Museoapp.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
                     string queryMaterial = "DELETE FROM [dbo].[Coleccion_Material] WHERE id_coleccion = @idColeccion; ";
                     string queryColeccion = "DELETE FROM [dbo].[Coleccion] WHERE Coleccion_id = @idColeccion; ";
                     string queryAutor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE id_coleccion = @idColeccion; ";
@@ -309,6 +309,15 @@ namespace Museoapp.Views
             }
         }
         private void Editar_Click(object sender, RoutedEventArgs e) { }
+
+
+
+        //metodo para realizar busqeudas
+
+
+       
+
+
 
     }
 }

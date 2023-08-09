@@ -84,7 +84,7 @@ namespace Museoapp.Views
         }
         private void ListarAutores()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true";
             string query = "SELECT [Nombre], [Apellido]  FROM [dbo].[Autor]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -110,7 +110,7 @@ namespace Museoapp.Views
 
         private void EnviarAutor_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT COUNT(*) FROM Autor WHERE Nombre = @Nombre AND Apellido = @Apellido";
