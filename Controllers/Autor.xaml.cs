@@ -84,7 +84,7 @@ namespace Museoapp.Views
         }
         private void ListarAutores()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
             string query = "SELECT [Nombre], [Apellido]  FROM [dbo].[Autor]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -104,7 +104,7 @@ namespace Museoapp.Views
                     autores.Add(autorin);
                 }
 
-                listView.ItemsSource = autores;
+                dataGrid.ItemsSource = autores;
             }
         }
 
@@ -143,47 +143,40 @@ namespace Museoapp.Views
         {
             string textoBusqueda = PorNombre.Text.Trim();
 
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Materiales item = (Materiales)listView.Items[i];
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+                Materiales item = (Materiales)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
 
                 if (item.Nombre.Contains(textoBusqueda))
                 {
                     // Mostrar el elemento si coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Visible;
+                    dataGridRow.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     // Ocultar el elemento si no coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Collapsed;
+                    dataGridRow.Visibility = Visibility.Collapsed;
                 }
             }
 
             PorNombre.Text = "";
         }
-        private void Refrescar(Object sender, RoutedEventArgs e)
-        {
-            // Mostrar todos los elementos de la lista nuevamente
-            for (int i = 0; i < listView.Items.Count; i++)
-            {
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-                if (listViewItem != null)
-                {
-                    // Mostrar el elemento
-                    listViewItem.Visibility = Visibility.Visible;
-                }
-            }
-
-            // Limpiar el campo de búsqueda
-            PorNombre.Text = "";
-        }
+       
         private void LimpiarCampos()
         {
             Nombre1.Text = "";
             Apellido1.Text = "";
         }
+        private void Eliminar_Click(object sender, RoutedEventArgs e) { }
+        private void Editar_Click(object sender, RoutedEventArgs e) { }
 
-
+        public partial class EditarAutor : Window
+        {
+            public EditarAutor()
+            {
+              
+            }
+        }
     }
 }

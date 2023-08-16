@@ -1,4 +1,5 @@
-﻿using Museo.Views;
+﻿using ControlzEx.Standard;
+using Museo.Views;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -74,7 +75,7 @@ namespace Museoapp.Views
 
         private void ListarColecciones()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
 
             string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores, Coleccion_id
                      FROM dbo.Coleccion";
@@ -146,79 +147,8 @@ namespace Museoapp.Views
                 }
             }
 
-        private void BuscarPorNombre(object sender, RoutedEventArgs e)
-        {
-            string textoBusqueda = PorNombre.Text.Trim();
-
-            for (int i = 0; i < dataGrid.Items.Count; i++)
-            {
-                Piezas item = (Piezas)dataGrid.Items[i];
-                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
-                if (dataGrid != null)
-                {
-                    if (item.Nombre.Contains(textoBusqueda))
-                    {
-                        // Mostrar el elemento si coincide con la búsqueda
-                        dataGrid.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        // Ocultar el elemento si no coincide con la búsqueda
-                        dataGrid.Visibility = Visibility.Collapsed;
-                    }
-                }
-            }
-
-            PorNombre.Text = "";
-        }
-
-        private void BuscarPorLugar(object sender, RoutedEventArgs e)
-        {
-            string textoBusqueda = Porlugar.Text.Trim();
-
-            for (int i = 0; i < dataGrid.Items.Count; i++)
-            {
-                Piezas item = (Piezas)dataGrid.Items[i];
-                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
-
-                if (item.Lugar_proce.Contains(textoBusqueda))
-                {
-                    // Mostrar el elemento si coincide con la búsqueda
-                    dataGridRow.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    // Ocultar el elemento si no coincide con la búsqueda
-                    dataGridRow.Visibility = Visibility.Collapsed;
-                }
-            }
-
-            Porlugar.Text = "";
-        }
-
-        private void BuscarPorTitulo(object sender, RoutedEventArgs e)
-        {
-            string textoBusqueda = PorTitulo.Text.Trim();
-
-            for (int i = 0; i < dataGrid.Items.Count; i++)
-            {
-                Piezas item = (Piezas)dataGrid.Items[i];
-                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(item);
-
-                if (item.Titulo_alias.Contains(textoBusqueda))
-                {
-                    // Mostrar el elemento si coincide con la búsqueda
-                    dataGrid.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    // Ocultar el elemento si no coincide con la búsqueda
-                    dataGrid.Visibility = Visibility.Collapsed;
-                }
-            }
-
-            PorTitulo.Text = "";
-        }
+       
+        
         private void Refrescar(Object sender, RoutedEventArgs e)
         {
             // Mostrar todos los elementos de la lista nuevamente
@@ -234,10 +164,7 @@ namespace Museoapp.Views
                 }
             }
 
-            // Limpiar el campo de búsqueda
-            PorTitulo.Text = "";
-            Porlugar.Text = "";
-            PorNombre.Text = "";
+          
         }
         private void dobleclikmagen(object sender, MouseButtonEventArgs e)
         {
@@ -274,7 +201,7 @@ namespace Museoapp.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
                     string queryMaterial = "DELETE FROM [dbo].[Coleccion_Material] WHERE id_coleccion = @idColeccion; ";
                     string queryColeccion = "DELETE FROM [dbo].[Coleccion] WHERE Coleccion_id = @idColeccion; ";
                     string queryAutor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE id_coleccion = @idColeccion; ";
@@ -314,8 +241,159 @@ namespace Museoapp.Views
 
         //metodo para realizar busqeudas
 
+        private void BuscarPorTitulo(object sender, RoutedEventArgs e)
+        {
+            string textSearch = search.Text.Trim();
 
-       
+            if (Busqueda1.Text == "Nombre")
+            {
+
+                foreach (var item in dataGrid.Items)
+                {
+                    //Type prueba = item.GetType();
+                    //MessageBox.Show(prueba.ToString());
+
+                    if (item is Piezas pieza)
+                    {
+                        if (pieza.Nombre.Contains(textSearch))
+                        {
+                            // Mostrar la fila si coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            // Ocultar la fila si no coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Collapsed;
+                            }
+
+                        }
+                    }
+                  
+                }
+
+            }
+        
+
+            if (Busqueda1.Text == "Titulo_Alias")
+
+            {
+                foreach (var item in dataGrid.Items)
+                {
+
+                    if (item is Piezas pieza)
+                    {
+                        if (pieza.Titulo_alias.Contains(textSearch))
+                        {
+                            // Mostrar la fila si coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            // Ocultar la fila si no coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Collapsed;
+                            }
+
+                        }
+                    }
+
+
+
+                }
+            }
+            if (Busqueda1.Text == "Cultura")
+
+            {
+                foreach (var item in dataGrid.Items)
+                {
+
+                    if (item is Piezas pieza)
+                    {
+                        if (pieza.Lugar_proce.Contains(textSearch))
+                        {
+                            // Mostrar la fila si coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            // Ocultar la fila si no coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Collapsed;
+                            }
+
+                        }
+                    }
+
+
+
+                }
+            }
+            if (Busqueda1.Text == "Autor")
+            {
+
+
+                foreach (var item in dataGrid.Items)
+                {
+                    //MessageBox.Show(item.ToString());
+
+                    if (item is Piezas pieza)
+
+
+                    {
+
+                        if (pieza.Autores.Contains(textSearch))
+                        {
+                            // Mostrar la fila si coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Visible;
+                            }
+                        }
+                        else
+                        {
+                            // Ocultar la fila si no coincide con la búsqueda
+                            dataGrid.UpdateLayout();
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
+                            if (row != null)
+                            {
+                                row.Visibility = Visibility.Collapsed;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+          //string textoBusqueda = PorTitulo.Text.Trim();
+
+        }
 
 
 

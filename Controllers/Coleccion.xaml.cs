@@ -82,7 +82,7 @@ namespace WpfAppTEST.Views
 
         private void TraerAutores()
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -116,7 +116,7 @@ namespace WpfAppTEST.Views
 
         private void TraerMateriales()
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
 
             conexion.Open();
 
@@ -158,7 +158,7 @@ namespace WpfAppTEST.Views
         }
         private void EnviarColeccion_Click_1(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1; integrated security=true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true");
             conexion.Open();
 
             string queryColeccion = "INSERT INTO Coleccion (Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales,Autores) VALUES (@Nombre, @Cantidad, @Periodo, @Alto, @Ancho, @Diametro, @Url, @Largo, @Ingreso, @Conservacion, @Ubicacion, @Integridad, @Lugar, @Titulo, @Materiales,@Autores); SELECT SCOPE_IDENTITY();";
@@ -211,10 +211,8 @@ namespace WpfAppTEST.Views
 
             foreach (Materiales item in Materiales.SelectedItems)
             {
-               
                 string nombreMaterial = item.Nombre;
                 nombresMateriales.Add(nombreMaterial);
-
             
             }
             foreach(Autores item in Autores.SelectedItems)
@@ -325,6 +323,17 @@ namespace WpfAppTEST.Views
             Materiales.Text = "";
             Autores.Text = "";
             //imgFoto.Source = null;
+        }
+    }
+
+
+
+
+    public partial class EditarColeccion : Window
+    {
+        public EditarColeccion()
+        {
+            
         }
     }
 }

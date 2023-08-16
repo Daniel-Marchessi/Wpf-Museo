@@ -16,7 +16,7 @@
         <Label Content="Titulo" HorizontalAlignment="Left" Height="30" Margin="400,179,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Titulo" HorizontalAlignment="Left" Height="42" Margin="400,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         
-        <Button Content="Button"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="509,319,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
+        <Button Content="Guardar"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="509,319,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
         <TextBox x:Name="id_archivo" Visibility="Hidden" IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="111,327,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
 
     </Grid>

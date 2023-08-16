@@ -20,6 +20,10 @@ using WpfAppTEST.Models;
 using WpfAppTEST.Views;
 namespace Museo.Views
 {
+
+
+
+    //Controlar vista Archivo
     public partial class Archivo : Window
     {
         public Archivo()
@@ -106,7 +110,7 @@ namespace Museo.Views
 
         private void ListarCarpetas()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
             string query = "SELECT DISTINCT [Carpeta] FROM [dbo].[Archivos]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -137,7 +141,7 @@ namespace Museo.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
                     string query = "DELETE FROM [dbo].[Archivos] WHERE [id_archivo] = @idArchivo";
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -161,7 +165,7 @@ namespace Museo.Views
         private void ListarArchivos(string carpetaSeleccionada)
         {
             dataGrid.IsReadOnly = true;
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
             string query = "SELECT DISTINCT   [id_archivo], [carpeta],[Categoria], [Codigo], [Titulo] FROM [dbo].[Archivos]";
 
             if (!string.IsNullOrEmpty(carpetaSeleccionada))
@@ -201,7 +205,7 @@ namespace Museo.Views
         }
         private void EnviarArchivo_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true");
             conexion.Open();
             string queryExists = "SELECT COUNT(*) FROM Archivos WHERE Codigo = @Codigo";
             SqlCommand commandExists = new SqlCommand(queryExists, conexion);
@@ -239,6 +243,13 @@ namespace Museo.Views
             conexion.Close();
         }
         
+        private void LimpiarCampos()
+        {
+            Carpeta.Text = "";
+            Categoria.Text = "";
+            Codigo.Text = "";
+            Titulo.Text = "";
+        }
         private void Editar_Click(object sender, RoutedEventArgs e)
         {
             Archivos archivoSeleccionado = (Archivos)dataGrid.SelectedItem;
@@ -247,18 +258,58 @@ namespace Museo.Views
             {
                 EditarArchivo ventanaEditar = new EditarArchivo(archivoSeleccionado.Carpeta, archivoSeleccionado.Categoria, archivoSeleccionado.Titulo, archivoSeleccionado.Codigo, archivoSeleccionado.id_archivo);
 
-                 ventanaEditar.ShowDialog();
+                ventanaEditar.ShowDialog();
 
             }
             ListarArchivos(null);
 
         }
-        private void LimpiarCampos()
+    }
+
+    //Controlador vista EditarArchivo
+    public partial class EditarArchivo : Window
+    {
+        public EditarArchivo(string carpeta, string categoria, string titulo, int codigo, int idArchivo)
         {
-            Carpeta.Text = "";
-            Categoria.Text = "";
-            Codigo.Text = "";
-            Titulo.Text = "";
+            InitializeComponent();
+            Carpeta.Text = carpeta;
+            Categoria.Text = categoria;
+            Titulo.Text = titulo;
+            Codigo.Text = codigo.ToString();
+            id_archivo.Text = idArchivo.ToString();
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Obtener los valores editados de los TextBox
+            TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+            string nuevaCarpeta = Mayuscula.ToTitleCase(Carpeta.Text.ToLower());
+            string nuevaCategoria = Mayuscula.ToTitleCase(Categoria.Text.ToLower());
+            int nuevoCodigo = Convert.ToInt32(Codigo.Text);
+            string nuevoTitulo = Mayuscula.ToTitleCase(Titulo.Text.ToLower());
+            int idArchivo = Convert.ToInt32(id_archivo.Text.Trim());
+            // Realizar las operaciones de actualización en la base de datos
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+            string queryUpdate = "UPDATE Archivos SET Carpeta = @Carpeta, Categoria = @Categoria, Titulo = @Titulo, Codigo = @Codigo WHERE id_archivo = @idArchivo";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand commandUpdate = new SqlCommand(queryUpdate, connection);
+                commandUpdate.Parameters.AddWithValue("@Carpeta", nuevaCarpeta);
+                commandUpdate.Parameters.AddWithValue("@Categoria", nuevaCategoria);
+                commandUpdate.Parameters.AddWithValue("@Titulo", nuevoTitulo);
+                commandUpdate.Parameters.AddWithValue("@Codigo", nuevoCodigo);
+                commandUpdate.Parameters.AddWithValue("@idArchivo", idArchivo);
+
+                connection.Open();
+                commandUpdate.ExecuteNonQuery();
+            }
+
+            // Mostrar un mensaje o realizar cualquier otra acción después de guardar los cambios //EVITAR AMBIGUEDAD SYSTEM.WINDOWS
+            System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
+            // Cerrar la ventana de edición
+            this.Close();
         }
     }
 }

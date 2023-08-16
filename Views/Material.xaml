@@ -69,13 +69,26 @@
 
 
 
-        <ListView x:Name="listView" Width="200" Height="338" Margin="702,184,305,0" VerticalAlignment="Top" Foreground="Blue">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="200" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"  />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="10,207,10,10" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto"/>
 
+                <DataGridTemplateColumn  Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
     </Grid>
 </Window>

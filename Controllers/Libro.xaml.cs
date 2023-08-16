@@ -29,7 +29,7 @@ namespace Museoapp.Views
         }
         private void TraerAutores()
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -54,13 +54,13 @@ namespace Museoapp.Views
            
             Autores12.DisplayMemberPath = "NombreCompleto";
             Autores12.SelectedValue = "id_autor";
-            MessageBox.Show(Autores12.DisplayMemberPath);
+         
             conexion.Close();
         }
 
         private void TraerEditorial() {
 
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT Nombre, id_editorial FROM Editorial";
@@ -94,7 +94,7 @@ namespace Museoapp.Views
         private void TraerCategorias()
         {
 
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT Nombre, id_categoria FROM Categoria";
@@ -177,34 +177,55 @@ namespace Museoapp.Views
 
         private void EnviarLibro_Click(object sender, RoutedEventArgs e)
         {
-
-
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
+            string query = "INSERT INTO Libros (Titulo, Origen, N_paginas, Descripcion, Edicion, AnioEdicion, Autores, Codigo) " +
+               "VALUES (@Titulo, @Origen, @N_paginas, @Descripcion, @Edicion, @AnioEdicion, @Autores, @Codigo)";
 
-            string query = "INSERT INTO Libros (Titulo, Origen, N_paginas, Descripcion) " +
-               "VALUES (@Titulo, @Origen, @N_paginas, @Descripcion)";
+            string queryRelacionLibro_Autor = "INSERT INTO Libro_Autor (id_libro, id_autor) VALUES (@IdLibro, @IdAutor)";
 
             Libros librin = new Libros();
             SqlCommand comand = new SqlCommand(query, conexion);
+            SqlCommand comand2 = new SqlCommand(queryRelacionLibro_Autor, conexion);
 
+            List<string> nombresAutores = new List<string>();
             TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
             librin.Titulo = Mayuscula.ToTitleCase(Titulo1.Text.ToLower());
             librin.Origen = Mayuscula.ToTitleCase(Origen1.Text.ToLower());
             librin.N_paginas = Convert.ToInt32(Numpaginas1.Text);
             librin.Descripcion = Mayuscula.ToTitleCase(Descripcion1.Text.ToLower());
+            librin.Edicion = Mayuscula.ToTitleCase(comboBoxEdiciones.Text.ToLower());
+            librin.AnioEdicion = Mayuscula.ToTitleCase(comboBoxaños.Text.ToLower());
+            librin.Autores = Mayuscula.ToTitleCase(Autores12.Text.ToLower());
+            librin.Codigo = Convert.ToInt32(Codigo.Text);
 
             comand.Parameters.AddWithValue("@Titulo", librin.Titulo);
             comand.Parameters.AddWithValue("@Origen", librin.Origen);
             comand.Parameters.AddWithValue("@N_paginas", librin.N_paginas);
             comand.Parameters.AddWithValue("@Descripcion", librin.Descripcion);
+            comand.Parameters.AddWithValue("@Edicion", librin.Edicion);
+            comand.Parameters.AddWithValue("@AnioEdicion", librin.AnioEdicion);
+            comand.Parameters.AddWithValue("@Codigo", librin.Codigo);
+            comand.Parameters.AddWithValue("@Autores", librin.Autores);
 
-            comand.ExecuteNonQuery();
-            MessageBox.Show("Se ingreso un Libro");
+            // Ejecutar el INSERT para el libro y obtener el ID del libro insertado
+            int idLibro = Convert.ToInt32(comand.ExecuteScalar());
+
+            foreach (Autores item in Autores12.SelectedItems)
+            {
+                int idAutores = Convert.ToInt32(item.id_autor);
+
+                // Insertar la relación en la tabla 'Libro_Autor'
+                comand2.Parameters.Clear();
+                comand2.Parameters.AddWithValue("@IdLibro", idLibro);
+                comand2.Parameters.AddWithValue("@IdAutor", idAutores);
+                comand2.ExecuteNonQuery();
+            }
+
+            MessageBox.Show("Se ingresó un Libro");
             conexion.Close();
             LimpiarCampos();
-
         }
 
         private void LimpiarCampos()

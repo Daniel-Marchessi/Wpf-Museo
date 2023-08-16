@@ -28,7 +28,7 @@
 
         </Menu>
 
-        <Border Background="White" Margin="10,102,10,0" VerticalAlignment="Top">
+        <Border   Margin="10,102,10,0" VerticalAlignment="Top">
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -52,60 +52,54 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Label  Grid.Row="0" Content="Buscar"  Grid.Column="0"  Margin="5" FontSize="50"/>
-                <Button Grid.Row="0" Grid.Column="1" Background="Transparent"  BorderThickness="0"  Margin="0,15,0,0" Height="43" Width="47" FontSize="24" Click="Refrescar" >
-                    <Image Source="../img/Refresh.png" Width="37" />
+                <Label x:Name="Busqueda" Content="Busqueda" VerticalAlignment="Top" Margin="557,-61,396,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
+                <ComboBox x:Name="Busqueda1" VerticalAlignment="Top"  Margin="1030,-55,0,0"    MaxWidth="500" FontSize="24"  Width="164" HorizontalAlignment="Left" Height="36" Grid.ColumnSpan="10">
+                    <ComboBox.Items>
+                        <ComboBoxItem Content="Nombre" />
+                        <ComboBoxItem Content="Titulo_Alias" />
+                        <ComboBoxItem Content="Cultura" />
+                        <ComboBoxItem Content="Autor" />
+                    </ComboBox.Items>
+                </ComboBox>
+                <Button Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorTitulo" Margin="186,-68,0,0" HorizontalAlignment="Left" Width="76" Height="42" VerticalAlignment="Top" Grid.Column="9" >
+                    <Image Source="../img/Lupa.png" Width="76" Height="48" />
                 </Button>
-                <Label Grid.Row="1" Grid.Column="0" Content="Por nombre" Margin="5"  FontSize="24" />
-                <TextBox x:Name="PorNombre" Grid.Row="1" Grid.Column="1" Text=""  Width="200" Margin="5" FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="2" Background="Transparent"  BorderThickness="0" Width="47" FontSize="24" Click="BuscarPorNombre"  >
-                    <Image Source="../img/Lupa.png" Width="37" />
-                </Button>
+                <TextBox  x:Name="search" Text=""  Width="302" Margin="711,-55,0,0"  FontSize="24" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top"/>
 
-                <Label Grid.Row="1" Grid.Column="3" Content="Por lugar de procedencia" Margin="5"  FontSize="24"/>
-                <TextBox  x:Name="Porlugar" Grid.Row="1" Grid.Column="4" Text=""  Width="200" Margin="5"  FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="5" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorLugar" >
-                    <Image Source="../img/Lupa.png" Width="37" />
-                </Button>
 
-                <Label Grid.Row="1" Grid.Column="6" Content="Por Titulo/Alias" Margin="5" FontSize="24" />
-                <TextBox  x:Name="PorTitulo" Grid.Row="1" Grid.Column="7" Text=""  Width="200" Margin="5"  FontSize="24"/>
-                <Button Grid.Row="1" Grid.Column="8" Background="Transparent"  BorderThickness="0" Width="47"  FontSize="24" Click="BuscarPorTitulo">
-                    <Image Source="../img/Lupa.png" Width="37" />
-                </Button>
 
 
             </Grid>
         </Border>
 
 
-        <DataGrid x:Name="dataGrid" Margin="10,330,10,10" Foreground="Blue">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" />
-                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" />
-                <DataGridTextColumn Header="Titulo Alias" Binding="{Binding Titulo_alias}" />
-                <DataGridTextColumn Header="Lugar Procedencia" Binding="{Binding Lugar_proce}" />
-                <DataGridTextColumn Header="Periodo" Binding="{Binding Periodo}" />
-                <DataGridTextColumn Header="Alto" Binding="{Binding Alto}" />
-                <DataGridTextColumn Header="Ancho" Binding="{Binding Ancho}" />
-                <DataGridTextColumn Header="Largo" Binding="{Binding Largo}" />
-                <DataGridTextColumn Header="Diametro" Binding="{Binding Diametro}" />
-                <DataGridTextColumn Header="Integridad" Binding="{Binding Integridad}" />
-                <DataGridTextColumn Header="Conservacion" Binding="{Binding Conservacion}" />
-                <DataGridTextColumn Header="Ubicacion" Binding="{Binding Ubicacion}" />
-                <DataGridTextColumn Header="Ingreso" Binding="{Binding Ingreso}" />
-                <DataGridTextColumn Header="Materiales" Binding="{Binding Materiales}" />
-                <DataGridTextColumn Header="Autores" Binding="{Binding Autores}" />
-                <DataGridTemplateColumn Header="Foto">
+        <DataGrid x:Name="dataGrid" Margin="10,148,10,10"  FontSize="20" Foreground="Black" IsReadOnly="True" CanUserAddRows="False" ColumnWidth="SizeToCells" >
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="auto" />
+                <DataGridTextColumn Header="Titulo Alias" Binding="{Binding Titulo_alias}" Width="auto" />
+                <DataGridTextColumn Header="Cultura" Binding="{Binding Lugar_proce}" Width="auto"/>
+                <DataGridTextColumn Header="Periodo" Binding="{Binding Periodo}" Width="auto"/>
+                <DataGridTextColumn Header="Alto" Binding="{Binding Alto}" Width="auto"/>
+                <DataGridTextColumn Header="Ancho" Binding="{Binding Ancho}" Width="auto"/>
+                <DataGridTextColumn Header="Largo" Binding="{Binding Largo}" Width="auto"/>
+                <DataGridTextColumn Header="Diametro" Binding="{Binding Diametro}" Width="auto"/>
+                <DataGridTextColumn Header="Integridad" Binding="{Binding Integridad}" Width="auto"/>
+                <DataGridTextColumn Header="Conservacion" Binding="{Binding Conservacion}" Width="auto"/>
+                <DataGridTextColumn Header="Ubicacion" Binding="{Binding Ubicacion}" Width="auto"/>
+                <DataGridTextColumn Header="Ingreso" Binding="{Binding Ingreso}" Width="auto"/>
+                <DataGridTextColumn Header="Materiales" Binding="{Binding Materiales}" Width="auto"/>
+                <DataGridTextColumn Header="Autores" Binding="{Binding Autores}" Width="auto"/>
+                <DataGridTemplateColumn Header="Foto" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button MouseDoubleClick="dobleclikmagen">
-                            <Image Source="{Binding Foto}" Width="100" Height="100" />
+                                <Image Source="{Binding Foto}" Width="100" Height="20" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="50">
+                <DataGridTemplateColumn  Width="auto" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
@@ -114,7 +108,7 @@
                 </DataGridTemplateColumn>
 
 
-                <DataGridTemplateColumn >
+                <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />

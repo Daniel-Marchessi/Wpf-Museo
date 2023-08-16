@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Museo.Views"
         mc:Ignorable="d"
-        Title="EditarLibro" Height="450" Width="800">
-    <Grid>
-        
+        Title="Editar" Height="450" Width="800">
+    <Grid Background="#7182B3">
+        <Label Content="Titulo" HorizontalAlignment="Left" Height="29" Margin="56,35,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Titulo"  HorizontalAlignment="Left" Height="42" Margin="56,85,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <Label Content="Origen" HorizontalAlignment="Center" Height="30" Margin="0,34,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Origen" HorizontalAlignment="Center" Height="42" Margin="0,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Número de páginas" HorizontalAlignment="Left" Height="30" Margin="551,35,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="N_paginas" HorizontalAlignment="Left" Height="42" Margin="551,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" Height="30" Margin="56,158,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Descripcion" HorizontalAlignment="Left" Height="42" Margin="56,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Autores" HorizontalAlignment="Center" Height="30" Margin="0,170,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Autores" HorizontalAlignment="Center" Height="42" Margin="0,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Edicion" HorizontalAlignment="Left" Height="30" Margin="551,158,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Edicion" HorizontalAlignment="Left" Height="42" Margin="551,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Año de Edición" HorizontalAlignment="Left" Height="30" Margin="56,273,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="AnioEdicion" HorizontalAlignment="Left" Height="42" Margin="56,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Codigo" HorizontalAlignment="Center" Height="30" Margin="0,273,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Codigo" HorizontalAlignment="Center" Height="42" Margin="0,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+
+        <Button Content="Guardar"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="576,318,0,0" VerticalAlignment="Top" Width="136" />
+        <TextBox x:Name="id_libro"   IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="38,382,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+
     </Grid>
+
+
 </Window>

@@ -66,29 +66,29 @@
         </Grid>
 
 
-        <DataGrid  x:Name="dataGrid" Foreground="Blue" Margin="10,309,10,10" CanUserAddRows="False">
+        <DataGrid  x:Name="dataGrid" Foreground="Blue" Margin="10,309,10,10" IsReadOnly="True" CanUserAddRows="False" FontSize="30">
 
-            <DataGrid.Columns >
+            <DataGrid.Columns  >
 
-                <DataGridTextColumn Header="Carpeta" Binding="{Binding Carpeta}" Width="100"/>
-                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="100"/>
-                <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="100" />
-                <DataGridTextColumn Header="Titulo" Binding="{Binding Titulo}" Width="100" />
+                <DataGridTextColumn Header="Carpeta" Binding="{Binding Carpeta}" Width="300"/>
+                <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="300"/>
+                <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="300" />
+                <DataGridTextColumn Header="Titulo" Binding="{Binding Titulo}" Width="300" />
 
 
-                <DataGridTemplateColumn  Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
+                <DataGridTemplateColumn  >
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" Width="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
 
                 <DataGridTemplateColumn >
-                    <DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
-                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
+                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" Width="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

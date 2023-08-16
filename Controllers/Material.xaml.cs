@@ -83,7 +83,7 @@ namespace Museoapp.Views
 
         private void ListarMateriales()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
             string query = "SELECT [Nombre] FROM [dbo].[Material]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -102,14 +102,14 @@ namespace Museoapp.Views
                     materiales.Add(material);
                 }
 
-                listView.ItemsSource = materiales;
+                dataGrid.ItemsSource = materiales; // Asignar la lista de materiales al DataGrid
             }
         }
 
 
         private void EnviarMaterial_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT COUNT(*) FROM Material WHERE Nombre = @Nombre";
@@ -146,20 +146,20 @@ namespace Museoapp.Views
         {
             string textoBusqueda = PorNombre.Text.Trim();
 
-            for (int i = 0; i < listView.Items.Count; i++)
+            for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Materiales item = (Materiales)listView.Items[i];
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+                Materiales item = (Materiales)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
 
                 if (item.Nombre.Contains(textoBusqueda))
                 {
-                    // Mostrar el elemento si coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Visible;
+                    // Mostrar la fila si coincide con la búsqueda
+                    dataGridRow.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    // Ocultar el elemento si no coincide con la búsqueda
-                    listViewItem.Visibility = Visibility.Collapsed;
+                    // Ocultar la fila si no coincide con la búsqueda
+                    dataGridRow.Visibility = Visibility.Collapsed;
                 }
             }
 
@@ -167,26 +167,34 @@ namespace Museoapp.Views
         }
         private void Refrescar(Object sender, RoutedEventArgs e)
         {
-            // Mostrar todos los elementos de la lista nuevamente
-            for (int i = 0; i < listView.Items.Count; i++)
-            {
-                ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-                if (listViewItem != null)
-                {
-                    // Mostrar el elemento
-                    listViewItem.Visibility = Visibility.Visible;
-                }
-            }
+            //// Mostrar todos los elementos de la lista nuevamente
+            //for (int i = 0; i < listView.Items.Count; i++)
+            //{
+            //    ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
+            //    if (listViewItem != null)
+            //    {
+            //        // Mostrar el elemento
+            //        listViewItem.Visibility = Visibility.Visible;
+            //    }
+            //}
 
-            // Limpiar el campo de búsqueda
-            PorNombre.Text = "";
+            //// Limpiar el campo de búsqueda
+            //PorNombre.Text = "";
         }
         private void LimpiarCampos()
         {
             Nombre1.Text = "";
 
         }
-
+        private void Eliminar_Click(Object sender, RoutedEventArgs e) { }
+        private void Editar_Click(Object sender, RoutedEventArgs e) { }
+        public partial class EditarMaterial : Window
+        {
+            public EditarMaterial()
+            {
+              
+            }
+        }
 
     }
 }

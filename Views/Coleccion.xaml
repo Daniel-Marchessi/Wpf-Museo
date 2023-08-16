@@ -161,7 +161,7 @@
 
 
 
-            <Button x:Name="EnviarColeccion" Background="#FFFD9A0D" FontSize="30" Content="Guardar" Grid.Row="9" Grid.Column="4" HorizontalAlignment="Left" Margin="5,14,0,-53" Width="340" Click="EnviarColeccion_Click_1"/>
+            <Button x:Name="EnviarColeccion" Background="#FFFD9A0D" FontSize="30" Content="Guardar" Grid.Row="9" Margin="5,6,50,-45" Click="EnviarColeccion_Click_1" Grid.Column="1"/>
             <TextBox x:Name="Url_Foto" Visibility="Collapsed" IsReadOnly="True" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Left" Margin="16,38,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="Black" FontSize="24" Width="378"/>
 
 

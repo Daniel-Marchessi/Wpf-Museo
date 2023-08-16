@@ -35,12 +35,7 @@ namespace WpfAppTEST.Models
             set { origen = value; }
         }
 
-        private int autorId;
-        public int AutorId
-        {
-            get { return autorId; }
-            set { autorId = value; }
-        }
+    
 
         private int numeroPaginas;
         public int N_paginas
@@ -55,6 +50,38 @@ namespace WpfAppTEST.Models
             get { return descripcion; }
             set { descripcion = value; }
         }
+
+
+        private string edicion;
+        public string Edicion
+        {
+            get { return edicion; }
+            set {  edicion = value; }        
+        }
+        private string anioedicion;
+        public string AnioEdicion
+        {
+            get { return anioedicion; }
+            set { anioedicion = value; }
+        }
+
+        private string auto;
+        public string Autores
+        {
+            get { return auto; }
+            set { auto = value; }
+        }
+
+
+
+        private int codigo;
+        public int Codigo
+        {
+            get { return codigo; }
+            set { codigo = value; }
+        }
+
+
 
         private int categoriaId;
         public int CategoriaId
