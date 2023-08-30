@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Museo.Views"
+        xmlns:local="clr-namespace:Museo.Views" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Editar" Height="450" Width="800">
     <Grid Background="#7182B3">
@@ -15,17 +15,34 @@
         <TextBox x:Name="N_paginas" HorizontalAlignment="Left" Height="42" Margin="551,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Descripcion" HorizontalAlignment="Left" Height="30" Margin="56,158,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Descripcion" HorizontalAlignment="Left" Height="42" Margin="56,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <Label Content="Autores" HorizontalAlignment="Center" Height="30" Margin="0,170,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Autores" HorizontalAlignment="Center" Height="42" Margin="0,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <!--  <Label Content="Autores" HorizontalAlignment="Center" Height="30" Margin="0,158,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Autores" HorizontalAlignment="Center" Height="42" Margin="0,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+       -->
+
         <Label Content="Edicion" HorizontalAlignment="Left" Height="30" Margin="551,158,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Edicion" HorizontalAlignment="Left" Height="42" Margin="551,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Año de Edición" HorizontalAlignment="Left" Height="30" Margin="56,273,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="AnioEdicion" HorizontalAlignment="Left" Height="42" Margin="56,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Codigo" HorizontalAlignment="Center" Height="30" Margin="0,273,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Codigo" HorizontalAlignment="Center" Height="42" Margin="0,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Codigo" HorizontalAlignment="Center" Height="42" Margin="0,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
 
-        <Button Content="Guardar"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="576,318,0,0" VerticalAlignment="Top" Width="136" />
+        <Button Content="Guardar"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="576,318,0,0" VerticalAlignment="Top" Width="136" Click="Enviar" />
         <TextBox x:Name="id_libro"   IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="38,382,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <Label Content="Autores12" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="22" Height="45" Width="90" Margin="347,150,0,0" RenderTransformOrigin="0.5,0.5" >
+
+        </Label>
+        <xctk:CheckComboBox x:Name="Autores12"
+                    Margin="307,0,347,187"
+                    FontSize="30"
+                    MaxWidth="500" 
+                    FontWeight="Black"
+                    Foreground="Black"
+                     DisplayMemberPath="id_autor"
+                    ValueMemberPath="id_autor"
+                    SelectedValue="{Binding SelectedValue}"
+                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Bottom"
+            />
+
 
     </Grid>
 

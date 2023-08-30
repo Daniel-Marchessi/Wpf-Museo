@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
+using Xceed.Wpf.Toolkit;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Museoapp.Views
 {
@@ -75,7 +77,7 @@ namespace Museoapp.Views
 
         private void ListarColecciones()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true";
+            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
 
             string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores, Coleccion_id
                      FROM dbo.Coleccion";
@@ -135,20 +137,20 @@ namespace Museoapp.Views
             dataGrid.ItemsSource = piezas;
         }
         private ImageSource LoadImageFromUrl(string url)
+        {
+            try
             {
-                try
-                {
-                    BitmapImage image = new BitmapImage(new Uri(url));
-                    return image;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
+                BitmapImage image = new BitmapImage(new Uri(url));
+                return image;
             }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
-       
-        
+
+
         private void Refrescar(Object sender, RoutedEventArgs e)
         {
             // Mostrar todos los elementos de la lista nuevamente
@@ -164,7 +166,7 @@ namespace Museoapp.Views
                 }
             }
 
-          
+
         }
         private void dobleclikmagen(object sender, MouseButtonEventArgs e)
         {
@@ -178,7 +180,7 @@ namespace Museoapp.Views
                     // Crea una nueva ventana para mostrar la foto
                     Window imageWindow = new Window
                     {
-                        WindowState = WindowState.Normal,
+                        //  WindowState = WindowState.Normal,
                         Content = new Image
                         {
                             Source = selectedPieza.Foto,
@@ -201,7 +203,7 @@ namespace Museoapp.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
                     string queryMaterial = "DELETE FROM [dbo].[Coleccion_Material] WHERE id_coleccion = @idColeccion; ";
                     string queryColeccion = "DELETE FROM [dbo].[Coleccion] WHERE Coleccion_id = @idColeccion; ";
                     string queryAutor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE id_coleccion = @idColeccion; ";
@@ -222,7 +224,7 @@ namespace Museoapp.Views
                         // Eliminar el registro en la tabla Coleccion
                         SqlCommand commandColeccion = new SqlCommand(queryColeccion, connection);
                         commandColeccion.Parameters.AddWithValue("@idColeccion", coleccion.Coleccion_id);
-                      
+
                         int rowsAffectedColeccion = commandColeccion.ExecuteNonQuery();
 
                         if (rowsAffectedColeccion > 0)
@@ -277,11 +279,11 @@ namespace Museoapp.Views
 
                         }
                     }
-                  
+
                 }
 
             }
-        
+
 
             if (Busqueda1.Text == "Titulo_Alias")
 
@@ -355,45 +357,109 @@ namespace Museoapp.Views
             }
             if (Busqueda1.Text == "Autor")
             {
+                // CON ESTA CONSULTA TRAIGO TODOS LOS DATOS DE LA COLECCION A PARTIR DE UN ID
 
+                string nombre = textSearch;
+                string query = "SELECT Autor.id_autor, Autor.Nombre,Coleccion.Nombre, Coleccion.Coleccion_id FROM Coleccion_Autor " +
+                              "JOIN Coleccion ON Coleccion.Coleccion_id = Coleccion_Autor.id_coleccion " +
+                              "JOIN Autor ON Autor.id_autor = Coleccion_Autor.id_autor " +
+                              "WHERE Autor.Nombre = @AutorNombre";
 
-                foreach (var item in dataGrid.Items)
+                string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                List<string> autores_list = new List<string>();
+                List<int> autores_ids = new List<int>();
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    //MessageBox.Show(item.ToString());
+                    connection.Open();
 
-                    if (item is Piezas pieza)
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@AutorNombre", nombre);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id_autor = reader.GetInt32(0);
+                                string nombreAutor = reader.GetString(1);
+                                string nombreColeccion = reader.GetString(2);
+                                int coleccionId = reader.GetInt32(3);
 
 
+                                autores_ids.Add(coleccionId);
+
+                                autores_list.Add(nombreAutor);
+                                // MessageBox.Show($"Autor: {nombreAutor},Nombre Pieza:{nombreColeccion}, Colección ID: {coleccionId}");
+
+
+
+
+                            }
+                        }
+
+
+                    }
+
+                }
+
+              
+
+
+
+                    foreach (var it in dataGrid.Items)
                     {
 
-                        if (pieza.Autores.Contains(textSearch))
+
+                    if (it is Piezas pieza1)
                         {
-                            // Mostrar la fila si coincide con la búsqueda
-                            dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
-                            if (row != null)
+                        bool autorEncontrado = autores_ids.Contains(pieza1.Coleccion_id);
+
+                        if (autorEncontrado)
                             {
-                                row.Visibility = Visibility.Visible;
+                               // MessageBox.Show(pieza1.Coleccion_id.ToString());
+                                //dataGrid.UpdateLayout();
+                                DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza1);
+                                if (row1 != null)
+                                {
+                                   // MessageBox.Show("Ingreso");
+                                    row1.Visibility = Visibility.Visible;
+                                }
+                                else
+                                {
+                                    row1.Visibility = Visibility.Collapsed;
+
+                                }
+
                             }
-                        }
-                        else
-                        {
-                            // Ocultar la fila si no coincide con la búsqueda
-                            dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza);
-                            if (row != null)
+                            else
                             {
-                                row.Visibility = Visibility.Collapsed;
+                                // Ocultar la fila si no coincide con la búsqueda
+                                //dataGrid.UpdateLayout();
+                                DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(pieza1);
+                                if (row1 != null)
+                                {
+                                    row1.Visibility = Visibility.Collapsed;
+                                }
                             }
 
+
                         }
-                    }
+
+
+                
                 }
+
+
+
             }
 
-          //string textoBusqueda = PorTitulo.Text.Trim();
+            //string textoBusqueda = PorTitulo.Text.Trim();
 
         }
+
+
+
+
 
 
 

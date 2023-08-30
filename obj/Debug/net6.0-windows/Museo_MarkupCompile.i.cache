@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\obj\Debug\net6.0-windows\
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\obj\Debug\net6.0-windows\
 Museo
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\App.xaml
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\App.xaml
 14-1558593812
 
 211967705295
-203-1959094665
+203-695351983
 Views\Archivo.xaml;Views\Autor.xaml;Views\Coleccion.xaml;Views\EditarArchivo.xaml;Views\EditarAutor.xaml;Views\EditarColeccion.xaml;Views\EditarLibro.xaml;Views\EditarMaterial.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
 
 True

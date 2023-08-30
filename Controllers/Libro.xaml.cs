@@ -29,7 +29,7 @@ namespace Museoapp.Views
         }
         private void TraerAutores()
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -60,7 +60,7 @@ namespace Museoapp.Views
 
         private void TraerEditorial() {
 
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT Nombre, id_editorial FROM Editorial";
@@ -94,7 +94,7 @@ namespace Museoapp.Views
         private void TraerCategorias()
         {
 
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT Nombre, id_categoria FROM Categoria";
@@ -177,7 +177,7 @@ namespace Museoapp.Views
 
         private void EnviarLibro_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "INSERT INTO Libros (Titulo, Origen, N_paginas, Descripcion, Edicion, AnioEdicion, Autores, Codigo) " +

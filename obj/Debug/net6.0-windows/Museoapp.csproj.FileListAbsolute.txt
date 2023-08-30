@@ -418,3 +418,7 @@ C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\obj\Debug\net6.0-windows\Views\Edit
 C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarMaterial.g.cs
 C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarAutor.baml
 C:\Users\santi\OneDrive\Escritorio\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarMaterial.baml
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarAutor.g.cs
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarMaterial.g.cs
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarAutor.baml
+C:\Users\Lenovo\Desktop\M1\Wpf-Museo\obj\Debug\net6.0-windows\Views\EditarMaterial.baml
