@@ -82,9 +82,21 @@ namespace Museoapp.Views
             this.Close();
 
         }
+        private void CrearEditorial_Click(object sender, RoutedEventArgs e)
+        {
+            Editorial editorial = new Editorial();
+            editorial.Show();
+            this.Close();
+        }
+        private void CrearCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+            this.Close();
+        }
         private void ListarAutores()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
             string query = "SELECT [Nombre], [Apellido]  FROM [dbo].[Autor]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))

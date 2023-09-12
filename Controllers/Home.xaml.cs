@@ -70,7 +70,17 @@ namespace WpfAppTEST.Views
             Material material = new Material();
             material.Show();
         }
+        private void CrearEditorial_Click(object sender, RoutedEventArgs e)
+        {
+            Editorial editorial = new Editorial();
+            editorial.Show();
+        }
+        private void CrearCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+        }
 
-     
+
     }
 }

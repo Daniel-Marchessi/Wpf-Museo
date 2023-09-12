@@ -22,6 +22,8 @@
             <MenuItem x:Name="Archivo" Header="Archivo" Click="CrearArchivo_Click"/>
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
+            <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
+            <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
 
 
         </Menu>

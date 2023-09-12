@@ -39,7 +39,7 @@
                      FontSize="40" VerticalAlignment="Top" Width="auto" Margin="75,245,57,0" Height="auto"  MaxWidth="600" />
 
 
-
+            
 
             <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Top" 

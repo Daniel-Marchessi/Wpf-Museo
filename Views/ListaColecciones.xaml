@@ -24,6 +24,8 @@
 
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
+            <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
+            <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
 
 
         </Menu>
@@ -88,13 +90,13 @@
                 <DataGridTextColumn Header="Conservacion" Binding="{Binding Conservacion}" Width="auto"/>
                 <DataGridTextColumn Header="Ubicacion" Binding="{Binding Ubicacion}" Width="auto"/>
                 <DataGridTextColumn Header="Ingreso" Binding="{Binding Ingreso}" Width="auto"/>
-                <DataGridTextColumn Header="Materiales" Binding="{Binding Materiales}" Width="auto"/>
                 <DataGridTextColumn Header="Autores" Binding="{Binding Autores}" Width="auto"/>
+                <DataGridTextColumn Header="Materiales" Binding="{Binding Materiales}" Width="auto"/>
                 <DataGridTemplateColumn Header="Foto" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button MouseDoubleClick="dobleclikmagen">
-                                <Image Source="{Binding Foto}" Width="100" Height="20" />
+                                <Image Source="{Binding Imagen}" Width="100" Height="20" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -102,7 +104,7 @@
                 <DataGridTemplateColumn  Width="auto" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
+                            <Button x:Name="btnEliminar" Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -111,7 +113,7 @@
                 <DataGridTemplateColumn Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
+                            <Button x:Name="btnEditar" Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

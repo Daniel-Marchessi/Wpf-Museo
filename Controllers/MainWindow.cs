@@ -30,44 +30,55 @@ namespace WpfAppTEST
         private void Btn_enviar_Click(object sender, RoutedEventArgs e)
         {
             string usuario = user.Text.ToString();
-           string  contrasenia = contra.Password.ToString();
-            var conexion  = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            string contrasenia = contra.Password.ToString();
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-
-
             string query = "Select Usuario, Password from Usuario";
-
             SqlCommand comand = new SqlCommand(query, conexion);
-
             SqlDataReader registro = comand.ExecuteReader();
-            if (registro.Read())
+            bool usuarioValido = false;
+            bool contraseniaValida = false;
+
+            while (registro.Read())
             {
+                string dbUsuario = registro.GetString(0);
+                string dbContrasenia = registro.GetString(1);
 
-                //Validacion por usuario y por contraseña
-                if (registro.GetString(0) == usuario)
+                if (dbUsuario == usuario)
                 {
-                    if (registro.GetString(1) == contrasenia)
-                    {
-                        Home inicio = new Home();
-                        inicio.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("La contraseña es incorrecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("El usuario es incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    usuarioValido = true;
                 }
 
+                if (dbContrasenia == contrasenia)
+                {
+                    contraseniaValida = true;
+                }
 
+        
+                if (usuarioValido && contraseniaValida)
+                {
+                    Home inicio = new Home();
+                    inicio.Show();
+                    this.Close();
+                    break; 
+                }
+            }
+
+            if (!usuarioValido && !contraseniaValida)
+            {
+                MessageBox.Show("El usuario y la contraseña son incorrectos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!usuarioValido)
+            {
+                MessageBox.Show("El usuario es incorrecto", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (!contraseniaValida)
+            {
+                MessageBox.Show("La contraseña es incorrecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conexion.Close();
-          
         }
-        
+
     }
 }

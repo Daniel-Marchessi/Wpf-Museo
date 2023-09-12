@@ -24,6 +24,8 @@
 
 
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
+            <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
 
 
 
@@ -63,12 +65,6 @@
             </Grid>
         </Border>
 
-
-
-
-
-
-
         <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="10,207,10,10" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto"/>
@@ -89,6 +85,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
     </Grid>
 </Window>

@@ -1,8 +1,11 @@
 ﻿using ControlzEx.Standard;
 using Museo.Views;
+using Museoapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -22,7 +25,9 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarColecciones();
+
         }
+
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
             Archivo archivo = new Archivo();
@@ -73,21 +78,69 @@ namespace Museoapp.Views
             this.Close();
 
         }
+        private void CrearEditorial_Click(object sender, RoutedEventArgs e)
+        {
+            Editorial editorial = new Editorial();
+            editorial.Show();
+            this.Close();
+        }
+        private void CrearCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+            this.Close();
+        }
+        private void autorizacion(Object sender, RoutedEventArgs e)
+        {
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            conexion.Open();
+            string query = "Select Rol from Usuario";
 
+            SqlCommand comand = new SqlCommand(query, conexion);
+            SqlDataReader registro = comand.ExecuteReader();
+            while (registro.Read())
+            {
+                string dbRol = registro.GetString(0);
+                if (dbRol == "Empleado")
+                {
 
+                   
+                }
+            }
+            conexion.Close();
+        }
+        private void Editar_Click(object sender, RoutedEventArgs e)
+        {
+            Piezas piezin = (Piezas)dataGrid.SelectedItem;
+
+            if (piezin != null)
+            {
+                Museo.Views.EditarColeccion ventanaEditar = new Museo.Views.EditarColeccion(piezin.Nombre, piezin.Cantidad, piezin.Periodo,
+                                   piezin.Alto, piezin.Ancho, piezin.Diametro, piezin.UrlFoto, piezin.Largo, piezin.Ingreso,
+                                   piezin.Conservacion, piezin.Ubicacion, piezin.Integridad, piezin.Lugar_proce, piezin.Titulo_alias, piezin.Coleccion_id);
+                ventanaEditar.ShowDialog();
+            }
+            ListarColecciones();
+        }
+
+        
         private void ListarColecciones()
         {
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security=true";
-
-            string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales, Autores, Coleccion_id
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true;MultipleActiveResultSets=True";
+            string query = @"SELECT Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Coleccion_id
                      FROM dbo.Coleccion";
-            //string queryMateriales = @"SELECT Material.Nombre
-            //                   FROM Material
-            //                   JOIN Coleccion_Material ON Material.id_material = Coleccion_Material.id_material
-            //                   WHERE Coleccion_Material.id_coleccion = @ColeccionId";
+            string queryautores = "SELECT Autor.Nombre, Autor.Apellido " +
+                     "FROM Autor " +
+                     "JOIN Coleccion_Autor ON Autor.id_autor = Coleccion_Autor.id_autor " +
+                     "JOIN Coleccion ON Coleccion_Autor.id_coleccion = Coleccion.Coleccion_id " +
+                     "WHERE Coleccion.Coleccion_id = @coleccionId";
+            string queryMateriales = "SELECT Material.Nombre " +
+                         "FROM Material " +
+                         "JOIN Coleccion_Material ON Material.id_material = Coleccion_Material.id_material " +
+                         "JOIN Coleccion ON Coleccion_Material.id_coleccion = Coleccion.Coleccion_id " +
+                         "WHERE Coleccion.Coleccion_id = @coleccionId";
 
             List<Piezas> piezas = new List<Piezas>();
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -112,44 +165,71 @@ namespace Museoapp.Views
                     coleccion.Integridad = reader.GetString(11);
                     coleccion.Lugar_proce = reader.GetString(12);
                     coleccion.Titulo_alias = reader.GetString(13);
-                    coleccion.Materiales = reader.GetString(14);
-                    coleccion.Autores = reader.GetString(15);
-                    coleccion.Coleccion_id = reader.GetInt32(16);
-
-                    if (!reader.IsDBNull(6))
+                    coleccion.Coleccion_id = reader.GetInt32(14);
+                    if (!string.IsNullOrEmpty(coleccion.UrlFoto))
                     {
-                        string fotoUrl = reader.GetString(6);
-                        coleccion.Foto = LoadImageFromUrl(fotoUrl);
+                        coleccion.Imagen = new BitmapImage(new Uri(coleccion.UrlFoto));
                     }
-                    else
+                   
+                    List<Autores> autoresLista = new List<Autores>();
+                    List<Materiales> materialesLista = new List<Materiales>();
+                    using (SqlCommand autoresCommand = new SqlCommand(queryautores, connection))
                     {
-                        coleccion.Foto = null;
+                        autoresCommand.Parameters.AddWithValue("@coleccionId", coleccion.Coleccion_id);
+
+                        SqlDataReader autoresReader = autoresCommand.ExecuteReader();
+                        while (autoresReader.Read())
+                        {
+                            string nombreAutor = autoresReader.GetString(0);
+                            string apellidoAutor = autoresReader.GetString(1);
+
+                            string nombreCompletoAutor = $"{nombreAutor} {apellidoAutor}";
+                            autoresLista.Add(new Autores { NombreCompleto = nombreCompletoAutor });
+                        }
+                        autoresReader.Close();
+                        dataGrid.ItemsSource = autoresLista;
+                    }    
+                    string nombresAutores = string.Join(", ", autoresLista.Select(a => a.NombreCompleto));
+
+                    coleccion.Autores = nombresAutores;
+
+
+                    using (SqlCommand materialesCommand = new SqlCommand(queryMateriales, connection))
+                    {
+                        materialesCommand.Parameters.AddWithValue("@coleccionId", coleccion.Coleccion_id);
+
+                        SqlDataReader materialesReader = materialesCommand.ExecuteReader();
+                        while (materialesReader.Read())
+                        {
+                            string nombreMaterial = materialesReader.GetString(0);
+
+                            Materiales material = new Materiales { Nombre = nombreMaterial };
+
+                            materialesLista.Add(material);
+                        }
+                        materialesReader.Close();
+
+                        
+                        string nombresMateriales = string.Join(", ", materialesLista.Select(m => m.Nombre));
+
+                        coleccion.Materiales = nombresMateriales;
+                        dataGrid.ItemsSource = materialesLista;
                     }
 
+                  
                     piezas.Add(coleccion);
                 }
-
                 reader.Close();
-
                 connection.Close();
             }
+
+          
             dataGrid.AutoGenerateColumns = false;
             dataGrid.ItemsSource = piezas;
         }
-        private ImageSource LoadImageFromUrl(string url)
-        {
-            try
-            {
-                BitmapImage image = new BitmapImage(new Uri(url));
-                return image;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
 
-
+       
+       
 
         private void Refrescar(Object sender, RoutedEventArgs e)
         {
@@ -165,8 +245,6 @@ namespace Museoapp.Views
                     dataGrid.Visibility = Visibility.Visible;
                 }
             }
-
-
         }
         private void dobleclikmagen(object sender, MouseButtonEventArgs e)
         {
@@ -175,7 +253,7 @@ namespace Museoapp.Views
             if (button.DataContext is Piezas selectedPieza)
             {
                 // Verifica si hay una foto disponible
-                if (selectedPieza.Foto != null)
+                if (selectedPieza.Imagen != null)
                 {
                     // Crea una nueva ventana para mostrar la foto
                     Window imageWindow = new Window
@@ -183,7 +261,7 @@ namespace Museoapp.Views
                         //  WindowState = WindowState.Normal,
                         Content = new Image
                         {
-                            Source = selectedPieza.Foto,
+                            Source = selectedPieza.Imagen,
                             Stretch = Stretch.Uniform,
                         }
                     };
@@ -196,6 +274,7 @@ namespace Museoapp.Views
 
         private void Eliminar_Click(object sender, RoutedEventArgs e)
         {
+            
             Button eliminarButton = (Button)sender;
             if (eliminarButton.CommandParameter is Piezas coleccion)
             {
@@ -203,7 +282,7 @@ namespace Museoapp.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
                     string queryMaterial = "DELETE FROM [dbo].[Coleccion_Material] WHERE id_coleccion = @idColeccion; ";
                     string queryColeccion = "DELETE FROM [dbo].[Coleccion] WHERE Coleccion_id = @idColeccion; ";
                     string queryAutor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE id_coleccion = @idColeccion; ";
@@ -237,7 +316,6 @@ namespace Museoapp.Views
                 }
             }
         }
-        private void Editar_Click(object sender, RoutedEventArgs e) { }
 
 
 
@@ -283,8 +361,6 @@ namespace Museoapp.Views
                 }
 
             }
-
-
             if (Busqueda1.Text == "Titulo_Alias")
 
             {
@@ -364,8 +440,11 @@ namespace Museoapp.Views
                               "JOIN Coleccion ON Coleccion.Coleccion_id = Coleccion_Autor.id_coleccion " +
                               "JOIN Autor ON Autor.id_autor = Coleccion_Autor.id_autor " +
                               "WHERE Autor.Nombre = @AutorNombre";
+                string autores = "select Autor.Nombre, Autor.Apellido from Autor join " +
+               "Coleccion_Autor on Autor.id_autor= Coleccion_Autor.id_autor" +
+               " join Coleccion on Coleccion_Autor.id_coleccion = Coleccion.Coleccion_id";
 
-                string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
                 List<string> autores_list = new List<string>();
                 List<int> autores_ids = new List<int>();
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -384,32 +463,15 @@ namespace Museoapp.Views
                                 string nombreAutor = reader.GetString(1);
                                 string nombreColeccion = reader.GetString(2);
                                 int coleccionId = reader.GetInt32(3);
-
-
                                 autores_ids.Add(coleccionId);
-
                                 autores_list.Add(nombreAutor);
                                 // MessageBox.Show($"Autor: {nombreAutor},Nombre Pieza:{nombreColeccion}, Colección ID: {coleccionId}");
-
-
-
-
                             }
                         }
-
-
                     }
-
                 }
-
-              
-
-
-
                     foreach (var it in dataGrid.Items)
                     {
-
-
                     if (it is Piezas pieza1)
                         {
                         bool autorEncontrado = autores_ids.Contains(pieza1.Coleccion_id);
@@ -441,27 +503,13 @@ namespace Museoapp.Views
                                     row1.Visibility = Visibility.Collapsed;
                                 }
                             }
-
-
                         }
-
-
                 
                 }
 
-
-
             }
-
             //string textoBusqueda = PorTitulo.Text.Trim();
-
         }
-
-
-
-
-
-
-
     }
+
 }

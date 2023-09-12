@@ -47,7 +47,7 @@ namespace Museo.Views
         public void getAutor()
 
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -83,9 +83,7 @@ namespace Museo.Views
 
         private void Enviar(object sender, RoutedEventArgs e)
         {
-            
-
-
+          
             int id_Libro = Convert.ToInt32(id_libro.Text);
             string titulo = Convert.ToString(Titulo.Text);  
             string origen = Convert.ToString(Origen.Text);
@@ -97,7 +95,7 @@ namespace Museo.Views
             string cod = Convert.ToString(Codigo.Text);
 
             //// Realizar las operaciones de actualización en la base de datos
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
             string queryUpdate = "UPDATE LIBROS SET Titulo = @Titulo, Origen = @Origen, Descripcion = @Descripcion, Edicion = @Edicion, " +
                 " N_paginas = @N_paginas, AnioEdicion = @AnioEdicion, Codigo = @Codigo  WHERE id_libro = @id_libro";
 

@@ -14,19 +14,14 @@ using WpfAppTEST.Views;
 
 namespace Museoapp.Views
 {
-
     public partial class ListaLibros : Window
     {
-
-
         public ListaLibros()
         {
             InitializeComponent();
             ListarLibros();
 
         }
-
-
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
             Archivo archivo = new Archivo();
@@ -76,12 +71,24 @@ namespace Museoapp.Views
             this.Close();
 
         }
+        private void CrearEditorial_Click(object sender, RoutedEventArgs e)
+        {
+            Editorial editorial = new Editorial();
+            editorial.Show();
+            this.Close();
+        }
+        private void CrearCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+            this.Close();
+        }
         private void ListarLibros()
         {
 
-            string connectionString = "server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true";
+            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
             string query = "SELECT [id_libro] ,[Titulo],[Origen] ,[N_paginas] ,[Descripcion], [Edicion], [AnioEdicion],[Autores], [Codigo] FROM [dbo].[Libros]";
-
+           
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
@@ -242,7 +249,7 @@ namespace Museoapp.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-9MTUTME; database=Museo1; integrated security = true";
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
                     string query = "DELETE FROM [dbo].[Libros] WHERE [id_libro] = @id_libro";
 
                     using (SqlConnection connection = new SqlConnection(connectionString))

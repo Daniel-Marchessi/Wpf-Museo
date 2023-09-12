@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Museo.Views"
         mc:Ignorable="d"
-        Title="EditarColeccion" Height="450" Width="800">
-    <Grid>
-        
+        Title="EditarColeccion" Height="600" Width="1000">
+    <Grid Background="#7182B3">
+        <Label Content="Nombre" HorizontalAlignment="Left" Height="29" Margin="56,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Nombre"  HorizontalAlignment="Left" Height="42" Margin="56,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <Label Content="Cantidad" HorizontalAlignment="Left" Height="30" Margin="275,24,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Cantidad" HorizontalAlignment="Left" Height="42" Margin="275,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Periodo" HorizontalAlignment="Left" Height="30" Margin="500,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Periodo" HorizontalAlignment="Left" Height="42" Margin="500,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Alto" HorizontalAlignment="Left" Height="30" Margin="738,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Alto" HorizontalAlignment="Left" Height="42" Margin="738,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Ancho" HorizontalAlignment="Left" Height="30" Margin="56,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Ancho" HorizontalAlignment="Left" Height="42" Margin="56,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Diametro" HorizontalAlignment="Left" Height="30" Margin="275,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Diametro" HorizontalAlignment="Left" Height="42" Margin="275,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Imagen" HorizontalAlignment="Left" Height="30" Margin="500,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <Button Content="Cambiar Imagen" HorizontalAlignment="Left" Height="42" Margin="500,173,0,0" VerticalAlignment="Top" Width="186" Click="EditImagen_Click"/>
+        <Label Content="Largo" HorizontalAlignment="Left" Height="30" Margin="738,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Largo" HorizontalAlignment="Left" Height="42" Margin="738,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Ingreso" HorizontalAlignment="Left" Height="30" Margin="56,236,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Ingreso" HorizontalAlignment="Left" Height="42" Margin="56,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <Label Content="Conservacion" HorizontalAlignment="Left" Height="30" Margin="275,236,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Conservacion" HorizontalAlignment="Left" Height="42" Margin="275,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <Label Content="Ubicacion" HorizontalAlignment="Left" Height="30" Margin="500,238,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Ubicacion" HorizontalAlignment="Left" Height="42" Margin="500,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Integridad" HorizontalAlignment="Left" Height="30" Margin="738,241,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Integridad" HorizontalAlignment="Left" Height="42" Margin="738,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <Label Content="Cultura" HorizontalAlignment="Left" Height="30" Margin="56,330,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Cultura" HorizontalAlignment="Left" Height="42" Margin="56,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Titulo/Alias" HorizontalAlignment="Left" Height="30" Margin="275,327,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <TextBox x:Name="Titulo_alias" HorizontalAlignment="Left" Height="42" Margin="275,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Label Content="Autores" HorizontalAlignment="Left" Height="30" Margin="500,327,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <ComboBox Name="autoresComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,360,0,0" Height="42" Width="186">
+            <ComboBoxItem Content="Autor 1"/>
+            <ComboBoxItem Content="Autor 2"/>
+            <ComboBoxItem Content="Autor 3"/>
+        </ComboBox>
+        <Label Content="Materiales" HorizontalAlignment="Left" Height="30" Margin="738,330,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
+        <ComboBox Name="materialesComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="738,360,0,0" Height="42" Width="186">
+            <ComboBoxItem Content="Autor 1"/>
+            <ComboBoxItem Content="Autor 2"/>
+            <ComboBoxItem Content="Autor 3"/>
+        </ComboBox>
+        <Button Content="Guardar"  Click="Editar_Coleccion" Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="788,421,0,0" VerticalAlignment="Top" Width="136" />
+        <TextBox x:Name="id_coleccion"   IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="545,483,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <TextBox x:Name="Urlfoto" HorizontalAlignment="Left" Height="42" Margin="314,483,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+
     </Grid>
 </Window>

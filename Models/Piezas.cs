@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Museoapp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,14 +53,7 @@ namespace WpfAppTEST.Models
             get { return periodo; }
             set { periodo = value; }
         }
-        public List<int> Material_id { get; set; }
-
-        //private int materialid;
-        //public int Material_id
-        //{
-        //    get { return materialid; }
-        //    set { materialid = value; }
-        //}
+      
 
         private int alto;
         public int Alto
@@ -118,26 +112,6 @@ namespace WpfAppTEST.Models
             set { forma_ingreso = value; }
         }
 
-        private int localidadid;
-        public int Localidad_id
-        {
-            get { return localidadid; }
-            set { localidadid = value; }
-        }
-
-        private int autorid;
-        public int Autor_id
-        {
-            get { return autorid; }
-            set { autorid = value; }
-        }
-
-        private ImageSource foto;
-        public ImageSource Foto
-        {
-            get { return foto; }
-            set { foto = value; }
-        }
 
         private string urlfoto;
         public string UrlFoto
@@ -159,8 +133,9 @@ namespace WpfAppTEST.Models
             get { return auto; }
             set { auto = value; }
         }
+        public ImageSource Imagen { get; set; }
 
-
+        //public List<Autores> Autores { get; set; }
         public Piezas() { }
     }
 }

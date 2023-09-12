@@ -28,7 +28,16 @@
     <Compile Update="Controllers\Archivo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Categoria.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\EditarColeccion.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\EditarLibro.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Editorial.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -37,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Autor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Categoria.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Coleccion.xaml">
@@ -55,6 +67,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\EditarMaterial.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Editorial.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Home.xaml">

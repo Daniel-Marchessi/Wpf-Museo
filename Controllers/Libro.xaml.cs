@@ -24,12 +24,12 @@ namespace Museoapp.Views
             Titulo1.Focus();
             Cargaraños();
             TraerAutores();
-            TraerEditorial();
-            TraerCategorias();
+            //TraerEditorial();
+            //TraerCategorias();
         }
         private void TraerAutores()
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
@@ -58,71 +58,71 @@ namespace Museoapp.Views
             conexion.Close();
         }
 
-        private void TraerEditorial() {
+        //private void TraerEditorial() {
 
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
-            conexion.Open();
+        //    var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+        //    conexion.Open();
 
-            string query = "SELECT Nombre, id_editorial FROM Editorial";
-            SqlCommand comand = new SqlCommand(query, conexion);
+        //    string query = "SELECT Nombre, id_editorial FROM Editorial";
+        //    SqlCommand comand = new SqlCommand(query, conexion);
 
-            SqlDataReader reader = comand.ExecuteReader();
-
-
-            while (reader.Read())
-            {
-                var editorial = new Editorial
-                {
-                    id_editorial = Convert.ToInt32(reader["id_editorial"]),
-
-                    Nombre = reader["Nombre"].ToString(),
+        //    SqlDataReader reader = comand.ExecuteReader();
 
 
-                };
-                Editorial.Items.Add(editorial);
+        //    while (reader.Read())
+        //    {
+        //        var editorial = new Editorial
+        //        {
+        //            id_editorial = Convert.ToInt32(reader["id_editorial"]),
 
-            }
+        //            Nombre = reader["Nombre"].ToString(),
 
-            Editorial.DisplayMemberPath = "Nombre";
-            Editorial.SelectedValue = "id_editorial";
+
+        //        };
+        //        Editorial.Items.Add(editorial);
+
+        //    }
+
+        //    Editorial.DisplayMemberPath = "Nombre";
+        //    Editorial.SelectedValue = "id_editorial";
            
-            conexion.Close();
+        //    conexion.Close();
 
-        }
-
-
-        private void TraerCategorias()
-        {
-
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
-            conexion.Open();
-
-            string query = "SELECT Nombre, id_categoria FROM Categoria";
-            SqlCommand comand = new SqlCommand(query, conexion);
-
-            SqlDataReader reader = comand.ExecuteReader();
+        //}
 
 
-            while (reader.Read())
-            {
-                var categoria = new Categoria
-                {
-                    id_categoria = Convert.ToInt32(reader["id_categoria"]),
+        //private void TraerCategorias()
+        //{
 
-                    Nombre = reader["Nombre"].ToString(),
+        //    var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+        //    conexion.Open();
+
+        //    string query = "SELECT Nombre, id_categoria FROM Categoria";
+        //    SqlCommand comand = new SqlCommand(query, conexion);
+
+        //    SqlDataReader reader = comand.ExecuteReader();
 
 
-                };
-                Categoria.Items.Add(categoria);
+        //    while (reader.Read())
+        //    {
+        //        var categoria = new Categoria
+        //        {
+        //            id_categoria = Convert.ToInt32(reader["id_categoria"]),
 
-            }
+        //            Nombre = reader["Nombre"].ToString(),
 
-            Categoria.DisplayMemberPath = "Nombre";
-            Categoria.SelectedValue = "id_categoria";
 
-            conexion.Close();
+        //        };
+        //        Categoria.Items.Add(categoria);
 
-        }
+        //    }
+
+        //    Categoria.DisplayMemberPath = "Nombre";
+        //    Categoria.SelectedValue = "id_categoria";
+
+        //    conexion.Close();
+
+        //}
 
 
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
@@ -174,10 +174,22 @@ namespace Museoapp.Views
             this.Close();
 
         }
+        private void CrearEditorial_Click(object sender, RoutedEventArgs e)
+        {
+            Editorial editorial = new Editorial();
+            editorial.Show();
+            this.Close();
+        }
+        private void CrearCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            Categoria categoria = new Categoria();
+            categoria.Show();
+            this.Close();
+        }
 
         private void EnviarLibro_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
 
             string query = "INSERT INTO Libros (Titulo, Origen, N_paginas, Descripcion, Edicion, AnioEdicion, Autores, Codigo) " +

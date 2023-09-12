@@ -23,6 +23,11 @@ namespace Museoapp.Models
             get { return nombre; }
             set { nombre = value; }
         }
-
+        private string mate;
+        public string nombreMaterial
+        {
+            get { return mate; }
+            set { mate = value; }
+        }
     }
 }
