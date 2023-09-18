@@ -81,6 +81,18 @@ namespace WpfAppTEST.Models
             set { codigo = value; }
         }
 
+        private string cate;
+        public string Categorias
+        {
+            get { return cate; }
+            set { cate = value; }
+        }
+        private string edit;
+        public string Editoriales
+        {
+            get { return edit; }
+            set { edit = value; }
+        }
 
 
         private int categoriaId;

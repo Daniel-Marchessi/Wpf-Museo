@@ -28,7 +28,7 @@
     <Compile Update="Controllers\Archivo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Categoria.xaml.cs">
+    <Compile Update="Controllers\Categoria.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\EditarColeccion.xaml.cs">
@@ -37,7 +37,7 @@
     <Compile Update="Views\EditarLibro.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Editorial.xaml.cs">
+    <Compile Update="Controllers\Editorial.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

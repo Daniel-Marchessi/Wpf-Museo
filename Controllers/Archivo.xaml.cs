@@ -21,8 +21,6 @@ using WpfAppTEST.Views;
 namespace Museo.Views
 {
 
-
-
     //Controlar vista Archivo
     public partial class Archivo : Window
     {
@@ -59,21 +57,18 @@ namespace Museo.Views
 
             private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
             {
+                
                 ListaColecciones listaColeccion = new ListaColecciones();
                 listaColeccion.Show();
                 this.Close();
 
             }
-
             private void CrearAutor_Click(object sender, RoutedEventArgs e)
             {
                 Autor autor = new Autor();
                 autor.Show();
                 this.Close();
-
             }
-
-
             private void CrearMaterial_Click(object sender, RoutedEventArgs e)
             {
                 Material material = new Material();

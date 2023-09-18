@@ -1,16 +1,20 @@
 ﻿using ControlzEx.Standard;
+using Museo.Models;
 using Museo.Views;
 using Museoapp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfAppTEST;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
 using Xceed.Wpf.Toolkit;
@@ -25,7 +29,40 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarColecciones();
+            Loaded += Autorizacion;
+        }
+       
+        private void Autorizacion(object sender, RoutedEventArgs e)
+        {
+            string rol = Usuarios.RolUsuario.ToString();
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            conexion.Open();
+            string query = "SELECT Usuario, Password, Rol FROM Usuario";
+            SqlCommand comand = new SqlCommand(query, conexion);
+            SqlDataReader registro = comand.ExecuteReader();
+            DataGridColumn columnaAEditar = dataGrid.Columns[17];
+            DataGridColumn columnaAEliminar = dataGrid.Columns[16];
 
+            while (registro.Read())
+            {
+               
+                if (rol == "Admin")
+                {
+                  
+                    columnaAEditar.Visibility = Visibility.Visible;
+                    columnaAEliminar.Visibility = Visibility.Visible;
+
+                    break;
+                }
+                else
+                {
+                    //dataGrid.Columns.Remove(columnaAEliminar);
+                    //dataGrid.Columns.Remove(columnaAEditar);
+                    columnaAEliminar.Visibility = Visibility.Collapsed;
+                    columnaAEditar.Visibility = Visibility.Collapsed; 
+                }
+            }
+            conexion.Close();
         }
 
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
@@ -37,11 +74,8 @@ namespace Museoapp.Views
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {
             Coleccion coleccion = new Coleccion();
-
             coleccion.Show();
             this.Close();
-
-
         }
 
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
@@ -59,9 +93,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
-
-
         private void CrearAutor_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = new Autor();
@@ -69,7 +100,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
 
         private void CrearMaterial_Click(object sender, RoutedEventArgs e)
         {
@@ -90,25 +120,8 @@ namespace Museoapp.Views
             categoria.Show();
             this.Close();
         }
-        private void autorizacion(Object sender, RoutedEventArgs e)
-        {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
-            conexion.Open();
-            string query = "Select Rol from Usuario";
 
-            SqlCommand comand = new SqlCommand(query, conexion);
-            SqlDataReader registro = comand.ExecuteReader();
-            while (registro.Read())
-            {
-                string dbRol = registro.GetString(0);
-                if (dbRol == "Empleado")
-                {
-
-                   
-                }
-            }
-            conexion.Close();
-        }
+    
         private void Editar_Click(object sender, RoutedEventArgs e)
         {
             Piezas piezin = (Piezas)dataGrid.SelectedItem;
@@ -207,23 +220,16 @@ namespace Museoapp.Views
 
                             materialesLista.Add(material);
                         }
-                        materialesReader.Close();
-
-                        
+                        materialesReader.Close();                 
                         string nombresMateriales = string.Join(", ", materialesLista.Select(m => m.Nombre));
-
                         coleccion.Materiales = nombresMateriales;
                         dataGrid.ItemsSource = materialesLista;
-                    }
-
-                  
+                    }   
                     piezas.Add(coleccion);
                 }
                 reader.Close();
                 connection.Close();
             }
-
-          
             dataGrid.AutoGenerateColumns = false;
             dataGrid.ItemsSource = piezas;
         }

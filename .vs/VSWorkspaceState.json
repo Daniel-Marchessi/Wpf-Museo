@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers"
   ],
-  "SelectedNode": "\\Museoapp.sln",
+  "SelectedNode": "\\Controllers\\Archivo.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

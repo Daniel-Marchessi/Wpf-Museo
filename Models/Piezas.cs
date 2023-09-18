@@ -17,7 +17,6 @@ namespace WpfAppTEST.Models
             set { id = value; }
         }
 
-
         private string nombre;
         public string Nombre
         {

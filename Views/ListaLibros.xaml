@@ -24,7 +24,8 @@
                 <DataGridTextColumn Header="Edicion" Binding="{Binding Edicion}" Width="auto"/>
                 <DataGridTextColumn Header="Año de edición" Binding="{Binding AnioEdicion}" Width="auto"/>
                 <DataGridTextColumn Header="Autores" Binding="{Binding Autores}" Width="auto"/>
-            
+                <DataGridTextColumn Header="Editorial" Binding="{Binding Editoriales}" Width="auto"/>
+                <DataGridTextColumn Header="Categoria" Binding="{Binding Categorias}" Width="auto"/>
 
 
 

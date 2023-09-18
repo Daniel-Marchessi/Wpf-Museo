@@ -199,8 +199,37 @@ namespace Museoapp.Views
             Nombre1.Text = "";
 
         }
-        private void Eliminar_Click(Object sender, RoutedEventArgs e) { }
-        private void Editar_Click(Object sender, RoutedEventArgs e) { }
+        private void Eliminar_Click(Object sender, RoutedEventArgs e) {
+            Button eliminarButton = (Button)sender;
+            if (eliminarButton.CommandParameter is Materiales material)
+            {
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    
+                    string queryMaterial = "DELETE FROM [dbo].[Material] WHERE [id_material] = @id_material";
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        SqlCommand command1 = new SqlCommand(queryMaterial, connection);
+                        command1.Parameters.AddWithValue("@id_material", material.id_material);
+                       
+                        command1.ExecuteNonQuery();
+
+                        int rowsAffected = command1.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("El autor se eliminó correctamente.");
+                        }
+                    }
+                    ListarMateriales();
+                }
+            }
+        }
+        private void Editar_Click(Object sender, RoutedEventArgs e) {
+            
+        }
         public partial class EditarMaterial : Window
         {
             public EditarMaterial()

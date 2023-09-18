@@ -28,28 +28,20 @@ namespace Museoapp.Views
         public Autor()
         {
             InitializeComponent();
-
             ListarAutores();
-
         }
-
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
             Archivo archivo = new Archivo();
             archivo.Show();
             this.Close();
-
         }
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {
             Coleccion coleccion = new Coleccion();
-
             coleccion.Show();
             this.Close();
-
-
         }
-
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
         {
             Libro libro = new Libro();
@@ -57,7 +49,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
         private void CrearListaLibro_Click(object sender, RoutedEventArgs e)
         {
             ListaLibros listalibro = new ListaLibros();
@@ -65,7 +56,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
         private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
         {
             ListaColecciones listaColeccion = new ListaColecciones();
@@ -73,8 +63,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
-
         private void CrearMaterial_Click(object sender, RoutedEventArgs e)
         {
             Material material = new Material();
@@ -94,6 +82,8 @@ namespace Museoapp.Views
             categoria.Show();
             this.Close();
         }
+
+
         private void ListarAutores()
         {
             string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
@@ -180,7 +170,42 @@ namespace Museoapp.Views
             Nombre1.Text = "";
             Apellido1.Text = "";
         }
-        private void Eliminar_Click(object sender, RoutedEventArgs e) { }
+        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+                Button eliminarButton = (Button)sender;
+            if (eliminarButton.CommandParameter is Autores autor)
+            {
+                MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    
+                    string queryColeccion_Autor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE [id_autor] = @id_autor";
+                    string queryLibro_Autor = "DELETE FROM [dbo].[Libro_Autor] WHERE [id_autor] = @id_autor";
+                    string queryAutor = "DELETE FROM [dbo].[Autor] WHERE [id_autor] = @id_autor";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        SqlCommand command1 = new SqlCommand(queryColeccion_Autor, connection);
+                        command1.Parameters.AddWithValue("@id_autor", autor.id_autor);
+                        SqlCommand command2 = new SqlCommand(queryLibro_Autor, connection);
+                        command2.Parameters.AddWithValue("@id_autor", autor.id_autor);
+                        SqlCommand command3 = new SqlCommand(queryAutor, connection); 
+                        command3.Parameters.AddWithValue("@id_autor", autor.id_autor);
+
+                        command1.ExecuteNonQuery();
+                        command2.ExecuteNonQuery();
+                        int rowsAffected = command3.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("El autor se eliminó correctamente.");
+                        }
+                    }
+                    ListarAutores();
+                }
+            }
+        }
         private void Editar_Click(object sender, RoutedEventArgs e) { }
 
         public partial class EditarAutor : Window

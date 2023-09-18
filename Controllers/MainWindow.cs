@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Museo.Models;
+using Museoapp.Models;
+using Museoapp.Views;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,11 +18,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppTEST.Models;
 using WpfAppTEST.Views;
 
 namespace WpfAppTEST
 {
- 
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -33,7 +37,7 @@ namespace WpfAppTEST
             string contrasenia = contra.Password.ToString();
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-            string query = "Select Usuario, Password from Usuario";
+            string query = "SELECT Usuario, Password, Rol FROM Usuario";
             SqlCommand comand = new SqlCommand(query, conexion);
             SqlDataReader registro = comand.ExecuteReader();
             bool usuarioValido = false;
@@ -41,15 +45,17 @@ namespace WpfAppTEST
 
             while (registro.Read())
             {
-                string dbUsuario = registro.GetString(0);
-                string dbContrasenia = registro.GetString(1);
+                Usuarios user = new Usuarios();
+                user.Usuario = registro.GetString(0);
+                user.Contrasenia = registro.GetString(1);
+               
 
-                if (dbUsuario == usuario)
+                if (user.Usuario == usuario)
                 {
                     usuarioValido = true;
                 }
 
-                if (dbContrasenia == contrasenia)
+                if (user.Contrasenia == contrasenia)
                 {
                     contraseniaValida = true;
                 }
@@ -57,6 +63,7 @@ namespace WpfAppTEST
         
                 if (usuarioValido && contraseniaValida)
                 {
+                    Usuarios.RolUsuario= registro.GetString(2);
                     Home inicio = new Home();
                     inicio.Show();
                     this.Close();

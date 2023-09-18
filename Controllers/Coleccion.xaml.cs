@@ -173,7 +173,7 @@ namespace WpfAppTEST.Views
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true");
             conexion.Open();
 
-            string queryColeccion = "INSERT INTO Coleccion (Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo, Materiales,Autores) VALUES (@Nombre, @Cantidad, @Periodo, @Alto, @Ancho, @Diametro, @Url, @Largo, @Ingreso, @Conservacion, @Ubicacion, @Integridad, @Lugar, @Titulo, @Materiales,@Autores); SELECT SCOPE_IDENTITY();";
+            string queryColeccion = "INSERT INTO Coleccion (Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Lugar, Titulo) VALUES (@Nombre, @Cantidad, @Periodo, @Alto, @Ancho, @Diametro, @Url, @Largo, @Ingreso, @Conservacion, @Ubicacion, @Integridad, @Lugar, @Titulo); SELECT SCOPE_IDENTITY();";
             string queryRelacionColeccion_Material = "INSERT INTO Coleccion_Material (id_material, id_coleccion) VALUES (@IdMaterial, @IdColeccion)";
             string queryRelacionColeccion_Autor = "INSERT INTO Coleccion_Autor (id_autor, id_coleccion) VALUES (@IdAutor, @IdColeccion)";
            
@@ -204,6 +204,7 @@ namespace WpfAppTEST.Views
             pieza.Ubicacion = Mayuscula.ToTitleCase(Ubicacion1.Text.ToLower());
             pieza.Ingreso = Ingreso1.Text;
             pieza.UrlFoto = Url_Foto.Text;
+            pieza.Cantidad = Convert.ToInt32(Cantidad1.Text);
 
             // Insertar la pieza en la tabla 'Coleccion' y obtener el ID de la pieza insertada
             comand.Parameters.AddWithValue("@Nombre", pieza.Nombre);
@@ -233,27 +234,14 @@ namespace WpfAppTEST.Views
                 nombresAutores.Add(nombreAutor);
             }
 
-            // Concatenar los nombres de los materiales seleccionados
-            string materialesConcatenados = string.Join(", ", nombresMateriales);
-            Mayuscula.ToTitleCase(materialesConcatenados).ToLower();
-
-            // Concatenar los nombres de los autores seleccionados
-            string autoresConcatenados = string.Join(", ", nombresAutores);
-            Mayuscula.ToTitleCase(materialesConcatenados).ToLower();
-
-            // Agregar el parámetro @Materiales con la lista de nombres de materiales concatenados
-            comand.Parameters.AddWithValue("@Materiales", materialesConcatenados);
-            comand.Parameters.AddWithValue("@Autores", autoresConcatenados);
-
             int idPieza = Convert.ToInt32(comand.ExecuteScalar()); // Obtener el ID de la pieza insertada
-    
+            MessageBox.Show(idPieza.ToString());
 
             foreach (Materiales item in Materiales.SelectedItems)
             {
-
-
                 //materialesSeleccionados.Add(idMaterial);
                 int idMaterial = Convert.ToInt32(item.id_material);
+
                 // Insertar la relación en la tabla 'Coleccion_Material'
                 // en idColeccion le pones el id que guardamos cuando ingresamos la coleccion
                 comand2.Parameters.Clear();

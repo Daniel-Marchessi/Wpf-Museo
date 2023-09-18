@@ -536,12 +536,14 @@ C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-wind
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\MainWindow.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Archivo.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Autor.g.cs
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Categoria.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Coleccion.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarArchivo.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarAutor.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarColeccion.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarLibro.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarMaterial.g.cs
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Editorial.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Home.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Libro.g.cs
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\ListaColecciones.g.cs
@@ -553,12 +555,14 @@ C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-wind
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Museo_MarkupCompile.lref
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Archivo.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Autor.baml
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Categoria.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Coleccion.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarArchivo.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarAutor.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarColeccion.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarLibro.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\EditarMaterial.baml
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Editorial.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Home.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Libro.baml
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\ListaLibros.baml
@@ -574,7 +578,3 @@ C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-wind
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Museo.pdb
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Museoapp.genruntimeconfig.cache
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\ref\Museo.dll
-C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Categoria.g.cs
-C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Editorial.g.cs
-C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Editorial.baml
-C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\Categoria.baml

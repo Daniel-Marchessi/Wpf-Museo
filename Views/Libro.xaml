@@ -81,7 +81,7 @@
 
             <Label Content="Categoria" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="158" Margin="49,0,0,0" />
 
-            <xctk:CheckComboBox x:Name="Categoria"
+            <ComboBox x:Name="Categoria"
                     Grid.Row="3"
                     Grid.Column="3"
                     Margin="41,6,44,0"
@@ -90,15 +90,14 @@
                     FontWeight="Black"
                     Foreground="Black"
                      DisplayMemberPath="id_categoria"
-                    ValueMemberPath="id_categoria"
                     SelectedValue="{Binding SelectedValue}"
-                    SelectedItemsOverride="{Binding SelectedItems}" RenderTransformOrigin="0.629,0.176" Height="44" VerticalAlignment="Top"
+                     RenderTransformOrigin="0.629,0.176" Height="44" VerticalAlignment="Top"
             />
 
 
 
             <Label Content="Editorial" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="42" Width="147" Margin="55,23,0,0" />
-            <xctk:CheckComboBox x:Name="Editorial"
+            <ComboBox x:Name="Editorial"
                     Grid.Row="4"
                     Grid.Column="3"
                     Margin="43,13,42,0"
@@ -106,10 +105,9 @@
                     MaxWidth="500"
                     FontWeight="Black"
                     Foreground="Black"
-                     DisplayMemberPath="id_autor"
-                    ValueMemberPath="id_autor"
+                     DisplayMemberPath="id_editorial"
                     SelectedValue="{Binding SelectedValue}"
-                    SelectedItemsOverride="{Binding SelectedItems}" RenderTransformOrigin="0.486,0.351" Height="44" VerticalAlignment="Top"
+                     RenderTransformOrigin="0.486,0.351" Height="44" VerticalAlignment="Top"
             />
             <Label Content="Edición" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="136" Margin="66,10,0,0"/>
             <ComboBox x:Name="comboBoxEdiciones" Grid.Row="5" Grid.Column="1" Margin="93,0,65,0" Height="48" VerticalAlignment="Center">
