@@ -7,13 +7,13 @@
       mc:Ignorable="d" 
        Icon="../ico/Libros.ico"
         WindowState="Maximized"
-        Title="Libros"  MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize"  Background="#7182B3">
+        Title="Libros"  MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"     Background="#7182B3">
 
     <Grid>
 
 
 
-        <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="10,207,10,10" IsReadOnly="True"   CanUserAddRows="False">
+        <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="50,207,50,50" IsReadOnly="True"   CanUserAddRows="False">
 
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}" Width="auto"/>
@@ -75,27 +75,35 @@
 
         </Menu>
 
-        <Grid>
+        <Grid >
 
 
 
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-            <Label x:Name="Busqueda" Content="Busqueda" VerticalAlignment="Top" Margin="447,70,592,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-            <ComboBox x:Name="Busqueda1" VerticalAlignment="Top"  Margin="939,76,0,0"    MaxWidth="500" FontSize="24"  Width="164" HorizontalAlignment="Left" Height="36">
+            <Label x:Name="Busqueda" Content="Busqueda" Grid.Row="1" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Margin="112,87,25,52"/>
+            <ComboBox x:Name="Busqueda1" Grid.Row="1" MaxWidth="400" FontSize="24" Margin="10,90,25,0" Height="36" VerticalAlignment="Top" Grid.Column="1">
                 <ComboBox.Items>
-                    <ComboBoxItem Content="Nombre" />
-                    <ComboBoxItem Content="Titulo_Alias" />
-                    <ComboBoxItem Content="Cultura" />
+                    <ComboBoxItem Content="Titulo" />
+                    <ComboBoxItem Content="Categoria" />
+                    <ComboBoxItem Content="Descripcion" />
                     <ComboBoxItem Content="Autor" />
                 </ComboBox.Items>
             </ComboBox>
-            <Button Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorTitulo" Margin="1108,70,0,0" HorizontalAlignment="Left" Width="76" Height="42" VerticalAlignment="Top" >
-                <Image Source="../img/Lupa.png" Width="76" Height="48" />
+            <Button Background="Transparent" Grid.Row="1" BorderThickness="0" FontSize="24" Click="BuscarPorTitulo" Grid.Column="3" Height="42" Margin="10,84,210,55">
+                <Image Source="../img/Lupa.png" Width="56" Height="42" />
             </Button>
-            <TextBox  x:Name="search" Text=""  Width="302" Margin="612,76,0,0"  FontSize="24" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top"/>
-
-
+            <TextBox x:Name="search" Grid.Row="1" Text="" FontSize="24" Height="36" Margin="10,90,10,55" Grid.Column="2"/>
 
 
 

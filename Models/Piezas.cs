@@ -38,11 +38,11 @@ namespace WpfAppTEST.Models
             set { titulo = value; }
         }
 
-        private string lugarprocedencia;
-        public string Lugar_proce
+        private string cul;
+        public string Cultura
         {
-            get { return lugarprocedencia; }
-            set { lugarprocedencia = value; }
+            get { return cul; }
+            set { cul = value; }
         }
 
 

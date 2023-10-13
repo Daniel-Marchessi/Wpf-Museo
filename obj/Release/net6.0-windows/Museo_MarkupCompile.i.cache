@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\MUSEO\obj\Release\net6.0-windows\
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Release\net6.0-windows\
 Museo
 none
 false
 TRACE;RELEASE;NET;NET6_0;NETCOREAPP
-E:\MUSEO\App.xaml
-8-1449469564
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\App.xaml
+162060209964
 
-16-814700313
+26-1360843759
 203-1959094665
-Views\Autor.xaml;Views\Coleccion.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
+Views\Archivo.xaml;Views\Autor.xaml;Views\Categoria.xaml;Views\Coleccion.xaml;Views\EditarArchivo.xaml;Views\EditarAutor.xaml;Views\EditarColeccion.xaml;Views\EditarLibro.xaml;Views\EditarMaterial.xaml;Views\Editorial.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
 
-True
+False
 

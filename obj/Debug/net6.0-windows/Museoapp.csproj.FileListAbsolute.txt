@@ -578,3 +578,5 @@ C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-wind
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Museo.pdb
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Museoapp.genruntimeconfig.cache
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\ref\Museo.dll
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\historialdeusuarios.g.cs
+C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\obj\Debug\net6.0-windows\Views\historialdeusuarios.baml

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Museo.Views"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="Archivo"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize">
+        Title="Archivo"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen"   >
+
     <Grid Background="#7182B3">
         <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
 
@@ -26,49 +27,56 @@
 
 
         </Menu>
-
         <Grid  Background="#7182B3" Margin="0,34,0,0">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto" MinHeight="74"/>
-                <RowDefinition Height="Auto" MinHeight="75"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
 
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="176*"  />
-                <ColumnDefinition Width="300*"   />
-                <ColumnDefinition Width="163*"  />
-                <ColumnDefinition Width="300*"   />
-                <ColumnDefinition Width="152*"/>
+                <ColumnDefinition Width="Auto"  />
+                <ColumnDefinition Width="1*" MinWidth="300" />
+                <ColumnDefinition Width="Auto"   />
+                <ColumnDefinition Width="1*"  MinWidth="300"/>
+                <ColumnDefinition Width="Auto"   />
+
             </Grid.ColumnDefinitions>
 
 
-            <Label Content="Carpeta" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,30,0,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="30" Height="50" Width="118"/>
-            <TextBox x:Name="Carpeta" Grid.Row="0" VerticalAlignment="Top"  MaxWidth="500"  FontSize="30" Margin="0,36,0,0" Height="42" Grid.Column="1" HorizontalAlignment="Center" Width="283"/>
+            <Label Content="Carpeta" Grid.Row="0" Margin="30,22,0,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="30" HorizontalAlignment="Left" Width="134" Height="51" VerticalAlignment="Top"/>
+            <TextBox x:Name="Carpeta" Grid.Row="0" VerticalAlignment="Top"  MinWidth="250" MaxWidth="400"  FontSize="30" Margin="10,36,10,0" Height="42" Grid.Column="1"/>
 
-            <Label  Content="Categoria" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="146"/>
-            <TextBox x:Name="Categoria" Grid.Row="3" VerticalAlignment="Top"  MaxWidth="500" FontSize="30" Margin="0,27,0,0" Height="42" Grid.Column="1" HorizontalAlignment="Center" Width="283"/>
+            <Label  Content="Categoria" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Margin="17,0,0,0" HorizontalAlignment="Left" Width="147"/>
+            <TextBox x:Name="Categoria" Grid.Row="1" VerticalAlignment="Top" MinWidth="250"  MaxWidth="400" FontSize="30" Margin="10,27,10,0" Height="42" Grid.Column="1"/>
 
-            <Label Content="Codigo" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,32,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="112" Grid.RowSpan="2"/>
-            <TextBox x:Name="Codigo" VerticalAlignment="Top"      MaxWidth="500" FontSize="30" Margin="0,36,0,0" Grid.Column="3" Height="42" HorizontalAlignment="Center" Width="283"/>
+            <Label Content="Codigo" Grid.Column="2" VerticalAlignment="Top" Margin="33,32,33,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Grid.RowSpan="2"/>
+            <TextBox x:Name="Codigo" VerticalAlignment="Top"     MinWidth="250" MaxWidth="400"  FontSize="30" Margin="10,36,10,0" Grid.Column="3" Height="42" PreviewTextInput="Soloenteros_PreviewTextInput"/>
 
-            <Label Content="Titulo" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="93"/>
-            <TextBox x:Name="Titulo" VerticalAlignment="Top" Margin="0,23,0,0"   MaxWidth="500" FontSize="30" Grid.Column="3" Height="42" Grid.Row="3" HorizontalAlignment="Center" Width="283"/>
+            <Label Content="Titulo" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Margin="42,15,43,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50"/>
+            <TextBox x:Name="Titulo" VerticalAlignment="Top" Margin="10,23,10,0" MinWidth="250" MaxWidth="400"  FontSize="30" Grid.Column="3" Height="42" Grid.Row="1"/>
 
-            <Button x:Name="Enviarlibro" Content="Guardar" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,34,0,0" Height="50"  Background="#FFFD9A0D" FontSize="30" Width="283" Click="EnviarArchivo_Click" />
-            <Label   Content="Ver carpeta:" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Grid.Row="4" Height="50" Width="176" Margin="0,25,0,0" />
+            <Button x:Name="Enviarlibro" MaxWidth="400" MinWidth="250" Content="Guardar" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Margin="10,24,10,0" Height="50"  Background="#FFFD9A0D" FontSize="30" Click="EnviarArchivo_Click" />
+            <Label   Content="Carpeta:" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Grid.Row="4" Height="50" Margin="33,11,27,0" />
 
-            <ComboBox Grid.Row="4"  x:Name="carpetasComboBox" SelectionChanged="CarpetasComboBox_SelectionChanged" Margin="0,34,0,0" Grid.Column="1" HorizontalAlignment="Center" Width="283" Height="42"/>
+            <ComboBox Grid.Row="4"  x:Name="carpetasComboBox" MinWidth="250" MaxWidth="400" SelectionChanged="CarpetasComboBox_SelectionChanged" Margin="10,21,10,0" Grid.Column="1" Height="42" VerticalAlignment="Top"/>
+            <Label   Content="Buscar por&#xD;&#xA;Codigo:" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="99" Margin="8,6,10,0" Grid.Column="2" Grid.Row="4" />
+
+
+            <TextBox x:Name="PorNombre" MaxWidth="400" MinWidth="250" Grid.Row="4" Grid.Column="3" Text="" Margin="10,31,10,0" FontSize="20" PreviewTextInput="Soloenteros_PreviewTextInput" Height="47" VerticalAlignment="Top"/>
+            <Button Background="Transparent"  BorderThickness="1" Grid.Column="4"  Grid.Row="4" FontSize="20" Click="BuscarPorCodigo" Height="41" VerticalAlignment="Top" Margin="10,34,25,0" >
+                <Image Source="../img/Lupa.png" Width="37" />
+            </Button>
 
 
         </Grid>
 
 
-        <DataGrid  x:Name="dataGrid" Foreground="Blue" Margin="10,309,10,10" IsReadOnly="True" CanUserAddRows="False" FontSize="30">
+        <DataGrid  x:Name="dataGrid" Foreground="Blue" Margin="10,351,10,10" IsReadOnly="True" CanUserAddRows="False" FontSize="30">
 
             <DataGrid.Columns  >
 
@@ -94,11 +102,8 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
-
         </DataGrid>
     </Grid>
-
 </Window>
 

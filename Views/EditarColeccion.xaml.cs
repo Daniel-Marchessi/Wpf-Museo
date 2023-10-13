@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -91,7 +92,7 @@ namespace Museo.Views
             int idColeccion = Convert.ToInt32(id_coleccion.Text.Trim());
 
             // Realizar las operaciones de actualización en la base de datos
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             string queryUpdate = "UPDATE Coleccion SET Nombre = @Nombre, Cantidad = @Cantidad, Periodo = @Periodo," +
                 " Alto = @Alto,  Ancho = @Ancho,  Diametro = @Diametro, Url = @Url, Largo = @Largo, Ingreso = @Ingreso," +
                 "Conservacion = @Conservacion, Ubicacion = @Ubicacion, Integridad = @Integridad, Lugar = @Lugar, Titulo = @Titulo " +

@@ -1,7 +1,9 @@
-﻿using Museo.Views;
+﻿using Museo.Controllers;
+using Museo.Views;
 using Museoapp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -17,6 +19,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
+using Museo.Controllers;
+using Xceed.Wpf.Toolkit;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace Museoapp.Views
 {
@@ -29,6 +34,8 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarAutores();
+            Loaded += ListaAutores_Loaded;
+
         }
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
@@ -84,10 +91,19 @@ namespace Museoapp.Views
         }
 
 
+        private void ListaAutores_Loaded(object sender, RoutedEventArgs e)
+        {
+            Autorizaciones autorizaciones = new Autorizaciones();
+            DataGridColumn columnaAEditar = dataGrid.Columns[3];
+            DataGridColumn columnaAEliminar = dataGrid.Columns[2];
+            autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
+            ListarAutores();
+        }
+
         private void ListarAutores()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
-            string query = "SELECT [Nombre], [Apellido]  FROM [dbo].[Autor]";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+            string query = "SELECT [id_autor], [Nombre], [Apellido]  FROM [dbo].[Autor]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -101,8 +117,9 @@ namespace Museoapp.Views
                 while (reader.Read())
                 {
                     Autores autorin = new Autores();
-                    autorin.Nombre = reader.GetString(0);
-                    autorin.Apellido = reader.GetString(1);
+                    autorin.id_autor = reader.GetInt32(0);
+                    autorin.Nombre = reader.GetString(1);
+                    autorin.Apellido = reader.GetString(2);
                     autores.Add(autorin);
                 }
 
@@ -112,42 +129,66 @@ namespace Museoapp.Views
 
         private void EnviarAutor_Click(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-9MTUTME; database=Museo1 ; integrated security = true");
-            conexion.Open();
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
 
-            string query = "SELECT COUNT(*) FROM Autor WHERE Nombre = @Nombre AND Apellido = @Apellido";
-            SqlCommand checkCommand = new SqlCommand(query, conexion);
-            checkCommand.Parameters.AddWithValue("@Nombre", Nombre1.Text);
-            checkCommand.Parameters.AddWithValue("@Apellido", Apellido1.Text);
-
-            int existingRecordsCount = (int)checkCommand.ExecuteScalar();
-
-            if (existingRecordsCount > 0)
+            using (SqlConnection conexion = new SqlConnection(connectionString))
             {
-                MessageBox.Show("El autor ya existe");
-                conexion.Close();
-                return;
+                conexion.Open();
+
+                string query = "SELECT COUNT(*) FROM Autor WHERE Nombre = @Nombre AND Apellido = @Apellido";
+                SqlCommand Command = new SqlCommand(query, conexion);
+
+
+                TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+                Autores autorin = new Autores();
+                autorin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
+                autorin.Apellido = Mayuscula.ToTitleCase(Apellido1.Text.ToLower());
+
+                Command.Parameters.AddWithValue("@Nombre", autorin.Nombre);
+                Command.Parameters.AddWithValue("@Apellido", autorin.Apellido);
+
+                if( autorin.Nombre == ""){
+                    MessageBox.Show("El autor debe tener un nombre");
+
+                }
+                else
+                {
+                    if (autorin.Apellido == "")
+                    {
+                        MessageBox.Show("El autor debe tener un Apellido");
+                    }
+                    else
+                    {
+                        int existingRecordsCount = (int)Command.ExecuteScalar();
+
+                        if (existingRecordsCount > 0)
+                        {
+                            MessageBox.Show("El autor ya existe");
+                            return;
+                        }
+
+
+                        string insertQuery = "INSERT INTO Autor (Nombre, Apellido) VALUES (@Nombre, @Apellido)";
+                        SqlCommand insertCommand = new SqlCommand(insertQuery, conexion);
+                        insertCommand.Parameters.AddWithValue("@Nombre", autorin.Nombre);
+                        insertCommand.Parameters.AddWithValue("@Apellido", autorin.Apellido);
+                        insertCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Se ingresó un Autor");
+                        LimpiarCampos();
+                        ListarAutores();
+                    }
+                }
+               
             }
-
-            string insertQuery = "INSERT INTO Autor (Nombre, Apellido) VALUES (@Nombre, @Apellido)";
-            SqlCommand insertCommand = new SqlCommand(insertQuery, conexion);
-            insertCommand.Parameters.AddWithValue("@Nombre", Nombre1.Text);
-            insertCommand.Parameters.AddWithValue("@Apellido", Apellido1.Text);
-            insertCommand.ExecuteNonQuery();
-
-            MessageBox.Show("Se ingresó un Autor");
-            conexion.Close();
-
-            LimpiarCampos();
-            ListarAutores();
         }
         private void BuscarPorNombre(object sender, RoutedEventArgs e)
         {
+            
             string textoBusqueda = PorNombre.Text.Trim();
-
             for (int i = 0; i < dataGrid.Items.Count; i++)
             {
-                Materiales item = (Materiales)dataGrid.Items[i];
+                Autores item = (Autores)dataGrid.Items[i];
                 DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
 
                 if (item.Nombre.Contains(textoBusqueda))
@@ -164,7 +205,7 @@ namespace Museoapp.Views
 
             PorNombre.Text = "";
         }
-       
+
         private void LimpiarCampos()
         {
             Nombre1.Text = "";
@@ -172,14 +213,13 @@ namespace Museoapp.Views
         }
         private void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-                Button eliminarButton = (Button)sender;
+            Button eliminarButton = (Button)sender;
             if (eliminarButton.CommandParameter is Autores autor)
             {
                 MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
-                    
+                    string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
                     string queryColeccion_Autor = "DELETE FROM [dbo].[Coleccion_Autor] WHERE [id_autor] = @id_autor";
                     string queryLibro_Autor = "DELETE FROM [dbo].[Libro_Autor] WHERE [id_autor] = @id_autor";
                     string queryAutor = "DELETE FROM [dbo].[Autor] WHERE [id_autor] = @id_autor";
@@ -191,7 +231,7 @@ namespace Museoapp.Views
                         command1.Parameters.AddWithValue("@id_autor", autor.id_autor);
                         SqlCommand command2 = new SqlCommand(queryLibro_Autor, connection);
                         command2.Parameters.AddWithValue("@id_autor", autor.id_autor);
-                        SqlCommand command3 = new SqlCommand(queryAutor, connection); 
+                        SqlCommand command3 = new SqlCommand(queryAutor, connection);
                         command3.Parameters.AddWithValue("@id_autor", autor.id_autor);
 
                         command1.ExecuteNonQuery();
@@ -206,6 +246,19 @@ namespace Museoapp.Views
                 }
             }
         }
+
+
+        //Metodos para controlar el tipo de dato que se puede ingresar por teclado
+        //Cadenas de texto
+        private void  SoloString_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            if (!char.IsLetter(e.Text[0]) && !char.IsWhiteSpace(e.Text[0]))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void Editar_Click(object sender, RoutedEventArgs e) { }
 
         public partial class EditarAutor : Window

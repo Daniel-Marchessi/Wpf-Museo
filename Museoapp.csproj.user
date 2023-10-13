@@ -40,6 +40,9 @@
     <Compile Update="Controllers\Editorial.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controllers\historialdeusuarios.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Archivo.xaml">
@@ -70,6 +73,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Editorial.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\historialdeusuarios.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Home.xaml">

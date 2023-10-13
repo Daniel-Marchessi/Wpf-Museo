@@ -19,6 +19,7 @@ using WpfAppTEST.Views;
 using WpfAppTEST.Models;
 using static System.Net.Mime.MediaTypeNames;
 using Museoapp.Models;
+using System.Configuration;
 
 namespace Museo.Views
 {
@@ -95,7 +96,7 @@ namespace Museo.Views
             string cod = Convert.ToString(Codigo.Text);
 
             //// Realizar las operaciones de actualización en la base de datos
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             string queryUpdate = "UPDATE LIBROS SET Titulo = @Titulo, Origen = @Origen, Descripcion = @Descripcion, Edicion = @Edicion, " +
                 " N_paginas = @N_paginas, AnioEdicion = @AnioEdicion, Codigo = @Codigo  WHERE id_libro = @id_libro";
 

@@ -3,6 +3,7 @@ using Museoapp.Models;
 using Museoapp.Views;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfAppTEST.Views;
+using Museo.Controllers;
+using System.Globalization;
+using System.Windows.Media.Media3D;
 
 namespace Museo.Views
 {
@@ -28,8 +32,8 @@ namespace Museo.Views
         {
             InitializeComponent();
             ListarEditoriales();
+            Loaded += ListaEditoriales_Loaded;
         }
-
         private void CrearColeccion_Click(object sender, RoutedEventArgs e)
         {
             Coleccion coleccion = new Coleccion();
@@ -44,7 +48,6 @@ namespace Museo.Views
             libro.Show();
             this.Close();
         }
-
         private void CrearListaLibro_Click(object sender, RoutedEventArgs e)
         {
             ListaLibros listalibro = new ListaLibros();
@@ -52,7 +55,6 @@ namespace Museo.Views
             this.Close();
 
         }
-
         private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
         {
             ListaColecciones listaColeccion = new ListaColecciones();
@@ -73,8 +75,7 @@ namespace Museo.Views
             categoria.Show();
             this.Close();
 
-        }
-        
+        } 
         private void CrearAutor_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = new Autor();
@@ -82,49 +83,75 @@ namespace Museo.Views
             this.Close();
 
         }
-
-
         private void CrearMaterial_Click(object sender, RoutedEventArgs e)
         {
-            Material material = new Material();
+            Museoapp.Views.Material material = new Museoapp.Views.Material();
             material.Show();
             this.Close();
         }
-         private void EnviarEditorial_Click(Object sender, RoutedEventArgs e)
+
+        private void ListaEditoriales_Loaded(object sender, RoutedEventArgs e)
         {
-            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
-            conexion.Open();
-
-            string query = "SELECT COUNT(*) FROM Editorial WHERE Nombre = @Nombre";
-            SqlCommand checkCommand = new SqlCommand(query, conexion);
-            checkCommand.Parameters.AddWithValue("@Nombre", Editorial1.Text);
-
-
-            int existingRecordsCount = (int)checkCommand.ExecuteScalar();
-
-            if (existingRecordsCount > 0)
-            {
-                MessageBox.Show("La Editorial ya existe");
-                conexion.Close();
-                return;
-            }
-
-            string insertQuery = "INSERT INTO Editorial (Nombre) VALUES (@Nombre)";
-            SqlCommand insertCommand = new SqlCommand(insertQuery, conexion);
-            insertCommand.Parameters.AddWithValue("@Nombre", Editorial1.Text);
-
-            insertCommand.ExecuteNonQuery();
-
-            MessageBox.Show("Se ingresó una Editorial");
-            conexion.Close();
-            Editorial1.Text = "";
+            Autorizaciones autorizaciones = new Autorizaciones();
+            DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            DataGridColumn columnaAEliminar = dataGrid.Columns[1];
+            autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
             ListarEditoriales();
         }
+
+        private void EnviarEditorial_Click(Object sender, RoutedEventArgs e)
+         {
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+
+            using (SqlConnection conexion = new SqlConnection(connectionString))
+            {
+                conexion.Open();
+
+                string query = "SELECT COUNT(*) FROM Editorial WHERE Nombre = @Nombre";
+                SqlCommand checkCommand = new SqlCommand(query, conexion);
+                Editoriales editoriales = new Editoriales();
+                TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+
+                editoriales.Nombre = Mayuscula.ToTitleCase(Editorial1.Text.ToLower());
+
+                checkCommand.Parameters.AddWithValue("@Nombre", editoriales.Nombre);
+
+
+                if (editoriales.Nombre == "")
+                {
+                    MessageBox.Show("La editorial  debe tener un nombre");
+
+                }
+                else
+                {
+
+
+                    int existingRecordsCount = (int)checkCommand.ExecuteScalar();
+
+                    if (existingRecordsCount > 0)
+                    {
+                        MessageBox.Show("La Editorial ya existe");
+                        return;
+                    }
+
+                    string insertQuery = "INSERT INTO Editorial (Nombre) VALUES (@Nombre)";
+                    SqlCommand insertCommand = new SqlCommand(insertQuery, conexion);
+                    insertCommand.Parameters.AddWithValue("@Nombre", editoriales.Nombre);
+
+                    insertCommand.ExecuteNonQuery();
+
+                    MessageBox.Show("Se ingresó una Editorial");
+
+                    Editorial1.Text = "";
+                    ListarEditoriales();
+                }
+            }
+         }
        
         private void ListarEditoriales()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
-            string query = "SELECT [Nombre]  FROM [dbo].[Editorial]";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+            string query = "SELECT [id_editorial] ,[Nombre]  FROM [dbo].[Editorial]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -138,7 +165,8 @@ namespace Museo.Views
                 while (reader.Read())
                 {
                     Editoriales edit = new Editoriales();
-                    edit.Nombre = reader.GetString(0);
+                    edit.Editorial_id = reader.GetInt32(0);
+                    edit.Nombre = reader.GetString(1);
 
                     editorial.Add(edit);
                 }
@@ -154,27 +182,42 @@ namespace Museo.Views
                 MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
-
-                    string queryLibroCampoEditorial = "DELETE FROM [dbo].[Libros] WHERE [Editorial_id] = @Editorial_id";
-                    string queryEditorial = "DELETE FROM [dbo].[Editorial] WHERE [Editorial_id] = @Editorial_id";
+                    string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+                    string queryActualizarLibros = "SELECT COUNT(*) FROM Libros WHERE Editorial_id = @id_Editorial";
+                    string queryEliminarEditorial = "DELETE FROM [dbo].[Editorial] WHERE [id_editorial] = @id_editorial";
 
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        SqlCommand command1 = new SqlCommand(queryLibroCampoEditorial, connection);
-                        command1.Parameters.AddWithValue("@Editorial_id", editorial.id_editorial);
-                        SqlCommand command2 = new SqlCommand(queryEditorial, connection);
-                        command2.Parameters.AddWithValue("@Editorial_id", editorial.id_editorial);
-                        
+                        SqlCommand command1 = new SqlCommand(queryActualizarLibros, connection);
+                        command1.Parameters.AddWithValue("@id_editorial", editorial.Editorial_id);
 
-                        command1.ExecuteNonQuery();
-                        int rowsAffected = command2.ExecuteNonQuery();
-                        if (rowsAffected > 0)
+                        // Obtiene el número de libros asociados a la categoría
+                        int librosAsociados = (int)command1.ExecuteScalar();
+
+                        if (librosAsociados > 0)
                         {
-                            MessageBox.Show("El autor se eliminó correctamente.");
+                            MessageBox.Show("No se puede eliminar la categoría, ya que está asociada a un libro.");
+                        }
+                        else
+                        {
+                            SqlCommand command2 = new SqlCommand(queryEliminarEditorial, connection);
+                            command2.Parameters.AddWithValue("@id_editorial", editorial.Editorial_id);
+
+                            int rowsDeleted = command2.ExecuteNonQuery();
+
+                            if (rowsDeleted > 0)
+                            {
+                                MessageBox.Show("La categoría se eliminó correctamente.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo eliminar la categoría.");
+                            }
                         }
                     }
+
+                    // Actualiza la lista de categorías después de la operación
                     ListarEditoriales();
                 }
             }
@@ -183,9 +226,28 @@ namespace Museo.Views
         {
 
         }
-        private void BuscarPorEditorial(Object sender, RoutedEventArgs e)
+        private void BuscarPorEditorial(object sender, RoutedEventArgs e)
         {
+            TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+            string textoBusqueda = Mayuscula.ToTitleCase(PorEditorial.Text.Trim().ToLower());
+            for (int i = 0; i < dataGrid.Items.Count; i++)
+            {
+                Editoriales item = (Editoriales)dataGrid.Items[i];
+                DataGridRow dataGridRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(i);
 
+                if (item.Nombre.Contains(textoBusqueda))
+                {
+                    // Mostrar el elemento si coincide con la búsqueda
+                    dataGridRow.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    // Ocultar el elemento si no coincide con la búsqueda
+                    dataGridRow.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            PorEditorial.Text = "";
         }
     }
 }

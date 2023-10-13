@@ -8,11 +8,8 @@ namespace Museo.Models
 {
     internal class Editoriales
     {
-
-
-
         private int id;
-        public int id_editorial
+        public int Editorial_id
         {
             get { return id; }
             set { id = value; }

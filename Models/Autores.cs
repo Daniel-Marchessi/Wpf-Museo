@@ -14,6 +14,7 @@ namespace Museoapp.Models
             get { return id; }
             set { id = value; }
         }
+       
 
 
         private string nombre;

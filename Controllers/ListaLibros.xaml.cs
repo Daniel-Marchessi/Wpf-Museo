@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
+using Museo.Controllers;
 using Museo.Models;
 using Museo.Views;
 using Museoapp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -12,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
+using Museo.Controllers;
 
 namespace Museoapp.Views
 {
@@ -20,8 +23,7 @@ namespace Museoapp.Views
         public ListaLibros()
         {
             InitializeComponent();
-            ListarLibros();
-
+            Loaded += ListaLibros_Loaded;
         }
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
@@ -38,7 +40,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
         {
             Libro libro = new Libro();
@@ -46,16 +47,12 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
-
         private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
         {
             ListaColecciones listaColeccion = new ListaColecciones();
             listaColeccion.Show();
             this.Close();
-
         }
-
         private void CrearAutor_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = new Autor();
@@ -63,8 +60,6 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
-
         private void CrearMaterial_Click(object sender, RoutedEventArgs e)
         {
             Material material = new Material();
@@ -84,9 +79,20 @@ namespace Museoapp.Views
             categoria.Show();
             this.Close();
         }
+
+        //Autorizacion
+        private void ListaLibros_Loaded(object sender, RoutedEventArgs e)
+        {
+            Autorizaciones autorizaciones = new Autorizaciones();
+            DataGridColumn columnaAEditar = dataGrid.Columns[11];
+            DataGridColumn columnaAEliminar = dataGrid.Columns[10];
+            autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
+            ListarLibros();
+        }
+
         private void ListarLibros()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security=true;MultipleActiveResultSets=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             string query = "SELECT [id_libro] ,[Titulo],[Origen] ,[N_paginas] ,[Descripcion], [Edicion], [AnioEdicion], [Codigo], [Categoria_id],[Editorial_id] FROM [dbo].[Libros]";
             string queryautores = "SELECT Autor.Nombre, Autor.Apellido, Libros.id_libro " +
                                "FROM Autor " +
@@ -191,17 +197,15 @@ namespace Museoapp.Views
 
             if (Busqueda1.Text == "Titulo")
             {
-
                 foreach (var item in dataGrid.Items)
                 {
-
-                    if (item is Libros libro)
+                    if (item is Libros libro1)
                     {
-                        if (libro.Titulo.Contains(textSearch))
+                        if (libro1.Titulo.Contains(textSearch))
                         {
                             // Mostrar la fila si coincide con la búsqueda
                             dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro);
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
                             if (row != null)
                             {
                                 row.Visibility = Visibility.Visible;
@@ -211,7 +215,7 @@ namespace Museoapp.Views
                         {
                             // Ocultar la fila si no coincide con la búsqueda
                             dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro);
+                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
                             if (row != null)
                             {
                                 row.Visibility = Visibility.Collapsed;
@@ -219,18 +223,77 @@ namespace Museoapp.Views
 
                         }
                     }
-                    MessageBox.Show("Busqueda por titulo");
                 }
 
             }
-            //if (Busqueda1.Text == "Categoria")
-            //{
-            //    var resultados = from libro in Libro where libro.CategoriaId
-            //                     == GetCategoriaIdPorNombre(categoriaBusqueda) select libro;
+            if (Busqueda1.Text == "Categoria")
+            {
+                string nombre = textSearch;
+                string query = "SELECT Categoria.id_categoria, Categoria.Nombre, Libros.id_libro " +
+                "FROM Categoria " +
+                "JOIN Libros ON Categoria.id_categoria = Libros.Categoria_id " +
+                "WHERE Categoria.Nombre LIKE @CategoriaNombre";
 
-            //    dataGrid.ItemsSource = resultados.ToList();
-            //    MessageBox.Show("categoria");
-            //}
+                string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+                List<string> categorias_list = new List<string>();
+                List<int> categorias_ids = new List<int>();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@CategoriaNombre", "%" + nombre + "%");
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int autor_id = reader.GetInt32(0);
+                                string nombrecategoria = reader.GetString(1);
+
+                                int libro_id = reader.GetInt32(2);
+
+                                categorias_ids.Add(libro_id);
+                                categorias_list.Add(nombrecategoria);
+                            }
+                        }
+                    }
+                }
+                foreach (var it in dataGrid.Items)
+                {
+                    if (it is Libros libro1)
+                    {
+                        bool autorEncontrado = categorias_ids.Contains(libro1.LibroId);
+
+                        if (autorEncontrado)
+                        {
+
+                            DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
+                            if (row1 != null)
+                            {
+                                row1.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                row1.Visibility = Visibility.Collapsed;
+
+                            }
+
+                        }
+                        else
+                        {
+                            // Ocultar la fila si no coincide con la búsqueda
+                            DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
+                            if (row1 != null)
+                            {
+                                row1.Visibility = Visibility.Collapsed;
+                            }
+                        }
+                    }
+
+                }
+            }
 
             if (Busqueda1.Text == "Descripcion")
 
@@ -267,34 +330,77 @@ namespace Museoapp.Views
             }
             if (Busqueda1.Text == "Autor")
             {
-                foreach (var item in dataGrid.Items)
-                {
-                    if (item is Libros libro)
-                    {
+                // CON ESTA CONSULTA TRAIGO TODOS LOS DATOS DE LA COLECCION A PARTIR DE UN ID
 
-                        if (libro.Titulo.Contains(textSearch))
+                string nombre = textSearch;
+
+                string query = "SELECT Autor.id_autor, Autor.Nombre,Libros.Titulo, Libros.id_libro, Autor.Apellido FROM Libro_Autor " +
+                              "JOIN Libros ON Libros.id_libro = Libro_Autor.id_libro " +
+                              "JOIN Autor ON Autor.id_autor = Libro_Autor.id_autor " +
+                              "WHERE Autor.Nombre + ' ' + Autor.Apellido LIKE @AutorNombre";
+
+              
+
+                string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+                List<string> autores_list = new List<string>();
+                List<int> autores_ids = new List<int>();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@AutorNombre", "%" + nombre + "%");
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            // Mostrar la fila si coincide con la búsqueda
-                            dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro);
-                            if (row != null)
+                            while (reader.Read())
                             {
-                                row.Visibility = Visibility.Visible;
+                                int id_autor = reader.GetInt32(0);
+                                string nombreAutor = reader.GetString(1);
+                                string nombreColeccion = reader.GetString(2);
+                                int libroId = reader.GetInt32(3);
+                                string apellidoAutor = reader.GetString(4);
+                                autores_ids.Add(libroId);
+                                autores_list.Add(nombreAutor + " " + apellidoAutor);
                             }
+                        }
+                    }
+                }
+                foreach (var it in dataGrid.Items)
+                {
+                    if (it is Libros libro1)
+                    {
+                        bool autorEncontrado = autores_ids.Contains(libro1.LibroId);
+
+                        if (autorEncontrado)
+                        {
+                            
+                            DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
+                            if (row1 != null)
+                            {
+                                row1.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                row1.Visibility = Visibility.Collapsed;
+
+                            }
+
                         }
                         else
                         {
                             // Ocultar la fila si no coincide con la búsqueda
-                            dataGrid.UpdateLayout();
-                            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro);
-                            if (row != null)
+                            DataGridRow row1 = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem(libro1);
+                            if (row1 != null)
                             {
-                                row.Visibility = Visibility.Collapsed;
+                                row1.Visibility = Visibility.Collapsed;
                             }
-
                         }
                     }
+
                 }
+
             }
 
             //  string textoBusqueda = PorTitulo.Text.Trim();
@@ -307,7 +413,7 @@ namespace Museoapp.Views
                 MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
                     string queryDeleteLibro = "DELETE FROM [dbo].[Libros] WHERE [id_libro] = @id_libro";
                     string queryDeleteLibro_Autor = "DELETE FROM [dbo].[Libro_Autor] WHERE [id_libro] = @id_libro";
                     using (SqlConnection connection = new SqlConnection(connectionString))
@@ -346,9 +452,6 @@ namespace Museoapp.Views
             }
             ListarLibros();
         }
-
-
-       
     }
 }
 

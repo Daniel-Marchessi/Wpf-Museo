@@ -1,10 +1,8 @@
 ﻿using Museo.Models;
-using Museoapp.Models;
-using Museoapp.Views;
-using System;
-using System.Collections.Generic;
-using System.Data;
+using Museo.Views;
+
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
@@ -20,24 +18,29 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
+using Museo.Controllers;
+using System;
 
 namespace WpfAppTEST
 {
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
             InitializeComponent();
             user.Focus();
         }
 
+
+      
         private void Btn_enviar_Click(object sender, RoutedEventArgs e)
         {
             string usuario = user.Text.ToString();
             string contrasenia = contra.Password.ToString();
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-            string query = "SELECT Usuario, Password, Rol FROM Usuario";
+            string query = "SELECT Nombre, Password, Rol, Usuario_id FROM Usuario";
             SqlCommand comand = new SqlCommand(query, conexion);
             SqlDataReader registro = comand.ExecuteReader();
             bool usuarioValido = false;
@@ -64,6 +67,7 @@ namespace WpfAppTEST
                 if (usuarioValido && contraseniaValida)
                 {
                     Usuarios.RolUsuario= registro.GetString(2);
+                    Usuarios.Usuario_id = registro.GetInt32(3);
                     Home inicio = new Home();
                     inicio.Show();
                     this.Close();

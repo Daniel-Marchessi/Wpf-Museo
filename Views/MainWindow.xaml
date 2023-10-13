@@ -8,57 +8,45 @@
         Title="MainWindow" 
         MinWidth="600" MinHeight="600"   MaxWidth="600" MaxHeight="600" WindowStartupLocation="CenterScreen"
          ResizeMode="NoResize"  Width="540">
-
-
-    <Grid Name="Principal" Background="Transparent"  >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="283*"/>
-            <ColumnDefinition Width="117*"/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
+ 
+      
             <!--Background="#A9A594"-->
-        <Grid Width="auto" Height="600"  Background="#7182B3"  VerticalAlignment="Center" Grid.ColumnSpan="2">
-
-            <Border CornerRadius="10,10,0,0" Background="#FFFD9A0D" Margin="0,10,0,418" Width="auto">
-                <Image Source="/img/User.png" HorizontalAlignment="Center" Height="152" VerticalAlignment="Center" Width="160"/>
-            </Border>
-
+        <Grid Width="auto" Height="600" Margin="0,0,0,0"  Background="#7182B3"  VerticalAlignment="Center">
+            <Border  Background="#FFFD9A0D" Margin="0,10,0,413" Width="auto">
+            <Image Source="/img/User.png" HorizontalAlignment="Center" Height="152" VerticalAlignment="Center" Width="160"/>
+        </Border>
 
 
-            <TextBlock HorizontalAlignment="Center"
+
+        <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Top" 
-                           Margin="0,187,0,0" RenderTransformOrigin="0.495,0.707"
+                           Margin="0,199,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Usuario"
                            FontSize="40"
                            FontWeight="Bold" Foreground="White" Width="auto" Height="auto" 
                            >
 
-            </TextBlock>
+        </TextBlock>
 
-            <TextBox x:Name="user" Background="#FFCA7D"
-                     FontSize="40" VerticalAlignment="Top" Width="auto" Margin="75,245,57,0" Height="auto"  MaxWidth="600" />
+        <TextBox x:Name="user" Background="#FFCA7D"
+                     FontSize="40" VerticalAlignment="Top" Width="auto" Margin="75,257,57,0" Height="auto"  MaxWidth="600" />
 
 
-            
-
-            <TextBlock HorizontalAlignment="Center"
+        <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Top" 
                            Margin="0,317,0,0" RenderTransformOrigin="0.495,0.707"
                            Text="Contraseña"
                            FontSize="40"
                            FontWeight="Bold" Foreground="White"  Width="auto" Height="auto">
 
-            </TextBlock>
+        </TextBlock>
 
-            <PasswordBox VerticalAlignment="Top" FontSize="40" x:Name="contra" Height="auto" Width="auto"
+        <PasswordBox VerticalAlignment="Top" FontSize="40" x:Name="contra" Height="auto" Width="auto"
                          RenderTransformOrigin="0.502,0.632" Margin="75,375,57,0"
                          MaxWidth="600" Background="#FFCA7D"
                     />
 
-
-
-
-            <Button x:Name="Btn_enviar"
+        <Button x:Name="Btn_enviar"
                              Content="Enviar"
                              Background="#FFFD9A0D"
                              BorderThickness="1"
@@ -69,17 +57,9 @@
                              Margin="0,479,0,41"
                              HorizontalAlignment="Center"
 							 Click="Btn_enviar_Click"
-                         
                                 
                         />
-
-
-        </Grid>
-
-
     </Grid>
-
-
 
 
 </Window>

@@ -2,6 +2,7 @@
 using Museoapp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -18,6 +19,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
+using Museo.Controllers;
+
 
 namespace Museoapp.Views
 {
@@ -30,6 +33,7 @@ namespace Museoapp.Views
         {
             InitializeComponent();
             ListarMateriales();
+            Loaded += ListaMateriales_Loaded;
         }
         private void CrearArchivo_Click(object sender, RoutedEventArgs e)
         {
@@ -47,7 +51,6 @@ namespace Museoapp.Views
 
 
         }
-
         private void CrearLibro_Click(object sender, RoutedEventArgs e)
         {
             Libro libro = new Libro();
@@ -55,49 +58,52 @@ namespace Museoapp.Views
             this.Close();
 
         }
-
         private void CrearListaLibro_Click(object sender, RoutedEventArgs e)
         {
             ListaLibros listalibro = new ListaLibros();
             listalibro.Show();
             this.Close();
-
         }
-
         private void CrearListaColeccion_Click(object sender, RoutedEventArgs e)
         {
             ListaColecciones listaColeccion = new ListaColecciones();
             listaColeccion.Show();
             this.Close();
-
         }
-
         private void CrearAutor_Click(object sender, RoutedEventArgs e)
         {
             Autor autor = new Autor();
             autor.Show();
             this.Close();
-
         }
-
         private void CrearEditorial_Click(object sender, RoutedEventArgs e)
         {
             Editorial editorial = new Editorial();
             editorial.Show();
             this.Close();
-
         }
         private void CrearCategoria_Click(object sender, RoutedEventArgs e)
         {
             Categoria categoria = new Categoria();
             categoria.Show();
             this.Close();
-
         }
+
+
+        private void ListaMateriales_Loaded(object sender, RoutedEventArgs e)
+        {
+            Autorizaciones autorizaciones = new Autorizaciones();
+            DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            DataGridColumn columnaAEliminar = dataGrid.Columns[1];
+            autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
+            ListarMateriales();
+        }
+
+
         private void ListarMateriales()
         {
-            string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true";
-            string query = "SELECT [Nombre] FROM [dbo].[Material]";
+            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+            string query = "SELECT [id_material], [Nombre] FROM [dbo].[Material]";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -111,13 +117,15 @@ namespace Museoapp.Views
                 while (reader.Read())
                 {
                     Materiales material = new Materiales();
-                    material.Nombre = reader.GetString(0);
+                    material.id_material = reader.GetInt32(0);
+                    material.Nombre = reader.GetString(1);
                     materiales.Add(material);
                 }
 
                 dataGrid.ItemsSource = materiales; // Asignar la lista de materiales al DataGrid
             }
         }
+
 
 
         private void EnviarMaterial_Click(object sender, RoutedEventArgs e)
@@ -128,36 +136,48 @@ namespace Museoapp.Views
             string query = "SELECT COUNT(*) FROM Material WHERE Nombre = @Nombre";
             SqlCommand verificarComando = new SqlCommand(query, conexion);
             verificarComando.Parameters.AddWithValue("@Nombre", Nombre1.Text.ToLower());
+            Materiales materialin = new Materiales();
 
-            int count = (int)verificarComando.ExecuteScalar();
 
-            if (count > 0)
+            if (materialin.Nombre == "")
             {
-                MessageBox.Show("El material ya existe");
+                MessageBox.Show("El Material debe tener un nombre");
+
             }
             else
             {
-                string insertQuery = "INSERT INTO Material (Nombre) VALUES (@Nombre)";
-                Materiales materialin = new Materiales();
-                SqlCommand insertComando = new SqlCommand(insertQuery, conexion);
 
-                TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
-                materialin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
 
-                insertComando.Parameters.AddWithValue("@Nombre", materialin.Nombre);
+                int count = (int)verificarComando.ExecuteScalar();
 
-                insertComando.ExecuteNonQuery();
-                MessageBox.Show("Se ingresó un material");
+                if (count > 0)
+                {
+                    MessageBox.Show("El material ya existe");
+                }
+                else
+                {
+                    string insertQuery = "INSERT INTO Material (Nombre) VALUES (@Nombre)";
+                    SqlCommand insertComando = new SqlCommand(insertQuery, conexion);
+
+                    TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+                    materialin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
+
+                    insertComando.Parameters.AddWithValue("@Nombre", materialin.Nombre);
+
+                    insertComando.ExecuteNonQuery();
+                    MessageBox.Show("Se ingresó un material");
+                }
+
+                conexion.Close();
+
+                LimpiarCampos();
+                ListarMateriales();
             }
-
-            conexion.Close();
-
-            LimpiarCampos();
-            ListarMateriales();
         }
         private void BuscarPorNombre(object sender, RoutedEventArgs e)
         {
-            string textoBusqueda = PorNombre.Text.Trim();
+            TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+            string textoBusqueda = Mayuscula.ToTitleCase(PorNombre.Text.Trim().ToLower());
 
             for (int i = 0; i < dataGrid.Items.Count; i++)
             {
@@ -178,27 +198,15 @@ namespace Museoapp.Views
 
             PorNombre.Text = "";
         }
-        private void Refrescar(Object sender, RoutedEventArgs e)
-        {
-            //// Mostrar todos los elementos de la lista nuevamente
-            //for (int i = 0; i < listView.Items.Count; i++)
-            //{
-            //    ListViewItem listViewItem = listView.ItemContainerGenerator.ContainerFromIndex(i) as ListViewItem;
-            //    if (listViewItem != null)
-            //    {
-            //        // Mostrar el elemento
-            //        listViewItem.Visibility = Visibility.Visible;
-            //    }
-            //}
-
-            //// Limpiar el campo de búsqueda
-            //PorNombre.Text = "";
-        }
+   
         private void LimpiarCampos()
         {
             Nombre1.Text = "";
 
         }
+
+
+        //FALTA VER TABLAS INTERMEDIAS
         private void Eliminar_Click(Object sender, RoutedEventArgs e) {
             Button eliminarButton = (Button)sender;
             if (eliminarButton.CommandParameter is Materiales material)
@@ -206,18 +214,22 @@ namespace Museoapp.Views
                 MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmación de eliminación", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    string connectionString = "server=DESKTOP-TI2N3QM; database=Museo1; integrated security = true";
+                    string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
                     
                     string queryMaterial = "DELETE FROM [dbo].[Material] WHERE [id_material] = @id_material";
+                    string queryColeccion_Material = "DELETE FROM [dbo].[Coleccion_Material] WHERE [id_material] = @id_material";
+
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
                         SqlCommand command1 = new SqlCommand(queryMaterial, connection);
+                        SqlCommand command2 = new SqlCommand(queryColeccion_Material, connection);
                         command1.Parameters.AddWithValue("@id_material", material.id_material);
-                       
+                        command2.Parameters.AddWithValue("@id_material", material.id_material);
+
                         command1.ExecuteNonQuery();
 
-                        int rowsAffected = command1.ExecuteNonQuery();
+                        int rowsAffected = command2.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("El autor se eliminó correctamente.");

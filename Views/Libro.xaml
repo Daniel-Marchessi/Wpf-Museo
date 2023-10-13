@@ -8,7 +8,9 @@
         mc:Ignorable="d"
          Icon="../ico/Libros.ico"
         WindowState="Maximized"
-        Title="Libro"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen"   ResizeMode="NoResize">
+        Title="Libro"   MinWidth="1000" MinHeight="700" WindowStartupLocation="CenterScreen"  >
+
+
     <Grid>
         <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
 
@@ -28,89 +30,64 @@
             <MenuItem x:Name="Categorias" Header="Categoria" Click="CrearCategoria_Click"/>
 
         </Menu>
-
-        <Grid  Background="#7182B3" Margin="0,34,0,0">
-
+        <Grid Margin="0,0,0,0" >
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#7182A3" Offset="0.0" />
+                    <GradientStop Color="#7182F4" Offset="1.0" />
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="Auto" SharedSizeGroup="LeftColumn" />
-                <ColumnDefinition Width="236*" />
-                <ColumnDefinition Width="246*"/>
-                <ColumnDefinition Width="193*"/>
-                <ColumnDefinition Width="166*"/>
-
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition  Width="Auto" SharedSizeGroup="RightColumn"  />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
+            <Label Content="Titulo" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="94,0,10,0" Grid.Row="1" Height="49" VerticalAlignment="Center"/>
+            <TextBox x:Name="Titulo1"   Grid.Column="1"  MaxWidth="400" MaxHeight="40"  FontSize="30" Margin="10,25,10,0" Grid.Row="1" Height="46" VerticalAlignment="Top"/>
 
-            <Label Content="Titulo" Grid.Column="0" VerticalAlignment="Top" Margin="88,18,79,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="30" Height="50" Grid.Row="1"/>
-            <TextBox x:Name="Titulo1" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="95,0,59,0"   MaxWidth="500"  FontSize="30" Height="42"/>
+            <Label x:Name="Origen" Content="Origen" Grid.Row="2" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="80,10,10,0" Height="50" VerticalAlignment="Top" RenderTransformOrigin="0.261,0.525"/>
+            <TextBox x:Name="Origen1" Grid.Row="2"  MaxWidth="400"  MaxHeight="40"  Grid.Column="1" FontSize="30"  Margin="10,20,10,10" Height="42" VerticalAlignment="Top"/>
 
-            <Label x:Name="Origen" Content="Origen" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="81,0,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="106"/>
-            <TextBox x:Name="Origen1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="95,0,59,0"  MaxWidth="500" FontSize="30" Height="42"/>
+            <Label x:Name="Numpaginas" Content="Numpaginas" Grid.Row="3" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="10,0,10,0" Height="50" VerticalAlignment="Center"/>
+            <TextBox x:Name="Numpaginas1"  MaxWidth="400" MaxHeight="40" Grid.Row="3" Grid.Column="1" FontSize="30" Margin="10,20,10,10" PreviewTextInput="Soloenteros_PreviewTextInput" Height="42" VerticalAlignment="Top" />
 
-            <Label x:Name="Numpaginas" Content="Numpaginas" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="46,0,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" RenderTransformOrigin="0.428,0.073" Grid.Row="3" Height="50" Width="188"/>
-            <TextBox x:Name="Numpaginas1" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="95,0,59,0"     MaxWidth="500" FontSize="30" Height="42"/>
+            <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="4" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="23,13,10,0" Height="52" VerticalAlignment="Top"/>
+            <TextBox x:Name="Descripcion1" MinHeight="150"  MaxWidth="400"   AcceptsReturn="True"  Grid.Row="4" Grid.Column="1" FontSize="30" Margin="10,23,10,10"  VerticalAlignment="Top" Height="112"/>
 
-            <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="175"/>
-            <TextBox x:Name="Descripcion1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="93,13,59,0"   MaxWidth="500" FontSize="30" Height="42"/>
-            <Label Content="Autores" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="44" Width="124" />
-            <xctk:CheckComboBox x:Name="Autores12"
-                    Grid.Row="1"
-                    Grid.Column="3"
-                    Margin="41,0,44,2"
-                    FontSize="30"
-                    MaxWidth="500" 
-                    FontWeight="Black"
-                    Foreground="Black"
-                     DisplayMemberPath="id_autor"
-                    ValueMemberPath="id_autor"
-                    SelectedValue="{Binding SelectedValue}"
-                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Bottom"
-            />
-            <Label Content="Codigo" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,15,0,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="58" Width="124" />
-            <TextBox x:Name="Codigo" Grid.Row="2" Grid.Column="3"   MaxWidth="500"  FontSize="30" Height="42" VerticalAlignment="Center" Margin="41,0,44,0"/>
+            <Label Content="Autores" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="43,0,10,0" Grid.Row="1" Height="50" VerticalAlignment="Center"/>
+            <xctk:CheckComboBox x:Name="Autores12"  MaxWidth="400" MaxHeight="40"  Grid.Column="3" FontSize="30" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_autor" ValueMemberPath="id_autor" SelectedValue="{Binding SelectedValue}" SelectedItemsOverride="{Binding SelectedItems}" Margin="10,25,11,0" Grid.Row="1" Height="46" VerticalAlignment="Top"/>
 
-            <Label Content="Categoria" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="158" Margin="49,0,0,0" />
+            <Label Content="Codigo" Grid.Row="2" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="61,7,10,0" Height="50" VerticalAlignment="Top"/>
+            <TextBox x:Name="Codigo" Grid.Row="2"  MaxWidth="400" MaxHeight="40"   Grid.Column="3" FontSize="30" Margin="10,20,10,0" PreviewTextInput="Soloenteros_PreviewTextInput" Height="42" VerticalAlignment="Top" />
 
-            <ComboBox x:Name="Categoria"
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    Margin="41,6,44,0"
-                    FontSize="24"
-                    MaxWidth="500"
-                    FontWeight="Black"
-                    Foreground="Black"
-                     DisplayMemberPath="id_categoria"
-                    SelectedValue="{Binding SelectedValue}"
-                     RenderTransformOrigin="0.629,0.176" Height="44" VerticalAlignment="Top"
-            />
+            <Label Content="Categoria" Grid.Row="3" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="32,8,10,0" Height="50" VerticalAlignment="Top" RenderTransformOrigin="0.225,0.517"/>
+            <ComboBox x:Name="Categoria" Grid.Row="3"  MaxWidth="400" MaxHeight="40"  Grid.Column="3" FontSize="24" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_categoria" SelectedValue="{Binding SelectedValue}" Margin="10,20,10,0" Height="38" VerticalAlignment="Top">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
 
+            <Label Content="Editorial" Grid.Row="4" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="45,14,10,0" Height="50" VerticalAlignment="Top"/>
+            <ComboBox x:Name="Editorial" Grid.Row="4"   MaxWidth="400" MaxHeight="40"  Grid.Column="3" FontSize="24" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_editorial" SelectedValue="{Binding SelectedValue}" Margin="10,23,10,0" Height="40" VerticalAlignment="Top"/>
 
-
-            <Label Content="Editorial" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="42" Width="147" Margin="55,23,0,0" />
-            <ComboBox x:Name="Editorial"
-                    Grid.Row="4"
-                    Grid.Column="3"
-                    Margin="43,13,42,0"
-                    FontSize="24"
-                    MaxWidth="500"
-                    FontWeight="Black"
-                    Foreground="Black"
-                     DisplayMemberPath="id_editorial"
-                    SelectedValue="{Binding SelectedValue}"
-                     RenderTransformOrigin="0.486,0.351" Height="44" VerticalAlignment="Top"
-            />
-            <Label Content="Edición" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="136" Margin="66,10,0,0"/>
-            <ComboBox x:Name="comboBoxEdiciones" Grid.Row="5" Grid.Column="1" Margin="93,0,65,0" Height="48" VerticalAlignment="Center">
+            <Label Content="Edición" Grid.Row="5" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="90,0,10,0" Height="59" VerticalAlignment="Center"/>
+            <ComboBox x:Name="comboBoxEdiciones"     MaxWidth="400" MaxHeight="40"  Grid.Row="5" Grid.Column="1" FontSize="24" Margin="20,33,10,0" Height="38" VerticalAlignment="Top">
                 <ComboBox.Items>
                     <ComboBoxItem Content="1° Edición" />
                     <ComboBoxItem Content="2° Edición" />
@@ -126,15 +103,17 @@
                     <ComboBoxItem Content="12° Edición" />
                 </ComboBox.Items>
             </ComboBox>
-            <Label Content="Año de edición" Grid.Row="5"  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Height="50" Width="226" Margin="0,20,0,0"/>
-            <ComboBox x:Name="comboBoxaños" Grid.Row="5" Grid.Column="3" Margin="43,0,42,0" Height="48" VerticalAlignment="Center">
+
+            <Label Content="Año de &#xD;&#xA;edición" Grid.Row="5" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="54,5,10,0" Height="90" VerticalAlignment="Top"/>
+            <ComboBox x:Name="comboBoxaños"   MaxWidth="400" MaxHeight="40" Grid.Row="5" Grid.Column="3" FontSize="24" Margin="15,33,10,0" Height="38" VerticalAlignment="Top">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button x:Name="Enviarlibro" Content="Guardar" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Height="53"  Background="#FFFD9A0D" FontSize="30" Width="144" Click="EnviarLibro_Click" Grid.Column="4" />
+            <Button x:Name="Enviarlibro"    MaxWidth="400" MaxHeight="40" Content="Guardar" Grid.Row="6" Grid.Column="3"  Background="#FFFD9A0D" FontSize="30" Click="EnviarLibro_Click" Margin="10,7,10,0"  Height="43" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
+
 </Window>

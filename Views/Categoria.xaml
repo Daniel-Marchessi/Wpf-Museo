@@ -24,41 +24,33 @@
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
             <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
 
-            </Menu>
-            <Border Background="#7182B3" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top">
-            <Grid>
+        </Menu>
+        <Grid Background="#7182B3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+            <Label Grid.Column="0" Grid.Row="1" Content="Categoria" VerticalAlignment="Top" Margin="5,10,5,0" FontWeight="Bold" Foreground="white" FontSize="30" Height="50" />
+            <TextBox x:Name="Categoria1" Grid.Column="1"  Grid.Row="1" MinWidth="250" VerticalAlignment="Top" Margin="5,10,5,0" MaxWidth="250" FontSize="30" Height="42" Width="Auto" />
+            <Button x:Name="EnviarCategoria" Click="EnviarCategoria_Click" Grid.Row="1" Grid.Column="2" Background="#ecf0f3" FontSize="30" Content="Guardar" VerticalAlignment="Top" Margin="10,10,10,0" Height="42" Width="Auto" />
+            <Label Grid.Column="3" Grid.Row="1" Content="Por Categoria" FontWeight="Bold" Foreground="White" Margin="5,10,5,0" FontSize="30" Width="Auto" />
+            <Label Grid.Column="3" Content="Buscar" FontWeight="Bold" Foreground="White" Margin="5,10,5,0" FontSize="30" Width="Auto" />
+            <TextBox x:Name="PorCategoria" Grid.Column="4" Grid.Row="1" MinWidth="250" MaxWidth="250" FontSize="24" VerticalAlignment="Top" Margin="5,10,5,0" Width="Auto" Height="42" />
+            <Button Grid.Row="1" Grid.Column="5" Background="Transparent" BorderThickness="0" FontSize="24" Click="BuscarCategoria" Margin="10,2,10,8" Width="Auto">
+                <Image Source="../img/Lupa.png" Width="52" Height="40" />
+            </Button>
+        </Grid>
 
-
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Column="0" Grid.Row="0"  Content="Categoria" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-3,41,0,0" FontWeight="Bold" Foreground="white"  FontSize="30" RenderTransformOrigin="0.378,0.403"/>
-                <TextBox x:Name="Categoria1"  Grid.Row="0" VerticalAlignment="Top" Margin="143,45,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left"/>
-                <Button x:Name="EnviarCategoria" Click="EnviarCategoria_Click"  Grid.Row="0" Grid.Column="1" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,45,0,0" Height="42" Width="192"  RenderTransformOrigin="2.015,6.747"  Grid.ColumnSpan="2" />
-                <!--<Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0"  Margin="304,-3,114,102" Height="43" Width="47" FontSize="24" Click="Refrescar" >
-                    <Image Source="../img/Refresh.png"   />
-                </Button>-->
-                <Label Grid.Column="4" Grid.Row="0" Content="Por Categoria" FontWeight="Bold"  Foreground="White" Margin="52,42,386,50"  FontSize="30" Grid.ColumnSpan="2" />
-                <Label Grid.Column="5" Content="Buscar" FontWeight="Bold"  Foreground="White" Margin="40,-6,373,98"  FontSize="30" />
-                <TextBox x:Name="PorCategoria" Grid.Column="5" Margin="260,49,130,0" FontSize="24" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.101"/>
-                <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarCategoria" Margin="506,35,56,63" RenderTransformOrigin="0.543,0.472" >
-                    <Image Source="../img/Lupa.png" Width="52" RenderTransformOrigin="0.405,-0.16" Height="40" />
-                </Button>
-            </Grid>
-        </Border>
 
         <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="10,207,10,10" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns >

@@ -26,8 +26,8 @@
             <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
 
         </Menu>
-        <Border Background="#7182B3" HorizontalAlignment="Left" Margin="34,53,0,0" VerticalAlignment="Top">
-            <Grid>
+        <Border Background="#7182B3" Margin="0,60,0,0" VerticalAlignment="Top">
+            <Grid Width="1154">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -36,8 +36,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+
 
 
                 </Grid.ColumnDefinitions>
@@ -46,16 +45,16 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0"  Content="Editorial" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,42,0,0" FontWeight="Bold" Foreground="white"  FontSize="30"/>
-                <TextBox x:Name="Editorial1"  Grid.Row="0" VerticalAlignment="Top" Margin="143,45,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left"/>
-                <Button x:Name="EnviarEditorial" Grid.Row="0" Grid.Column="1" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,45,0,0" Height="42" Width="192"  RenderTransformOrigin="2.015,6.747" Click="EnviarEditorial_Click" Grid.ColumnSpan="2" />
+                <Label Grid.Row="0"  Content="Editorial" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,43,0,0" FontWeight="Bold" Foreground="white"  FontSize="30"/>
+                <TextBox x:Name="Editorial1"  Grid.Column="1" VerticalAlignment="Top" Margin="10,47,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left"/>
+                <Button x:Name="EnviarEditorial" Grid.Column="2" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" Height="42" Width="182"  RenderTransformOrigin="2.015,6.747" Click="EnviarEditorial_Click" />
                 <!--<Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0"  Margin="304,-3,114,102" Height="43" Width="47" FontSize="24" Click="Refrescar" >
                     <Image Source="../img/Refresh.png"   />
                 </Button>-->
-                <Label Grid.Column="4" Grid.Row="0" Content="Por Editorial" FontWeight="Bold"  Foreground="White" Margin="52,42,386,50"  FontSize="30" Grid.ColumnSpan="2" />
-                <Label Grid.Column="5" Content="Buscar" FontWeight="Bold"  Foreground="White" Margin="28,-6,385,98"  FontSize="30" />
-                <TextBox x:Name="PorEditorial" Grid.Column="5" Margin="260,49,130,0" FontSize="24" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.101"/>
-                <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorEditorial" Margin="506,35,56,63" RenderTransformOrigin="0.543,0.472" >
+                <Label Grid.Column="5" Grid.Row="0" Content="Por Editorial" FontWeight="Bold"  Foreground="White" Margin="10,42,421,50"  FontSize="30" />
+                <Label Grid.Column="5" Content="Buscar por" FontWeight="Bold"  Foreground="White" Margin="10,-6,403,98"  FontSize="30" />
+                <TextBox x:Name="PorEditorial" Grid.Column="5" Margin="200,49,190,0" FontSize="24" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.101"/>
+                <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorEditorial" Margin="431,45,131,53" RenderTransformOrigin="0.543,0.472" >
                     <Image Source="../img/Lupa.png" Width="52" RenderTransformOrigin="0.405,-0.16" Height="40" />
                 </Button>
             </Grid>

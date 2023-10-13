@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Museoapp")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Museo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Museoapp")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Museoapp")]
+[assembly: System.Reflection.AssemblyProductAttribute("Museo")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Museo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.

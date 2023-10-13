@@ -1,0 +1,23 @@
+﻿<Window x:Class="Museo.Views.historialdeusuarios"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museo.Views"
+        mc:Ignorable="d"
+        Title="historialdeusuarios" Height="600" ResizeMode="NoResize" MaxHeight="600" MaxWidth="600" Width="600" WindowStartupLocation="CenterScreen">
+    <Grid Background="#7182B3">
+
+        <DataGrid x:Name="dataGrid" IsReadOnly="True" CanUserResizeColumns="False"  AutoGenerateColumns="False" Height="363" Margin="27,117,27,0" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Rol" Binding="{Binding RolUsuario1}" Width="1*" />
+                <DataGridTextColumn Header="Nombre de Usuario" Binding="{Binding Usuario}"  Width="1*"/>
+                <DataGridTextColumn Header="Acceso Al sistema" Binding="{Binding FechaHoraAcceso}"  Width="1*"/>
+                <DataGridTextColumn Header="Salida del sistema" Binding="{Binding FechaHoraSalida}"  Width="1*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="HISTORIAL DE USUARIOS" Foreground="White" FontSize="30" Margin="0,48,0,0" HorizontalAlignment="Center" Width="350" Height="45" VerticalAlignment="Top" />
+        <Button Content="Limpiar Registros" Click="EliminarRegistros_Click" Margin="412,518,27,0" Height="38" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

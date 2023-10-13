@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
          Icon="../ico/Colecciones.ico"
-        WindowState="Maximized"
-        
-        Title="Colecciones" MinWidth="1100" MinHeight="800" WindowStartupLocation="CenterScreen"  Background="#7182B3" >
+         WindowState="Maximized"
+        Title="Colecciones" MinWidth="800" MinHeight="600" WindowStartupLocation="CenterScreen"  Background="#7182B3" >
 
 
     <Grid>
@@ -30,57 +29,49 @@
 
         </Menu>
 
-        <Border   Margin="10,102,10,0" VerticalAlignment="Top">
-            <Grid>
+        <Grid Margin="0,101,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+            <Label x:Name="Busqueda" Grid.Column="0" Content="Busqueda" VerticalAlignment="Center"  FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24" Margin="40,0,40,0" />
+            <ComboBox x:Name="Busqueda1"  MinWidth="150" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,0" MaxWidth="300" FontSize="24" Height="36">
+                <ComboBox.Items>
+                    <ComboBoxItem Content="Nombre" />
+                    <ComboBoxItem Content="Titulo_Alias" />
+                    <ComboBoxItem Content="Cultura" />
+                    <ComboBoxItem Content="Autor" />
+                </ComboBox.Items>
+            </ComboBox>
+            <TextBox x:Name="search" Margin="10,0,10,0" Width="300" MinWidth="300" Text=""  FontSize="24" Height="36" Grid.Column="2" />
 
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <Label x:Name="Busqueda" Content="Busqueda" VerticalAlignment="Top" Margin="557,-61,396,0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="24"/>
-                <ComboBox x:Name="Busqueda1" VerticalAlignment="Top"  Margin="1030,-55,0,0"    MaxWidth="500" FontSize="24"  Width="164" HorizontalAlignment="Left" Height="36" Grid.ColumnSpan="10">
-                    <ComboBox.Items>
-                        <ComboBoxItem Content="Nombre" />
-                        <ComboBoxItem Content="Titulo_Alias" />
-                        <ComboBoxItem Content="Cultura" />
-                        <ComboBoxItem Content="Autor" />
-                    </ComboBox.Items>
-                </ComboBox>
-                <Button Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorTitulo" Margin="186,-68,0,0" HorizontalAlignment="Left" Width="76" Height="42" VerticalAlignment="Top" Grid.Column="9" >
-                    <Image Source="../img/Lupa.png" Width="76" Height="48" />
-                </Button>
-                <TextBox  x:Name="search" Text=""  Width="302" Margin="711,-55,0,0"  FontSize="24" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top"/>
+            <Button Background="Transparent" BorderThickness="0" FontSize="24" Click="BuscarPorTitulo" Margin="10,0,-20,0" Height="42" VerticalAlignment="Center" Grid.Column="3" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Image Source="../img/Lupa.png" Width="53" Height="42" />
+            </Button>
+        </Grid>
 
 
-
-
-            </Grid>
-        </Border>
-
-
-        <DataGrid x:Name="dataGrid" Margin="10,148,10,10"  FontSize="20" Foreground="Black" IsReadOnly="True" CanUserAddRows="False" ColumnWidth="SizeToCells" >
+        <DataGrid x:Name="dataGrid" Margin="10,148,10,50"  FontSize="20" Foreground="Black" IsReadOnly="True" CanUserAddRows="False" ColumnWidth="SizeToCells" >
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto"/>
                 <DataGridTextColumn Header="Cantidad" Binding="{Binding Cantidad}" Width="auto" />
                 <DataGridTextColumn Header="Titulo Alias" Binding="{Binding Titulo_alias}" Width="auto" />
-                <DataGridTextColumn Header="Cultura" Binding="{Binding Lugar_proce}" Width="auto"/>
+                <DataGridTextColumn Header="Cultura" Binding="{Binding Cultura}" Width="auto"/>
                 <DataGridTextColumn Header="Periodo" Binding="{Binding Periodo}" Width="auto"/>
                 <DataGridTextColumn Header="Alto" Binding="{Binding Alto}" Width="auto"/>
                 <DataGridTextColumn Header="Ancho" Binding="{Binding Ancho}" Width="auto"/>
