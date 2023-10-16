@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using Museoapp.Models;
+using Museoapp.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +17,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 namespace Museo.Views
 {
     /// <summary>
@@ -43,6 +44,8 @@ namespace Museo.Views
             Cultura.Text = cultura;
             Titulo_alias.Text = titulo;
             id_coleccion.Text = id.ToString();
+            getAutor();
+            getMateriales();
 
         }
         private void EditImagen_Click(object sender, RoutedEventArgs e)
@@ -70,6 +73,101 @@ namespace Museo.Views
                 }
             }
         }
+
+
+
+        public void getAutor()
+
+        {
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
+
+
+
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+
+
+
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                var autor = new Autores
+                {
+                    id_autor = Convert.ToInt32(reader["id_autor"]),
+
+                    NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString(),
+
+
+                };
+                MessageBox.Show(autor.id_autor.ToString());
+
+                Autores12.Items.Add(autor);
+            }
+
+            Autores12.DisplayMemberPath = "NombreCompleto";
+            Autores12.SelectedValue = "id_autor";
+
+            //int idSeleccionado = Convert.ToInt32(Materiales.SelectedValue);
+
+            //int idAutorSelecccionado = Convert.ToInt32(Autores.SelectedValue);
+            //int idAutorSelec = (int)Autores.SelectedValue;
+            conexion.Close();
+        }
+
+        public void getMateriales()
+        {
+
+            var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
+            conexion.Open();
+
+            string query = "SELECT [Nombre], [id_material] FROM [dbo].[Material]";
+
+
+            SqlCommand comand = new SqlCommand(query, conexion);
+
+
+
+
+
+            SqlDataReader reader = comand.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                var material = new Materiales
+                {
+                    id_material = Convert.ToInt32(reader["id_material"]),
+
+                    Nombre = reader["Nombre"].ToString(),
+
+                };
+                MessageBox.Show(material.id_material.ToString());
+                MessageBox.Show(material.Nombre.ToString());
+
+                Materiales12.Items.Add(material);
+            }
+
+            Materiales12.DisplayMemberPath = "Nombre";
+            Materiales12.SelectedValue = "id_autor";
+
+            //int idSeleccionado = Convert.ToInt32(Materiales.SelectedValue);
+
+            //int idAutorSelecccionado = Convert.ToInt32(Autores.SelectedValue);
+            //int idAutorSelec = (int)Autores.SelectedValue;
+            conexion.Close();
+
+
+
+        }
+
+
+
         private void Editar_Coleccion(object sender, RoutedEventArgs e)
         {
             // Obtener los valores editados de los TextBox
@@ -92,14 +190,26 @@ namespace Museo.Views
             int idColeccion = Convert.ToInt32(id_coleccion.Text.Trim());
 
             // Realizar las operaciones de actualización en la base de datos
+
             string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             string queryUpdate = "UPDATE Coleccion SET Nombre = @Nombre, Cantidad = @Cantidad, Periodo = @Periodo," +
                 " Alto = @Alto,  Ancho = @Ancho,  Diametro = @Diametro, Url = @Url, Largo = @Largo, Ingreso = @Ingreso," +
-                "Conservacion = @Conservacion, Ubicacion = @Ubicacion, Integridad = @Integridad, Lugar = @Lugar, Titulo = @Titulo " +
+                "Conservacion = @Conservacion, Ubicacion = @Ubicacion, Integridad = @Integridad, Cultura = @Cultura, Titulo = @Titulo " +
                 "WHERE Coleccion_id = @idColeccion";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+
+                //query para tabla intermedia
+                string queryAutor = "UPDATE Coleccion_Autor SET id_autor = @IdAutor WHERE id_coleccion = @idColeccion";
+
+                //Tabla intemedia de materiales 
+                string queryMaterial = "UPDATE Coleccion_Material SET id_material = @id_Material WHERE id_coleccion = @idColeccion";
+
+                SqlCommand commandMaterial = new SqlCommand(queryMaterial, connection);
+
+                SqlCommand comandAutor = new SqlCommand(queryAutor, connection);
+
                 SqlCommand comand = new SqlCommand(queryUpdate, connection);
                 comand.Parameters.AddWithValue("@Nombre", nuevoNombre);
                 comand.Parameters.AddWithValue("@Cantidad", nuevaCantidad);
@@ -113,15 +223,46 @@ namespace Museo.Views
                 comand.Parameters.AddWithValue("@Conservacion", nuevoConservacion);
                 comand.Parameters.AddWithValue("@Ubicacion", nuevoUbicacion);
                 comand.Parameters.AddWithValue("@Integridad", nuevoIntegridad);
-                comand.Parameters.AddWithValue("@Lugar", nuevoCultura);
+                comand.Parameters.AddWithValue("@Cultura", nuevoCultura);
                 comand.Parameters.AddWithValue("@Titulo", nuevoTitulo);
                 comand.Parameters.AddWithValue("@idColeccion", idColeccion);
 
                 connection.Open();
                 comand.ExecuteNonQuery();
+
+
+
+
+                foreach (Autores item in Autores12.SelectedItems)
+                {
+
+                    int idAutores = Convert.ToInt32(item.id_autor);
+
+                    //MessageBox.Show(idAutores.ToString());
+                    comandAutor.Parameters.AddWithValue("@IdAutor", idAutores);
+                    comandAutor.Parameters.AddWithValue("@idColeccion", idColeccion);
+                    comandAutor.ExecuteNonQuery();
+
+                }
+
+                foreach (Materiales item in Materiales12.SelectedItems)
+                {
+
+                    int id_mateteriales = Convert.ToInt32(item.id_material);
+
+                    //MessageBox.Show(id_mateteriales.ToString());
+                    commandMaterial.Parameters.AddWithValue("@id_Material", id_mateteriales);
+                    commandMaterial.Parameters.AddWithValue("@idColeccion", idColeccion);
+                    commandMaterial.ExecuteNonQuery();
+
+                }
+
+
+
             }
             // Mostrar un mensaje o realizar cualquier otra acción después de guardar los cambios //EVITAR AMBIGUEDAD SYSTEM.WINDOWS
             System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
+           
             // Cerrar la ventana de edición
             this.Close();
         }

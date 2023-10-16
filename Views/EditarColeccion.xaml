@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Museo.Views"
+        xmlns:local="clr-namespace:Museo.Views" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="EditarColeccion" Height="600" Width="1000">
     <Grid Background="#7182B3">
@@ -36,20 +36,37 @@
         <Label Content="Titulo/Alias" HorizontalAlignment="Left" Height="30" Margin="275,327,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Titulo_alias" HorizontalAlignment="Left" Height="42" Margin="275,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Autores" HorizontalAlignment="Left" Height="30" Margin="500,327,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <ComboBox Name="autoresComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="500,360,0,0" Height="42" Width="186">
-            <ComboBoxItem Content="Autor 1"/>
-            <ComboBoxItem Content="Autor 2"/>
-            <ComboBoxItem Content="Autor 3"/>
-        </ComboBox>
+
         <Label Content="Materiales" HorizontalAlignment="Left" Height="30" Margin="738,330,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <ComboBox Name="materialesComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="738,360,0,0" Height="42" Width="186">
-            <ComboBoxItem Content="Autor 1"/>
-            <ComboBoxItem Content="Autor 2"/>
-            <ComboBoxItem Content="Autor 3"/>
-        </ComboBox>
+
         <Button Content="Guardar"  Click="Editar_Coleccion" Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="788,421,0,0" VerticalAlignment="Top" Width="136" />
         <TextBox x:Name="id_coleccion"   IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="545,483,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
         <TextBox x:Name="Urlfoto" HorizontalAlignment="Left" Height="42" Margin="314,483,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+
+        <xctk:CheckComboBox x:Name="Autores12"
+                    Margin="500,362,314,0"
+                    FontSize="30"
+                    MaxWidth="500" 
+                    FontWeight="Black"
+                    Foreground="Black"
+                     DisplayMemberPath="id_autor"
+                    ValueMemberPath="id_autor"
+                    SelectedValue="{Binding SelectedValue}"
+                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top"
+            />
+
+        <xctk:CheckComboBox x:Name="Materiales12"
+                    Margin="738,362,76,0"
+                    FontSize="30"
+                    MaxWidth="500" 
+                    FontWeight="Black"
+                    Foreground="Black"
+                     DisplayMemberPath="id_material"
+                    ValueMemberPath="id_material"
+                    SelectedValue="{Binding SelectedValue}"
+                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top"
+            />
+
 
     </Grid>
 </Window>

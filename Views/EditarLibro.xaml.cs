@@ -33,12 +33,12 @@ namespace Museo.Views
             InitializeComponent();
             id_libro.Text = idlibro.ToString();
             Titulo.Text = tit.ToString();
-            Origen.Text = origen.ToString();    
+            Origen.Text = origen.ToString();
             N_paginas.Text = n_pag.ToString();
             Descripcion.Text = desc.ToString();
             Edicion.Text = edicion.ToString();
             AnioEdicion.Text = anio.ToString();
-          //  Autores.Text = autores.ToString();
+            //  Autores.Text = autores.ToString();
             Codigo.Text = codigo.ToString();
             getAutor();
 
@@ -66,6 +66,7 @@ namespace Museo.Views
                     NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString(),
 
                 };
+                MessageBox.Show(autor.id_autor.ToString());
 
                 Autores12.Items.Add(autor);
             }
@@ -84,18 +85,19 @@ namespace Museo.Views
 
         private void Enviar(object sender, RoutedEventArgs e)
         {
-          
+
             int id_Libro = Convert.ToInt32(id_libro.Text);
-            string titulo = Convert.ToString(Titulo.Text);  
+            string titulo = Convert.ToString(Titulo.Text);
             string origen = Convert.ToString(Origen.Text);
             string desc = Convert.ToString(Descripcion.Text);
             string edicion = Convert.ToString(Edicion.Text);
             string n_pag = Convert.ToString(N_paginas.Text);
             string anio = Convert.ToString(AnioEdicion.Text);
-          //  string autores = Convert.ToString(Autores.Text);
+            //  string autores = Convert.ToString(Autores.Text);
             string cod = Convert.ToString(Codigo.Text);
 
             //// Realizar las operaciones de actualización en la base de datos
+
             string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
             string queryUpdate = "UPDATE LIBROS SET Titulo = @Titulo, Origen = @Origen, Descripcion = @Descripcion, Edicion = @Edicion, " +
                 " N_paginas = @N_paginas, AnioEdicion = @AnioEdicion, Codigo = @Codigo  WHERE id_libro = @id_libro";
@@ -114,13 +116,13 @@ namespace Museo.Views
                 SqlCommand comandLibro = new SqlCommand(queryLibros, connection);
 
                 commandUpdate.Parameters.AddWithValue("@Titulo", titulo);
-                commandUpdate.Parameters.AddWithValue("@Origen", origen );
-                commandUpdate.Parameters.AddWithValue("@Descripcion",desc );
+                commandUpdate.Parameters.AddWithValue("@Origen", origen);
+                commandUpdate.Parameters.AddWithValue("@Descripcion", desc);
                 commandUpdate.Parameters.AddWithValue("@Edicion", edicion);
-               commandUpdate.Parameters.AddWithValue("@N_paginas", n_pag );
-               commandUpdate.Parameters.AddWithValue("@AnioEdicion", anio );
-               commandUpdate.Parameters.AddWithValue("@Codigo", cod );
-               commandUpdate.Parameters.AddWithValue("@id_libro", id_Libro );
+                commandUpdate.Parameters.AddWithValue("@N_paginas", n_pag);
+                commandUpdate.Parameters.AddWithValue("@AnioEdicion", anio);
+                commandUpdate.Parameters.AddWithValue("@Codigo", cod);
+                commandUpdate.Parameters.AddWithValue("@id_libro", id_Libro);
 
                 // commandUpdate.Parameters.AddWithValue("@Codigo", cod );
 
@@ -143,7 +145,7 @@ namespace Museo.Views
 
                 commandUpdate.ExecuteNonQuery();
             }
-            
+
             ////     Mostrar un mensaje o realizar cualquier otra acción después de guardar los cambios //EVITAR AMBIGUEDAD SYSTEM.WINDOWS
             //System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
             //// Cerrar la ventana de edición
@@ -152,6 +154,6 @@ namespace Museo.Views
             this.Close();
         }
 
-       
+
     }
 }
