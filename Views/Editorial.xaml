@@ -24,6 +24,7 @@
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
             <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
+            <MenuItem x:Name="Carpetas" Header="Carpeta" Click="CrearCarpeta_Click"/>
 
         </Menu>
         <Border Background="#7182B3" Margin="0,60,0,0" VerticalAlignment="Top">
@@ -46,7 +47,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0"  Content="Editorial" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,43,0,0" FontWeight="Bold" Foreground="white"  FontSize="30"/>
-                <TextBox x:Name="Editorial1"  Grid.Column="1" VerticalAlignment="Top" Margin="10,47,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left"/>
+                <TextBox x:Name="Editorial1"  Grid.Column="1" VerticalAlignment="Top" Margin="10,47,0,0"  Width="273"  MaxWidth="500"  FontSize="30" HorizontalAlignment="Left" PreviewTextInput="Editorial_PreviewTextInput"/>
                 <Button x:Name="EnviarEditorial" Grid.Column="2" Background=" #ecf0f3" FontSize="30" Content="Guardar" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" Height="42" Width="182"  RenderTransformOrigin="2.015,6.747" Click="EnviarEditorial_Click" />
                 <!--<Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0"  Margin="304,-3,114,102" Height="43" Width="47" FontSize="24" Click="Refrescar" >
                     <Image Source="../img/Refresh.png"   />
@@ -71,13 +72,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="auto">
+                <!--<DataGridTemplateColumn  Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

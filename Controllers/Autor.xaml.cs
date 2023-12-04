@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +20,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
-using Museo.Controllers;
 using Xceed.Wpf.Toolkit;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
@@ -90,11 +90,19 @@ namespace Museoapp.Views
             this.Close();
         }
 
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
 
         private void ListaAutores_Loaded(object sender, RoutedEventArgs e)
         {
             Autorizaciones autorizaciones = new Autorizaciones();
-            DataGridColumn columnaAEditar = dataGrid.Columns[3];
+            DataGridColumn columnaAEditar = null;
             DataGridColumn columnaAEliminar = dataGrid.Columns[2];
             autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
             ListarAutores();
@@ -253,20 +261,16 @@ namespace Museoapp.Views
         private void  SoloString_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
 
-            if (!char.IsLetter(e.Text[0]) && !char.IsWhiteSpace(e.Text[0]))
+            var textBox = sender as TextBox;
+
+            // Si se ingresó un carácter que no es una letra, bloquea la entrada
+            if (!Regex.IsMatch(e.Text, @"[a-zA-Z]"))
             {
                 e.Handled = true;
             }
         }
 
-        private void Editar_Click(object sender, RoutedEventArgs e) { }
 
-        public partial class EditarAutor : Window
-        {
-            public EditarAutor()
-            {
-              
-            }
-        }
+
     }
 }

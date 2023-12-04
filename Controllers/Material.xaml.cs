@@ -20,7 +20,7 @@ using System.Windows.Shapes;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
 using Museo.Controllers;
-
+using System.Text.RegularExpressions;
 
 namespace Museoapp.Views
 {
@@ -90,10 +90,20 @@ namespace Museoapp.Views
         }
 
 
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
+
         private void ListaMateriales_Loaded(object sender, RoutedEventArgs e)
         {
             Autorizaciones autorizaciones = new Autorizaciones();
-            DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            //DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            DataGridColumn columnaAEditar = null;
             DataGridColumn columnaAEliminar = dataGrid.Columns[1];
             autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
             ListarMateriales();
@@ -139,6 +149,17 @@ namespace Museoapp.Views
             Materiales materialin = new Materiales();
 
 
+
+
+            string insertQuery = "INSERT INTO Material (Nombre) VALUES (@Nombre)";
+            SqlCommand insertComando = new SqlCommand(insertQuery, conexion);
+
+            TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
+            materialin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
+
+            insertComando.Parameters.AddWithValue("@Nombre", materialin.Nombre);
+
+
             if (materialin.Nombre == "")
             {
                 MessageBox.Show("El Material debe tener un nombre");
@@ -146,26 +167,16 @@ namespace Museoapp.Views
             }
             else
             {
-
-
                 int count = (int)verificarComando.ExecuteScalar();
-
                 if (count > 0)
                 {
                     MessageBox.Show("El material ya existe");
                 }
                 else
                 {
-                    string insertQuery = "INSERT INTO Material (Nombre) VALUES (@Nombre)";
-                    SqlCommand insertComando = new SqlCommand(insertQuery, conexion);
-
-                    TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
-                    materialin.Nombre = Mayuscula.ToTitleCase(Nombre1.Text.ToLower());
-
-                    insertComando.Parameters.AddWithValue("@Nombre", materialin.Nombre);
 
                     insertComando.ExecuteNonQuery();
-                    MessageBox.Show("Se ingresó un material");
+                    MessageBox.Show("Se ingresó un material correctamente");
                 }
 
                 conexion.Close();
@@ -239,14 +250,16 @@ namespace Museoapp.Views
                 }
             }
         }
-        private void Editar_Click(Object sender, RoutedEventArgs e) {
-            
-        }
-        public partial class EditarMaterial : Window
+
+
+        private void Material_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            public EditarMaterial()
+            var textBox = sender as TextBox;
+
+            // Si se ingresó un carácter que no es una letra, bloquea la entrada
+            if (!Regex.IsMatch(e.Text, @"[a-zA-Z]"))
             {
-              
+                e.Handled = true;
             }
         }
 

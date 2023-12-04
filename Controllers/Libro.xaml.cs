@@ -95,6 +95,16 @@ namespace Museoapp.Views
             this.Close();
         }
 
+
+
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
         private void TraerAutores()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
@@ -209,10 +219,24 @@ namespace Museoapp.Views
                 librin.Descripcion = Mayuscula.ToTitleCase(Descripcion1.Text.ToLower());
                 librin.Edicion = Mayuscula.ToTitleCase(comboBoxEdiciones.Text.ToLower());
                 librin.AnioEdicion = Mayuscula.ToTitleCase(comboBoxaños.Text.ToLower());
-              
-                librin.CategoriaId = ((Categorias)Categoria.SelectedItem).id_categoria;
-                librin.EditorialId = ((Editoriales)Editorial.SelectedItem).Editorial_id;
-               
+
+                if (Categoria.SelectedItem != null)
+                {
+                    librin.CategoriaId = ((Categorias)Categoria.SelectedItem).id_categoria;
+                }
+                else
+                {
+                    librin.CategoriaId = null; 
+                }
+
+                if (Editorial.SelectedItem != null)
+                {
+                    librin.EditorialId = ((Editoriales)Editorial.SelectedItem).Editorial_id;
+                }
+                else
+                {
+                    librin.EditorialId = null; 
+                }
 
                 //Primero que nada vamos a verificar que basicamente si mandamos un campo vacio se manda como null y genera error por lo tanto
                 //SETEAMOS UN 0 en el campo NUMPAGINAS
@@ -246,9 +270,6 @@ namespace Museoapp.Views
                     else
                     {
                         librin.Codigo = Convert.ToInt32(Codigo.Text);
-
-
-
                         // POR OTRA PARTE SE CONTROLA QUE NO HAYAN REGISTROS IGUALES
                         string registrosrepetidos = "SELECT COUNT(*) FROM Libros WHERE Codigo = @Codigo";
                         SqlCommand repetido = new SqlCommand(registrosrepetidos, conexion);
@@ -264,7 +285,7 @@ namespace Museoapp.Views
                         }
                         else
                         {
-                            Xceed.Wpf.Toolkit.MessageBox.Show("Se ingresó un Libro");
+                            Xceed.Wpf.Toolkit.MessageBox.Show("Se ingresó un Libro correctamente");
                             LimpiarCampos();
                         }
 
@@ -276,8 +297,31 @@ namespace Museoapp.Views
                         comand.Parameters.AddWithValue("@Edicion", librin.Edicion);
                         comand.Parameters.AddWithValue("@AnioEdicion", librin.AnioEdicion);
                         comand.Parameters.AddWithValue("@Codigo", librin.Codigo);
-                        comand.Parameters.AddWithValue("@Categoria_id", librin.CategoriaId);
-                        comand.Parameters.AddWithValue("@Editorial_id", librin.EditorialId);
+  
+
+                        // Manejo de parámetros que pueden ser nulos
+                        if (librin.CategoriaId.HasValue)
+                        {
+                            comand.Parameters.AddWithValue("@Categoria_id", librin.CategoriaId.Value);
+                        }
+                        else
+                        {
+                            // Si CategoriaId es nulo, asignamos DBNull.Value
+                            comand.Parameters.AddWithValue("@Categoria_id", DBNull.Value);
+                        }
+
+                        if (librin.EditorialId.HasValue)
+                        {
+                            comand.Parameters.AddWithValue("@Editorial_id", librin.EditorialId.Value);
+                        }
+                        else
+                        {
+                            // Si EditorialId es nulo, asignamos DBNull.Value
+                            comand.Parameters.AddWithValue("@Editorial_id", DBNull.Value);
+                        }
+
+
+
 
                         int idLibro = Convert.ToInt32(comand.ExecuteScalar());
                         //Ejecutar el INSERT para el libro y obtener el ID del libro insertado

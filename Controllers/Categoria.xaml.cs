@@ -20,6 +20,7 @@ using WpfAppTEST.Views;
 using Museo.Controllers;
 using System.Globalization;
 using System.Windows.Media.Media3D;
+using System.Text.RegularExpressions;
 
 namespace Museo.Views
 {
@@ -89,13 +90,20 @@ namespace Museo.Views
             this.Close();
         }
 
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
 
+            carpeta.Show();
+            this.Close();
+
+        }
 
 
         private void ListaCategorias_Loaded(object sender, RoutedEventArgs e)
         {
             Autorizaciones autorizaciones = new Autorizaciones();
-            DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            DataGridColumn columnaAEditar = null;
             DataGridColumn columnaAEliminar = dataGrid.Columns[1];
             autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
             ListarCategorias();
@@ -173,12 +181,18 @@ namespace Museo.Views
                     insertCommand.ExecuteNonQuery();
 
                     MessageBox.Show("Se ingresó una Categoria");
-                    Categoria1.Text = "";
+                    LimpiarCampos();
                     ListarCategorias();
                 }
             }
         }
-       
+
+        private void LimpiarCampos()
+        {
+            Categoria1.Text = "";
+
+        }
+
         private void BuscarCategoria(object sender, RoutedEventArgs e)
         {
 
@@ -256,9 +270,15 @@ namespace Museo.Views
                 }
        }
 
-        private void Editar_Click(object sender, RoutedEventArgs e)
+        private void Categoria_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            var textBox = sender as TextBox;
 
+            // Si se ingresó un carácter que no es una letra, bloquea la entrada
+            if (!Regex.IsMatch(e.Text, @"[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
         }
 
     }

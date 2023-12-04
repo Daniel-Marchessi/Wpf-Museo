@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,9 +26,13 @@ namespace Museo.Views
     public partial class EditarColeccion : Window
     {
 
-        public EditarColeccion(string nombre, int cantidad, string periodo, int alto, int ancho, double diametro, string url,
+        public EditarColeccion(string nombre, int cantidad, string periodo, int alto, int ancho, decimal diametro, string url,
         int largo, string ingreso, string conservacion, string ubicacion, string integridad, string cultura, string titulo, int id)
         {
+
+            CultureInfo culture = new CultureInfo("en-US");
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
             InitializeComponent();
             Nombre.Text = nombre;
             Cantidad.Text = cantidad.ToString();
@@ -73,25 +78,13 @@ namespace Museo.Views
                 }
             }
         }
-
-
-
         public void getAutor()
 
         {
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-
             string query = "SELECT [Nombre],[id_autor], [Apellido] FROM [dbo].[Autor]";
-
-
-
             SqlCommand comand = new SqlCommand(query, conexion);
-
-
-
-
-
             SqlDataReader reader = comand.ExecuteReader();
 
 
@@ -105,7 +98,6 @@ namespace Museo.Views
 
 
                 };
-                MessageBox.Show(autor.id_autor.ToString());
 
                 Autores12.Items.Add(autor);
             }
@@ -119,25 +111,14 @@ namespace Museo.Views
             //int idAutorSelec = (int)Autores.SelectedValue;
             conexion.Close();
         }
-
         public void getMateriales()
         {
 
             var conexion = new SqlConnection("server=DESKTOP-TI2N3QM; database=Museo1 ; integrated security = true");
             conexion.Open();
-
             string query = "SELECT [Nombre], [id_material] FROM [dbo].[Material]";
-
-
             SqlCommand comand = new SqlCommand(query, conexion);
-
-
-
-
-
             SqlDataReader reader = comand.ExecuteReader();
-
-
             while (reader.Read())
             {
                 var material = new Materiales
@@ -147,8 +128,6 @@ namespace Museo.Views
                     Nombre = reader["Nombre"].ToString(),
 
                 };
-                MessageBox.Show(material.id_material.ToString());
-                MessageBox.Show(material.Nombre.ToString());
 
                 Materiales12.Items.Add(material);
             }
@@ -161,27 +140,26 @@ namespace Museo.Views
             //int idAutorSelecccionado = Convert.ToInt32(Autores.SelectedValue);
             //int idAutorSelec = (int)Autores.SelectedValue;
             conexion.Close();
-
-
-
         }
-
-
-
         private void Editar_Coleccion(object sender, RoutedEventArgs e)
         {
             // Obtener los valores editados de los TextBox
             TextInfo Mayuscula = CultureInfo.CurrentCulture.TextInfo;
             string nuevoNombre = Mayuscula.ToTitleCase(Nombre.Text.ToLower());
-            int nuevaCantidad = Convert.ToInt32(Cantidad.Text);
+            //int nuevaCantidad = Convert.ToInt32(Cantidad.Text);
             string nuevoPeriodo = Mayuscula.ToTitleCase(Periodo.Text.ToLower());
-            int nuevoAlto = Convert.ToInt32(Alto.Text);
-            int nuevoAncho = Convert.ToInt32(Ancho.Text);
-            double nuevoDiametro = Convert.ToDouble(Diametro.Text);
-            string nuevourl = Mayuscula.ToTitleCase(Urlfoto.Text.ToLower());
-            int nuevoLargo = Convert.ToInt32(Largo.Text);
-            string nuevoIngreso = Mayuscula.ToTitleCase(Ingreso.Text.ToLower());
+            //int nuevoAlto = Convert.ToInt32(Alto.Text);
+            //int nuevoAncho = Convert.ToInt32(Ancho.Text);
+            decimal nuevoDiametro;
+            int nuevaCantidad;
+            int nuevoAlto;
+            int nuevoAncho;
+            int nuevoLargo;
+            //double nuevoDiametro = Convert.(Diametro.Text);
 
+            string nuevourl = Mayuscula.ToTitleCase(Urlfoto.Text.ToLower());
+            //int nuevoLargo = Convert.ToInt32(Largo.Text);
+            string nuevoIngreso = Mayuscula.ToTitleCase(Ingreso.Text.ToLower());
             string nuevoConservacion = Mayuscula.ToTitleCase(Conservacion.Text.ToLower());
             string nuevoUbicacion = Mayuscula.ToTitleCase(Ubicacion.Text.ToLower());
             string nuevoIntegridad = Mayuscula.ToTitleCase(Integridad.Text.ToLower());
@@ -189,82 +167,163 @@ namespace Museo.Views
             string nuevoTitulo = Mayuscula.ToTitleCase(Titulo_alias.Text.ToLower());
             int idColeccion = Convert.ToInt32(id_coleccion.Text.Trim());
 
-            // Realizar las operaciones de actualización en la base de datos
+            int cantid;
 
-            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
-            string queryUpdate = "UPDATE Coleccion SET Nombre = @Nombre, Cantidad = @Cantidad, Periodo = @Periodo," +
-                " Alto = @Alto,  Ancho = @Ancho,  Diametro = @Diametro, Url = @Url, Largo = @Largo, Ingreso = @Ingreso," +
-                "Conservacion = @Conservacion, Ubicacion = @Ubicacion, Integridad = @Integridad, Cultura = @Cultura, Titulo = @Titulo " +
-                "WHERE Coleccion_id = @idColeccion";
+            //out cantid es una forma de pasar una variable por referencia. Si la conversión tiene éxito, TryParse() 
+            //    asignará el valor convertido a cantid, y la función devolverá true para indicar que la conversión 
+            //    fue exitosa.Si la conversión falla, cantid se establecerá en 0 por defecto y la función devolverá
+            //    false para indicar que la conversión no fue exitosa.
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (int.TryParse(Cantidad.Text, out cantid))
             {
-
-                //query para tabla intermedia
-                string queryAutor = "UPDATE Coleccion_Autor SET id_autor = @IdAutor WHERE id_coleccion = @idColeccion";
-
-                //Tabla intemedia de materiales 
-                string queryMaterial = "UPDATE Coleccion_Material SET id_material = @id_Material WHERE id_coleccion = @idColeccion";
-
-                SqlCommand commandMaterial = new SqlCommand(queryMaterial, connection);
-
-                SqlCommand comandAutor = new SqlCommand(queryAutor, connection);
-
-                SqlCommand comand = new SqlCommand(queryUpdate, connection);
-                comand.Parameters.AddWithValue("@Nombre", nuevoNombre);
-                comand.Parameters.AddWithValue("@Cantidad", nuevaCantidad);
-                comand.Parameters.AddWithValue("@Periodo", nuevoPeriodo);
-                comand.Parameters.AddWithValue("@Alto", nuevoAlto);
-                comand.Parameters.AddWithValue("@Ancho", nuevoAncho);
-                comand.Parameters.AddWithValue("@Diametro", nuevoDiametro);
-                comand.Parameters.AddWithValue("@Url", nuevourl);
-                comand.Parameters.AddWithValue("@Largo", nuevoLargo);
-                comand.Parameters.AddWithValue("@Ingreso", nuevoIngreso);
-                comand.Parameters.AddWithValue("@Conservacion", nuevoConservacion);
-                comand.Parameters.AddWithValue("@Ubicacion", nuevoUbicacion);
-                comand.Parameters.AddWithValue("@Integridad", nuevoIntegridad);
-                comand.Parameters.AddWithValue("@Cultura", nuevoCultura);
-                comand.Parameters.AddWithValue("@Titulo", nuevoTitulo);
-                comand.Parameters.AddWithValue("@idColeccion", idColeccion);
-
-                connection.Open();
-                comand.ExecuteNonQuery();
-
-
-
-
-                foreach (Autores item in Autores12.SelectedItems)
-                {
-
-                    int idAutores = Convert.ToInt32(item.id_autor);
-
-                    //MessageBox.Show(idAutores.ToString());
-                    comandAutor.Parameters.AddWithValue("@IdAutor", idAutores);
-                    comandAutor.Parameters.AddWithValue("@idColeccion", idColeccion);
-                    comandAutor.ExecuteNonQuery();
-
-                }
-
-                foreach (Materiales item in Materiales12.SelectedItems)
-                {
-
-                    int id_mateteriales = Convert.ToInt32(item.id_material);
-
-                    //MessageBox.Show(id_mateteriales.ToString());
-                    commandMaterial.Parameters.AddWithValue("@id_Material", id_mateteriales);
-                    commandMaterial.Parameters.AddWithValue("@idColeccion", idColeccion);
-                    commandMaterial.ExecuteNonQuery();
-
-                }
-
-
-
+                nuevaCantidad = cantid;
             }
-            // Mostrar un mensaje o realizar cualquier otra acción después de guardar los cambios //EVITAR AMBIGUEDAD SYSTEM.WINDOWS
-            System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
-           
-            // Cerrar la ventana de edición
-            this.Close();
+            else
+            {
+                nuevaCantidad = 0;
+            }
+
+            //setear valor 0 Alto
+
+
+            if (int.TryParse(Alto.Text, out cantid))
+            {
+                nuevoAlto = cantid;
+            }
+            else
+            {
+                nuevoAlto = 0;
+            }
+            //setear valor 0 Largo
+
+            if (int.TryParse(Largo.Text, out cantid))
+            {
+                nuevoLargo = cantid;
+            }
+            else
+            {
+                nuevoLargo = 0;
+            }
+
+            //setear valor 0 Ancho
+
+            if (int.TryParse(Ancho.Text, out cantid))
+            {
+                nuevoAncho = cantid;
+            }
+            else
+            {
+                nuevoAncho = 0;
+            }
+            //setear valor 0 Diametro
+            decimal valorTemporal;
+
+            if (decimal.TryParse(Diametro.Text, NumberStyles.Float, CultureInfo.CurrentCulture, out valorTemporal))
+            {
+                nuevoDiametro = valorTemporal;
+            }
+            else
+            {
+                nuevoDiametro = 0; // Otra acción adecuada si la conversión falla
+            }
+
+
+            if (string.IsNullOrEmpty(nuevoNombre))
+            {
+                MessageBox.Show("La colección debe tener un Nombre");
+            }
+            else
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+                string queryUpdate = "UPDATE Coleccion SET Nombre = @Nombre, Cantidad = @Cantidad, Periodo = @Periodo," +
+                                     " Alto = @Alto,  Ancho = @Ancho,  Diametro = @Diametro, Url = @Url, Largo = @Largo, Ingreso = @Ingreso," +
+                                     "Conservacion = @Conservacion, Ubicacion = @Ubicacion, Integridad = @Integridad, Cultura = @Cultura, Titulo = @Titulo " +
+                                     "WHERE Coleccion_id = @idColeccion";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    //Borrar las relaciones que hay de las tablas intermedias
+                    string deleteAuthorsQuery = "DELETE FROM Coleccion_Autor WHERE id_coleccion = @idColeccion";
+                    SqlCommand deleteAuthorsCommand = new SqlCommand(deleteAuthorsQuery, connection);
+                    deleteAuthorsCommand.Parameters.AddWithValue("@idColeccion", idColeccion);
+                    deleteAuthorsCommand.ExecuteNonQuery();
+
+                    string deleteMaterialsQuery = "DELETE FROM Coleccion_Material WHERE id_coleccion = @idColeccion";
+                    SqlCommand deleteMaterialsCommand = new SqlCommand(deleteMaterialsQuery, connection);
+                    deleteMaterialsCommand.Parameters.AddWithValue("@idColeccion", idColeccion);
+                    deleteMaterialsCommand.ExecuteNonQuery();
+
+                    //Crear las nuevas relaciones
+
+                    foreach (Autores item in Autores12.SelectedItems)
+                    {
+                        int idAutores = Convert.ToInt32(item.id_autor);
+                        string insertAuthorQuery = "INSERT INTO Coleccion_Autor (id_coleccion, id_autor) VALUES (@idColeccion, @IdAutor)";
+                        SqlCommand insertAuthorCommand = new SqlCommand(insertAuthorQuery, connection);
+                        insertAuthorCommand.Parameters.AddWithValue("@IdAutor", idAutores);
+                        insertAuthorCommand.Parameters.AddWithValue("@idColeccion", idColeccion);
+                        insertAuthorCommand.ExecuteNonQuery();
+                    }
+
+                    foreach (Materiales item in Materiales12.SelectedItems)
+                    {
+                        int id_material = Convert.ToInt32(item.id_material);
+                        string insertMaterialQuery = "INSERT INTO Coleccion_Material (id_coleccion, id_material) VALUES (@idColeccion, @id_Material)";
+                        SqlCommand insertMaterialCommand = new SqlCommand(insertMaterialQuery, connection);
+                        insertMaterialCommand.Parameters.AddWithValue("@id_Material", id_material);
+                        insertMaterialCommand.Parameters.AddWithValue("@idColeccion", idColeccion);
+                        insertMaterialCommand.ExecuteNonQuery();
+                    }
+
+
+
+
+                    //Por ultimo updatear la tabla principal
+                    SqlCommand comand = new SqlCommand(queryUpdate, connection);
+                    comand.Parameters.AddWithValue("@Nombre", nuevoNombre);
+                    comand.Parameters.AddWithValue("@Cantidad", nuevaCantidad);
+                    comand.Parameters.AddWithValue("@Periodo", nuevoPeriodo);
+                    comand.Parameters.AddWithValue("@Alto", nuevoAlto);
+                    comand.Parameters.AddWithValue("@Ancho", nuevoAncho);
+                    comand.Parameters.AddWithValue("@Diametro", nuevoDiametro);
+                    comand.Parameters.AddWithValue("@Url", nuevourl);
+                    comand.Parameters.AddWithValue("@Largo", nuevoLargo);
+                    comand.Parameters.AddWithValue("@Ingreso", nuevoIngreso);
+                    comand.Parameters.AddWithValue("@Conservacion", nuevoConservacion);
+                    comand.Parameters.AddWithValue("@Ubicacion", nuevoUbicacion);
+                    comand.Parameters.AddWithValue("@Integridad", nuevoIntegridad);
+                    comand.Parameters.AddWithValue("@Cultura", nuevoCultura);
+                    comand.Parameters.AddWithValue("@Titulo", nuevoTitulo);
+                    comand.Parameters.AddWithValue("@idColeccion", idColeccion);
+
+                    comand.ExecuteNonQuery();
+                }
+
+                System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
+
+                this.Close();
+            }
         }
+        //Reales
+        private void Diametro1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var Codigo = sender as TextBox;
+            // Si se ingresó un carácter que no es un número o un punto, o si ya hay un punto en el TextBox, bloquea la entrada
+            if (!Regex.IsMatch(e.Text, @"[0-9]") && (e.Text != "." || Diametro.Text.Contains(".")))
+            {
+                e.Handled = true;
+            }
+        }
+        //Enteros
+
+
+        private void Soloenteros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var Codigo = sender as TextBox;
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
+
     }
 }

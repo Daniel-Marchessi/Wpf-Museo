@@ -85,6 +85,18 @@ namespace Museoapp.Views
             this.Close();
         }
 
+
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
+
+
+
         //Autorizacion
         private void ListaColecciones_Loaded(object sender, RoutedEventArgs e)
         {
@@ -145,7 +157,7 @@ namespace Museoapp.Views
                     coleccion.Periodo = reader.GetString(2);
                     coleccion.Alto = reader.GetInt32(3);
                     coleccion.Ancho = reader.GetInt32(4);
-                    coleccion.Diametro = reader.GetDouble(5);
+                    coleccion.Diametro = reader.GetDecimal(5);
                     coleccion.UrlFoto = reader.GetString(6);
                     coleccion.Largo = reader.GetInt32(7);
                     coleccion.Ingreso = reader.GetString(8);
@@ -269,7 +281,8 @@ namespace Museoapp.Views
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-
+                     try
+                     {
                         // Eliminar registros relacionados en la tabla Coleccion_Material
                         SqlCommand commandMaterial = new SqlCommand(queryMaterial, connection);
                         commandMaterial.Parameters.AddWithValue("@idColeccion", coleccion.Coleccion_id);
@@ -291,6 +304,13 @@ namespace Museoapp.Views
                         {
                             MessageBox.Show("El registro se eliminó correctamente.");
                         }
+                       
+                     }
+                     catch (Exception ex)
+                     {
+                            MessageBox.Show("ocurrio un error al eliminar");
+                     }
+
                     }
 
                     ListarColecciones();

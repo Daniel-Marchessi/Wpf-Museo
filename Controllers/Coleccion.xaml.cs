@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -94,7 +95,14 @@ namespace WpfAppTEST.Views
         }
 
 
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
 
+            carpeta.Show();
+            this.Close();
+
+        }
 
 
         public void TraerAutores()
@@ -172,17 +180,19 @@ namespace WpfAppTEST.Views
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
 
+            CultureInfo culture = new CultureInfo("en-US");
+            CultureInfo.CurrentCulture = culture;
+            CultureInfo.CurrentUICulture = culture;
+
             using (SqlConnection conexion = new SqlConnection(connectionString))
             {
                 conexion.Open();
                 string queryColeccion = "INSERT INTO Coleccion (Nombre, Cantidad, Periodo, Alto, Ancho, Diametro, Url, Largo, Ingreso, Conservacion, Ubicacion, Integridad, Cultura, Titulo) VALUES (@Nombre, @Cantidad, @Periodo, @Alto, @Ancho, @Diametro, @Url, @Largo, @Ingreso, @Conservacion, @Ubicacion, @Integridad, @Cultura, @Titulo); SELECT SCOPE_IDENTITY();";
                 string queryRelacionColeccion_Material = "INSERT INTO Coleccion_Material (id_material, id_coleccion) VALUES (@IdMaterial, @IdColeccion)";
                 string queryRelacionColeccion_Autor = "INSERT INTO Coleccion_Autor (id_autor, id_coleccion) VALUES (@IdAutor, @IdColeccion)";
-
                 SqlCommand comand = new SqlCommand(queryColeccion, conexion);
                 SqlCommand comand2 = new SqlCommand(queryRelacionColeccion_Material, conexion);
                 SqlCommand comand3 = new SqlCommand(queryRelacionColeccion_Autor, conexion);
-
 
                 // Obtener los materiales seleccionados en el CheckComboBox
                 //Lista de materiales ID
@@ -200,22 +210,15 @@ namespace WpfAppTEST.Views
                 pieza.Titulo_alias = Mayuscula.ToTitleCase(TituloA.Text.ToLower());
                 pieza.Cultura = Mayuscula.ToTitleCase(Lugarprocedencia.Text.ToLower());
                 pieza.Periodo = Mayuscula.ToTitleCase(Periodo1.Text.ToLower());
-                //pieza.Alto = Convert.ToInt32(Alto1.Text);
-                //pieza.Ancho = Convert.ToInt32(Ancho1.Text);
-                //pieza.Largo = Convert.ToInt32(Largo1.Text);
-                //pieza.Diametro = Convert.ToDouble(Diametro1.Text);
                 pieza.Integridad = Integridad1.Text;
                 pieza.Conservacion = Conservacion1.Text;
                 pieza.Ubicacion = Mayuscula.ToTitleCase(Ubicacion1.Text.ToLower());
                 pieza.Ingreso = Ingreso1.Text;
                 pieza.UrlFoto = Url_Foto.Text;
-                //pieza.Cantidad = Convert.ToInt32(Cantidad1.Text);
-
+             
                 //setear valor 0 cantidad
 
                 int cantid;
-
-
 
                 //out cantid es una forma de pasar una variable por referencia. Si la conversión tiene éxito, TryParse() 
                 //    asignará el valor convertido a cantid, y la función devolverá true para indicar que la conversión 
@@ -255,13 +258,17 @@ namespace WpfAppTEST.Views
                 }
                 //setear valor 0 Diametro
 
-                if (int.TryParse(Diametro1.Text, out cantid))
+               
+
+                decimal valorTemporal;
+
+                if (decimal.TryParse(Diametro1.Text, NumberStyles.Float, CultureInfo.CurrentCulture, out valorTemporal))
                 {
-                    pieza.Diametro = cantid;
+                    pieza.Diametro = valorTemporal;
                 }
                 else
                 {
-                    pieza.Diametro = 0;
+                    pieza.Diametro = 0; // Otra acción adecuada si la conversión falla
                 }
 
                 //setear valor 0 Largo
@@ -279,13 +286,11 @@ namespace WpfAppTEST.Views
 
                 if (string.IsNullOrEmpty(pieza.Nombre))
                 {
-                   MessageBox.Show("La coleccion debe tener un Nombre");
+                   MessageBox.Show("La colección debe tener un Nombre");
                    
                 }
                 else
                 {
-
-
 
                     // POR OTRA PARTE SE CONTROLA QUE NO HAYAN REGISTROS IGUALES
                     string registrosrepetidos = "SELECT COUNT(*) FROM Coleccion WHERE Nombre = @Nombre";
@@ -297,12 +302,12 @@ namespace WpfAppTEST.Views
                     int ContadorDeConsulta = (int)repetido.ExecuteScalar();
                     if (ContadorDeConsulta > 0)
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show("La Coleccion ya existe");
+                        Xceed.Wpf.Toolkit.MessageBox.Show("La colección ya existe");
                         return;
                     }
                     else
                     {
-                        Xceed.Wpf.Toolkit.MessageBox.Show("Se ingresó un Coleccion");
+                        Xceed.Wpf.Toolkit.MessageBox.Show("Se ingresó una colección correctamente");
                         LimpiarCampos();
                     }
 
@@ -368,7 +373,6 @@ namespace WpfAppTEST.Views
                     conexion.Close();
 
                     LimpiarCampos();
-                    MessageBox.Show("Se ingresó una pieza correctamente.");
                 }
             }
         }
@@ -448,16 +452,12 @@ namespace WpfAppTEST.Views
                 e.Handled = true;
             }
         }
-     
+        
+
+
+
 
 
     }
 
-    public partial class EditarColeccion : Window
-    {
-        public EditarColeccion()
-        {
-            
-        }
-    }
 }

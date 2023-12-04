@@ -12,7 +12,7 @@
 
 
     <Grid>
-        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+        <Menu Height="35" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
 
 
             <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" Height="33" />
@@ -28,9 +28,10 @@
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
             <MenuItem x:Name="Editoriales" Header="Editorial" Click="CrearEditorial_Click"/>
             <MenuItem x:Name="Categorias" Header="Categoria" Click="CrearCategoria_Click"/>
+            <MenuItem x:Name="Carpetas" Header="Carpeta" Click="CrearCarpeta_Click"/>
 
         </Menu>
-        <Grid Margin="0,0,0,0" >
+        <Grid Margin="0,35,0,0" >
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="#7182A3" Offset="0.0" />
@@ -65,7 +66,7 @@
             <TextBox x:Name="Numpaginas1"  MaxWidth="400" MaxHeight="40" Grid.Row="3" Grid.Column="1" FontSize="30" Margin="10,20,10,10" PreviewTextInput="Soloenteros_PreviewTextInput" Height="42" VerticalAlignment="Top" />
 
             <Label x:Name="Descripcion" Content="Descripcion" Grid.Row="4" Grid.Column="0" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="23,13,10,0" Height="52" VerticalAlignment="Top"/>
-            <TextBox x:Name="Descripcion1" MinHeight="150"  MaxWidth="400"   AcceptsReturn="True"  Grid.Row="4" Grid.Column="1" FontSize="30" Margin="10,23,10,10"  VerticalAlignment="Top" Height="112"/>
+            <TextBox x:Name="Descripcion1" MinHeight="150"  MaxWidth="400"   AcceptsReturn="True"  Grid.Row="4" Grid.Column="1" FontSize="30" Margin="10,23,10,10" Height="112"/>
 
             <Label Content="Autores" Grid.Column="2" FontWeight="Bold" Foreground="#FFF1F1F1" FontSize="30" Margin="43,0,10,0" Grid.Row="1" Height="50" VerticalAlignment="Center"/>
             <xctk:CheckComboBox x:Name="Autores12"  MaxWidth="400" MaxHeight="40"  Grid.Column="3" FontSize="30" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_autor" ValueMemberPath="id_autor" SelectedValue="{Binding SelectedValue}" SelectedItemsOverride="{Binding SelectedItems}" Margin="10,25,11,0" Grid.Row="1" Height="46" VerticalAlignment="Top"/>

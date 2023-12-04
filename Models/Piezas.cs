@@ -75,13 +75,13 @@ namespace WpfAppTEST.Models
             set { largo = value; }
         }
 
-        private double diametro;
-        public double Diametro
+        private decimal diametro;
+
+        public decimal Diametro
         {
             get { return diametro; }
             set { diametro = value; }
         }
-
 
         private string integridad;
         public string Integridad

@@ -95,16 +95,15 @@ namespace WpfAppTEST.Models
         }
 
 
-        private int categoriaId;
-        public int CategoriaId
+        private int? categoriaId; 
+        public int? CategoriaId
         {
             get { return categoriaId; }
             set { categoriaId = value; }
         }
 
-
-        private int editorialId;
-        public int EditorialId
+        private int? editorialId;
+        public int? EditorialId
         {
             get { return editorialId; }
             set { editorialId = value; }

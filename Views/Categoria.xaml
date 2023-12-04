@@ -7,8 +7,8 @@
         WindowState="Maximized"
         Title="Categoria"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
 
-    <Grid Background="#7182B3">
-        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+    <Grid Background="#7182B3" Margin="0,65,0,0">
+        <Menu Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black" Margin="0,-64,0,0" Height="34" VerticalAlignment="Top">
             <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
                 <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
                 <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
@@ -23,9 +23,10 @@
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
             <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
+            <MenuItem x:Name="Carpetas" Header="Carpeta" Click="CrearCarpeta_Click"/>
 
         </Menu>
-        <Grid Background="#7182B3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <Grid Background="#7182B3" VerticalAlignment="Top" Height="150" Margin="0,-30,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -41,7 +42,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" Grid.Row="1" Content="Categoria" VerticalAlignment="Top" Margin="5,10,5,0" FontWeight="Bold" Foreground="white" FontSize="30" Height="50" />
-            <TextBox x:Name="Categoria1" Grid.Column="1"  Grid.Row="1" MinWidth="250" VerticalAlignment="Top" Margin="5,10,5,0" MaxWidth="250" FontSize="30" Height="42" Width="Auto" />
+            <TextBox x:Name="Categoria1" Grid.Column="1"  Grid.Row="1" MinWidth="250" VerticalAlignment="Top" Margin="5,10,5,0" MaxWidth="250" FontSize="30" Height="42" Width="Auto" PreviewTextInput="Categoria_PreviewTextInput" />
             <Button x:Name="EnviarCategoria" Click="EnviarCategoria_Click" Grid.Row="1" Grid.Column="2" Background="#ecf0f3" FontSize="30" Content="Guardar" VerticalAlignment="Top" Margin="10,10,10,0" Height="42" Width="Auto" />
             <Label Grid.Column="3" Grid.Row="1" Content="Por Categoria" FontWeight="Bold" Foreground="White" Margin="5,10,5,0" FontSize="30" Width="Auto" />
             <Label Grid.Column="3" Content="Buscar" FontWeight="Bold" Foreground="White" Margin="5,10,5,0" FontSize="30" Width="Auto" />
@@ -63,13 +64,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="auto">
+                <!--<DataGridTemplateColumn  Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

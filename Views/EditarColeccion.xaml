@@ -10,27 +10,27 @@
         <Label Content="Nombre" HorizontalAlignment="Left" Height="29" Margin="56,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Nombre"  HorizontalAlignment="Left" Height="42" Margin="56,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
         <Label Content="Cantidad" HorizontalAlignment="Left" Height="30" Margin="275,24,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Cantidad" HorizontalAlignment="Left" Height="42" Margin="275,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Cantidad" HorizontalAlignment="Left" Height="42" Margin="275,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Soloenteros_PreviewTextInput"/>
         <Label Content="Periodo" HorizontalAlignment="Left" Height="30" Margin="500,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Periodo" HorizontalAlignment="Left" Height="42" Margin="500,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Alto" HorizontalAlignment="Left" Height="30" Margin="738,25,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Alto" HorizontalAlignment="Left" Height="42" Margin="738,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Alto" HorizontalAlignment="Left" Height="42" Margin="738,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Soloenteros_PreviewTextInput" />
         <Label Content="Ancho" HorizontalAlignment="Left" Height="30" Margin="56,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Ancho" HorizontalAlignment="Left" Height="42" Margin="56,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Ancho" HorizontalAlignment="Left" Height="42" Margin="56,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Soloenteros_PreviewTextInput"/>
         <Label Content="Diametro" HorizontalAlignment="Left" Height="30" Margin="275,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Diametro" HorizontalAlignment="Left" Height="42" Margin="275,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Diametro" HorizontalAlignment="Left" Height="42" Margin="275,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Diametro1_PreviewTextInput"/>
         <Label Content="Imagen" HorizontalAlignment="Left" Height="30" Margin="500,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <Button Content="Cambiar Imagen" HorizontalAlignment="Left" Height="42" Margin="500,173,0,0" VerticalAlignment="Top" Width="186" Click="EditImagen_Click"/>
         <Label Content="Largo" HorizontalAlignment="Left" Height="30" Margin="738,124,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Largo" HorizontalAlignment="Left" Height="42" Margin="738,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Largo" HorizontalAlignment="Left" Height="42" Margin="738,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Soloenteros_PreviewTextInput"/>
         <Label Content="Ingreso" HorizontalAlignment="Left" Height="30" Margin="56,236,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Ingreso" HorizontalAlignment="Left" Height="42" Margin="56,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <TextBox x:Name="Ingreso" HorizontalAlignment="Left" Height="42" Margin="56,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Conservacion" HorizontalAlignment="Left" Height="30" Margin="275,236,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Conservacion" HorizontalAlignment="Left" Height="42" Margin="275,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <TextBox x:Name="Conservacion" HorizontalAlignment="Left" Height="42" Margin="275,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Ubicacion" HorizontalAlignment="Left" Height="30" Margin="500,238,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Ubicacion" HorizontalAlignment="Left" Height="42" Margin="500,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Integridad" HorizontalAlignment="Left" Height="30" Margin="738,241,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Integridad" HorizontalAlignment="Left" Height="42" Margin="738,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="186"/>
+        <TextBox x:Name="Integridad" HorizontalAlignment="Left" Height="42" Margin="738,271,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Cultura" HorizontalAlignment="Left" Height="30" Margin="56,330,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Cultura" HorizontalAlignment="Left" Height="42" Margin="56,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
         <Label Content="Titulo/Alias" HorizontalAlignment="Left" Height="30" Margin="275,327,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
@@ -39,12 +39,12 @@
 
         <Label Content="Materiales" HorizontalAlignment="Left" Height="30" Margin="738,330,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
 
-        <Button Content="Guardar"  Click="Editar_Coleccion" Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="788,421,0,0" VerticalAlignment="Top" Width="136" />
-        <TextBox x:Name="id_coleccion"   IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="545,483,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
-        <TextBox x:Name="Urlfoto" HorizontalAlignment="Left" Height="42" Margin="314,483,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <Button Content="Guardar"  Click="Editar_Coleccion" Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="788,483,0,0" VerticalAlignment="Top" Width="136" />
+        <TextBox x:Name="id_coleccion"   Visibility="Hidden" IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="545,483,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <TextBox x:Name="Urlfoto" Visibility="Hidden" HorizontalAlignment="Left" Height="42" Margin="314,483,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
 
         <xctk:CheckComboBox x:Name="Autores12"
-                    Margin="500,362,314,0"
+                    Margin="500,362,0,0"
                     FontSize="30"
                     MaxWidth="500" 
                     FontWeight="Black"
@@ -52,11 +52,11 @@
                      DisplayMemberPath="id_autor"
                     ValueMemberPath="id_autor"
                     SelectedValue="{Binding SelectedValue}"
-                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top"
+                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="186"
             />
 
         <xctk:CheckComboBox x:Name="Materiales12"
-                    Margin="738,362,76,0"
+                    Margin="738,362,0,0"
                     FontSize="30"
                     MaxWidth="500" 
                     FontWeight="Black"
@@ -64,7 +64,7 @@
                      DisplayMemberPath="id_material"
                     ValueMemberPath="id_material"
                     SelectedValue="{Binding SelectedValue}"
-                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top"
+                    SelectedItemsOverride="{Binding SelectedItems}" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="186"
             />
 
 

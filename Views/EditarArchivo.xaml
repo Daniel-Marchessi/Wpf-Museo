@@ -8,16 +8,32 @@
         Title="Editar" Height="450" Width="800">
     <Grid Background="#7182B3">
         <Label Content="Carpeta" HorizontalAlignment="Left" Height="29" Margin="111,68,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Carpeta"  HorizontalAlignment="Left" Height="42" Margin="111,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <!--<TextBox x:Name="Carpeta"  HorizontalAlignment="Left" Height="42" Margin="111,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />-->
         <Label Content="Categoria" HorizontalAlignment="Left" Height="30" Margin="111,182,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Categoria" HorizontalAlignment="Left" Height="42" Margin="111,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <!--<TextBox x:Name="Categoria" HorizontalAlignment="Left" Height="42" Margin="35,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>-->
         <Label Content="Codigo" HorizontalAlignment="Left" Height="30" Margin="400,79,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
-        <TextBox x:Name="Codigo" HorizontalAlignment="Left" Height="42" Margin="400,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
+        <TextBox x:Name="Codigo" HorizontalAlignment="Left" Height="42" Margin="400,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" PreviewTextInput="Soloenteros_PreviewTextInput"/>
         <Label Content="Titulo" HorizontalAlignment="Left" Height="30" Margin="400,179,0,0" VerticalAlignment="Top" Width="186" Foreground="White"/>
         <TextBox x:Name="Titulo" HorizontalAlignment="Left" Height="42" Margin="400,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        
+
         <Button Content="Guardar"  Background="#FFFD9A0D" HorizontalAlignment="Left" Height="50" Margin="509,319,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click"/>
         <TextBox x:Name="id_archivo" Visibility="Hidden" IsReadOnly="True" HorizontalAlignment="Left" Height="42" Margin="111,327,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="186" />
+        <ComboBox x:Name="Categoria"  MaxWidth="400"  FontSize="24" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_categoria" SelectedValue="{Binding SelectedValue}" Margin="111,217,0,0" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="186">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <ComboBox x:Name="Carpeta"  MaxWidth="400" MaxHeight="40" FontSize="24" FontWeight="Black" Foreground="Black" DisplayMemberPath="id_carpeta" SelectedValue="{Binding SelectedValue}" Margin="111,118,503,0" Height="42" VerticalAlignment="Top">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFF0F0F0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
 
     </Grid>
 </Window>

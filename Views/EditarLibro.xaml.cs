@@ -66,7 +66,6 @@ namespace Museo.Views
                     NombreCompleto = reader["Nombre"].ToString() + " " + reader["Apellido"].ToString(),
 
                 };
-                MessageBox.Show(autor.id_autor.ToString());
 
                 Autores12.Items.Add(autor);
             }
@@ -85,7 +84,6 @@ namespace Museo.Views
 
         private void Enviar(object sender, RoutedEventArgs e)
         {
-
             int id_Libro = Convert.ToInt32(id_libro.Text);
             string titulo = Convert.ToString(Titulo.Text);
             string origen = Convert.ToString(Origen.Text);
@@ -93,65 +91,78 @@ namespace Museo.Views
             string edicion = Convert.ToString(Edicion.Text);
             string n_pag = Convert.ToString(N_paginas.Text);
             string anio = Convert.ToString(AnioEdicion.Text);
-            //  string autores = Convert.ToString(Autores.Text);
             string cod = Convert.ToString(Codigo.Text);
 
-            //// Realizar las operaciones de actualización en la base de datos
-
-            string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
-            string queryUpdate = "UPDATE LIBROS SET Titulo = @Titulo, Origen = @Origen, Descripcion = @Descripcion, Edicion = @Edicion, " +
-                " N_paginas = @N_paginas, AnioEdicion = @AnioEdicion, Codigo = @Codigo  WHERE id_libro = @id_libro";
-
-            string queryLibros = "UPDATE Libro_Autor SET id_autor = @IdAutor WHERE id_libro = @id_libro";
-
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // Ahora por otra parte verificamos que el titulo no deba ser nulo o vacío
+            if (string.IsNullOrEmpty(titulo))
             {
-
-
-                connection.Open();
-                SqlCommand commandUpdate = new SqlCommand(queryUpdate, connection);
-
-                SqlCommand comandLibro = new SqlCommand(queryLibros, connection);
-
-                commandUpdate.Parameters.AddWithValue("@Titulo", titulo);
-                commandUpdate.Parameters.AddWithValue("@Origen", origen);
-                commandUpdate.Parameters.AddWithValue("@Descripcion", desc);
-                commandUpdate.Parameters.AddWithValue("@Edicion", edicion);
-                commandUpdate.Parameters.AddWithValue("@N_paginas", n_pag);
-                commandUpdate.Parameters.AddWithValue("@AnioEdicion", anio);
-                commandUpdate.Parameters.AddWithValue("@Codigo", cod);
-                commandUpdate.Parameters.AddWithValue("@id_libro", id_Libro);
-
-                // commandUpdate.Parameters.AddWithValue("@Codigo", cod );
-
-                foreach (Autores item in Autores12.SelectedItems)
-                {
-
-                    int idAutores = Convert.ToInt32(item.id_autor);
-
-                    MessageBox.Show(idAutores.ToString());
-                    comandLibro.Parameters.AddWithValue("@IdAutor", idAutores);
-                    comandLibro.Parameters.AddWithValue("@id_libro", id_Libro);
-                    comandLibro.ExecuteNonQuery();
-
-                }
-
-
-                // SqlCommand autorUpdate = new SqlCommand(queryAutor, connection);
-
-                // autorUpdate.Parameters.AddWithValue()
-
-                commandUpdate.ExecuteNonQuery();
+                System.Windows.MessageBox.Show("El libro Debe tener un Titulo");
             }
+            else
+            {
+                // Si se cumple que tiene un titulo
+                // Por último verificamos que el código no sea NULO
+                if (string.IsNullOrEmpty(cod) || cod == "0")
+                {
+                    System.Windows.MessageBox.Show("El libro Debe tener un Codigo");
+                }
+                else
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
+                    string queryUpdate = "UPDATE LIBROS SET Titulo = @Titulo, Origen = @Origen, Descripcion = @Descripcion, Edicion = @Edicion, " +
+                        " N_paginas = @N_paginas, AnioEdicion = @AnioEdicion, Codigo = @Codigo  WHERE id_libro = @id_libro";
 
-            ////     Mostrar un mensaje o realizar cualquier otra acción después de guardar los cambios //EVITAR AMBIGUEDAD SYSTEM.WINDOWS
-            //System.Windows.MessageBox.Show("Los cambios se han guardado correctamente.");
-            //// Cerrar la ventana de edición
-            ///
-            MessageBox.Show("Los cambios se han realizado correctamente");
-            this.Close();
+                    string queryLibros = "INSERT INTO Libro_Autor (id_libro, id_autor) VALUES (@id_libro, @IdAutor)";
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        SqlCommand commandUpdate = new SqlCommand(queryUpdate, connection);
+                        SqlCommand commandLibro = new SqlCommand(queryLibros, connection);
+
+                        commandUpdate.Parameters.AddWithValue("@Titulo", titulo);
+                        commandUpdate.Parameters.AddWithValue("@Origen", origen);
+                        commandUpdate.Parameters.AddWithValue("@Descripcion", desc);
+                        commandUpdate.Parameters.AddWithValue("@Edicion", edicion);
+                        commandUpdate.Parameters.AddWithValue("@N_paginas", n_pag);
+                        commandUpdate.Parameters.AddWithValue("@AnioEdicion", anio);
+                        commandUpdate.Parameters.AddWithValue("@Codigo", cod);
+                        commandUpdate.Parameters.AddWithValue("@id_libro", id_Libro);
+
+                        // Eliminar todas las relaciones existentes para este libro
+                        string deleteQuery = "DELETE FROM Libro_Autor WHERE id_libro = @id_libro";
+                        SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection);
+                        deleteCommand.Parameters.AddWithValue("@id_libro", id_Libro);
+                        deleteCommand.ExecuteNonQuery();
+
+                        foreach (Autores item in Autores12.SelectedItems)
+                        {
+                            int idAutores = Convert.ToInt32(item.id_autor);
+
+                            // Verifica si la relación ya existe (no debería existir después de eliminar todas)
+                            string selectQuery = "SELECT COUNT(*) FROM Libro_Autor WHERE id_libro = @id_libro AND id_autor = @IdAutor";
+                            SqlCommand selectCommand = new SqlCommand(selectQuery, connection);
+                            selectCommand.Parameters.AddWithValue("@id_libro", id_Libro);
+                            selectCommand.Parameters.AddWithValue("@IdAutor", idAutores);
+                            int count = (int)selectCommand.ExecuteScalar();
+
+                            if (count == 0)
+                            {
+                                // Insertar la nueva relación en la tabla 'Libro_Autor'
+                                commandLibro.Parameters.Clear();
+                                commandLibro.Parameters.AddWithValue("@IdAutor", idAutores);
+                                commandLibro.Parameters.AddWithValue("@id_libro", id_Libro);
+                                commandLibro.ExecuteNonQuery();
+                            }
+                        }
+
+                        commandUpdate.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Los cambios se han realizado correctamente");
+                    this.Close();
+                }
+            }
         }
 
 

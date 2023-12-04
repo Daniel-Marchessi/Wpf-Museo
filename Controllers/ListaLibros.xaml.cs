@@ -14,7 +14,6 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfAppTEST.Models;
 using WpfAppTEST.Views;
-using Museo.Controllers;
 
 namespace Museoapp.Views
 {
@@ -80,6 +79,17 @@ namespace Museoapp.Views
             this.Close();
         }
 
+
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
+
+
         //Autorizacion
         private void ListaLibros_Loaded(object sender, RoutedEventArgs e)
         {
@@ -126,8 +136,8 @@ namespace Museoapp.Views
                     libro.Edicion = reader.GetString(5);
                     libro.AnioEdicion = reader.GetString(6);
                     libro.Codigo = reader.GetInt32(7);
-                    libro.CategoriaId = reader.GetInt32(8);
-                    libro.EditorialId = reader.GetInt32(9);
+                    libro.CategoriaId = reader.IsDBNull(8) ? (int?)null : reader.GetInt32(8);
+                    libro.EditorialId = reader.IsDBNull(9) ? (int?)null : reader.GetInt32(9);
                     List<Autores> autoresLista = new List<Autores>();
 
                     using (SqlCommand autoresCommand = new SqlCommand(queryautores, connection))

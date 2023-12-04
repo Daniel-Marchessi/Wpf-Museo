@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="../ico/Home.ico"
         WindowState="Maximized"
-        Title="Material"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
+        Title="Material"  Width="1000" Height="600" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#7182B3">
         <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
@@ -21,43 +21,44 @@
                 <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
             </MenuItem>
             <MenuItem x:Name="Archivo" Header="Archivo" Click="CrearArchivo_Click"/>
-
-
             <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
             <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
             <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
-
-
-
+            <MenuItem x:Name="Carpetas" Header="Carpeta" Click="CrearCarpeta_Click"/>
         </Menu>
-        <Grid Background="#7182B3" Width="1276" Margin="34,53,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid Background="#7182B3" Margin="0,50"  VerticalAlignment="Top" HorizontalAlignment="Center">
+            <WrapPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <Label Grid.Column="0" Grid.Row="0"  Content="Material" HorizontalAlignment="Left" VerticalAlignment="Top"  FontWeight="Bold" Foreground="white"  FontSize="30"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBox x:Name="Nombre1" MinWidth="200" Grid.Row="0" VerticalAlignment="Top"  MaxWidth="500"  FontSize="30" PreviewTextInput="Material_PreviewTextInput"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <Button x:Name="EnviarMaterial" Background=" #ecf0f3" FontSize="30" Content="Guardar" VerticalAlignment="Top"  Height="42"   Click="EnviarMaterial_Click"  />
+                </StackPanel>
+                <StackPanel>
+                    
+                </StackPanel>
+                <StackPanel>
+                    
+                </StackPanel>
+                <StackPanel>
+                    <Label Grid.Column="5" Grid.Row="0" Content="Buscar por" FontWeight="Bold"  Foreground="White"  FontSize="30" HorizontalAlignment="Left" Width="184" />
+                    <Label Grid.Column="5" Grid.Row="0" Content="nombre" FontWeight="Bold"  Foreground="White"  FontSize="30" HorizontalAlignment="Left" Width="184" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBox x:Name="PorNombre" MinWidth="200" Grid.Column="5"  FontSize="24" VerticalAlignment="Center"  Height="47" HorizontalAlignment="Left" Width="236"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <Button Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorNombre"  >
+                        <Image Source="../img/Lupa.png" Width="46" Height="54" />
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="1*" />
-
-
-
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Column="0" Grid.Row="0"  Content="Material" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" FontWeight="Bold" Foreground="white"  FontSize="30"/>
-            <TextBox x:Name="Nombre1" MinWidth="200" Grid.Row="0" VerticalAlignment="Top" Margin="143,58,0,0"  MaxWidth="500"  FontSize="30"/>
-            <Button x:Name="EnviarMaterial" Grid.Column="1" Background=" #ecf0f3" FontSize="30" Content="Guardar" VerticalAlignment="Center" Margin="12,0,12,0" Height="42"  RenderTransformOrigin="2.015,6.747" Click="EnviarMaterial_Click"  />
-           
-            <Label Grid.Column="5" Grid.Row="0" Content="Por Nombre" FontWeight="Bold"  Foreground="White" Margin="19,55,0,57"  FontSize="30" HorizontalAlignment="Left" Width="184" />
-            <Label Grid.Column="5" Content="Buscar" FontWeight="Bold"  Foreground="White" Margin="19,13,0,86"  FontSize="30" HorizontalAlignment="Left" Width="117" />
-            <TextBox x:Name="PorNombre" MinWidth="200" Grid.Column="5" Margin="207,0,0,0" FontSize="24" VerticalAlignment="Center" RenderTransformOrigin="0.491,0.101" Height="47" HorizontalAlignment="Left" Width="236"/>
-            <Button Grid.Row="0" Grid.Column="5" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorNombre" Margin="465,50,272,57" RenderTransformOrigin="0.543,0.472" >
-                <Image Source="../img/Lupa.png" Width="46" RenderTransformOrigin="0.405,-0.16" Height="54" />
-            </Button>
+            
+            
         </Grid>
 
         <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="100,207,100,40" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -68,13 +69,6 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

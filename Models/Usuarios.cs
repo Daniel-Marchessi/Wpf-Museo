@@ -54,11 +54,6 @@ namespace Museo.Models
         //de la clase, por lo que necesitas una instancia de la clase para acceder a ellos.
 
 
-
-
-
-
-
         //HISTORIAL DE USUARIOS
 
         private string rol;

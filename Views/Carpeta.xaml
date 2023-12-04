@@ -1,0 +1,68 @@
+﻿<Window x:Class="Museo.Views.Carpeta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Museo.Views"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="Carpeta"  MinWidth="1100" MinHeight="600" WindowStartupLocation="CenterScreen">
+    <Grid Background="#7182B3">
+        <Menu Height="auto" VerticalAlignment="Top" Width="auto" Background="#ecf0f3" BorderThickness="0,0.5,0,0.5" BorderBrush="Black">
+
+
+            <MenuItem x:Name="Libro" Header="Libro" Height="33" HorizontalAlignment="Left"  >
+                <MenuItem x:Name="CrearLibro" Header="Crear libro" Click="CrearLibro_Click"/>
+                <MenuItem x:Name="ListaLi" Header="Lista de libros" Click="CrearListaLibro_Click" />
+            </MenuItem>
+
+
+            <MenuItem x:Name="Coleccion" Header="Coleccion">
+                <MenuItem x:Name="CrearColeccion" Header="Crear coleccion" Click="CrearColeccion_Click"/>
+                <MenuItem x:Name="ListaCo" Header="Lista de colecciones" Click="CrearListaColeccion_Click" />
+            </MenuItem>
+
+            <MenuItem x:Name="Archivo" Header="Archivo" Click="CrearArchivo_Click"/>
+            <MenuItem x:Name="Autor" Header="Autor" Click="CrearAutor_Click"/>
+            <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
+            <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
+            <MenuItem x:Name="Categorias" Header="Categoria" Click="CrearCategoria_Click"/>
+
+
+        </Menu>
+
+        <Label Content="Nombre de carpeta" Grid.Column="0" Margin="21,67,852,0" FontWeight="Bold" Foreground="#FFF1F1F1"  FontSize="24" Height="42" VerticalAlignment="Top"/>
+        <TextBox x:Name="Nombre" Grid.Row="0" Grid.ColumnSpan="1" Margin="256,75,0,0"   MaxWidth="400" MaxHeight="40" FontSize="24" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="396"/>
+        <Button Content="Guardar" HorizontalAlignment="Left" Height="44" Margin="743,61,0,0" VerticalAlignment="Top" Width="160" Click="EnviarCarpeta_click"/>
+
+        <Label Grid.Row="0" Content="Por Nombre" FontWeight="Bold"  Foreground="White" Margin="19,152,900,0"  FontSize="30" Height="50" VerticalAlignment="Top" />
+        <Label Content="Buscar" FontWeight="Bold"  Foreground="White" Margin="21,102,0,0"  FontSize="30" HorizontalAlignment="Left" Width="117" Height="50" VerticalAlignment="Top" />
+        <TextBox x:Name="PorNombre" MinWidth="200" Margin="256,152,0,0" FontSize="24" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.101" Height="34" HorizontalAlignment="Left" Width="393"/>
+        <Button Grid.Row="0" Background="Transparent"  BorderThickness="0" FontSize="24" Click="BuscarPorNombre" Margin="784,130,0,0" RenderTransformOrigin="0.543,0.472" HorizontalAlignment="Left" Width="79" Height="56" VerticalAlignment="Top" >
+            <Image Source="../img/Lupa.png" Width="77" RenderTransformOrigin="0.405,-0.16" Height="54" />
+        </Button>
+
+
+
+        <DataGrid  x:Name="dataGrid" Foreground="black" FontSize="20"  Margin="100,202,100,45" IsReadOnly="True" CanUserResizeColumns="False" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="auto"/>
+
+                <DataGridTemplateColumn  Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Eliminar" Click="Eliminar_Click"  CommandParameter="{Binding}" Background="red" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn  Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

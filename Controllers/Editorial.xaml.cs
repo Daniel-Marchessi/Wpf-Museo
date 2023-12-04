@@ -20,6 +20,7 @@ using WpfAppTEST.Views;
 using Museo.Controllers;
 using System.Globalization;
 using System.Windows.Media.Media3D;
+using System.Text.RegularExpressions;
 
 namespace Museo.Views
 {
@@ -90,10 +91,18 @@ namespace Museo.Views
             this.Close();
         }
 
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
+
+            carpeta.Show();
+            this.Close();
+
+        }
         private void ListaEditoriales_Loaded(object sender, RoutedEventArgs e)
         {
             Autorizaciones autorizaciones = new Autorizaciones();
-            DataGridColumn columnaAEditar = dataGrid.Columns[2];
+            DataGridColumn columnaAEditar = null;
             DataGridColumn columnaAEliminar = dataGrid.Columns[1];
             autorizaciones.Autorizacion(sender, e, columnaAEditar, columnaAEliminar);
             ListarEditoriales();
@@ -141,13 +150,19 @@ namespace Museo.Views
                     insertCommand.ExecuteNonQuery();
 
                     MessageBox.Show("Se ingresó una Editorial");
-
-                    Editorial1.Text = "";
+                    LimpiarCampos();
                     ListarEditoriales();
                 }
             }
          }
-       
+
+
+        private void LimpiarCampos()
+        {
+            Editorial1.Text = "";
+
+        }
+
         private void ListarEditoriales()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["MiConexion"].ConnectionString;
@@ -194,6 +209,7 @@ namespace Museo.Views
 
                         // Obtiene el número de libros asociados a la categoría
                         int librosAsociados = (int)command1.ExecuteScalar();
+                        MessageBox.Show(librosAsociados.ToString());
 
                         if (librosAsociados > 0)
                         {
@@ -208,12 +224,12 @@ namespace Museo.Views
 
                             if (rowsDeleted > 0)
                             {
-                                MessageBox.Show("La categoría se eliminó correctamente.");
+                                MessageBox.Show("La Editorial se eliminó correctamente.");
                             }
-                            else
-                            {
-                                MessageBox.Show("No se pudo eliminar la categoría.");
-                            }
+                            //else
+                            //{
+                            //    MessageBox.Show("No se pudo eliminar la categoría.");
+                            //}
                         }
                     }
 
@@ -248,6 +264,17 @@ namespace Museo.Views
             }
 
             PorEditorial.Text = "";
+        }
+
+        private void Editorial_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+
+            // Si se ingresó un carácter que no es una letra, bloquea la entrada
+            if (!Regex.IsMatch(e.Text, @"[a-zA-Z]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

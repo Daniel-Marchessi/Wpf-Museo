@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\santi\OneDrive\Escritorio\Archivos facultad\MUSEO\App.xaml
-17-1242287015
+16450884684
 
-281731336965
+30-2004092593
 203-1959094665
-Views\Archivo.xaml;Views\Autor.xaml;Views\Categoria.xaml;Views\Coleccion.xaml;Views\EditarArchivo.xaml;Views\EditarAutor.xaml;Views\EditarColeccion.xaml;Views\EditarLibro.xaml;Views\EditarMaterial.xaml;Views\Editorial.xaml;Views\historialdeusuarios.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
+Views\Archivo.xaml;Views\Autor.xaml;Views\Carpeta.xaml;Views\Categoria.xaml;Views\Coleccion.xaml;Views\EditarArchivo.xaml;Views\EditarColeccion.xaml;Views\EditarLibro.xaml;Views\Editorial.xaml;Views\historialdeusuarios.xaml;Views\Home.xaml;Views\Libro.xaml;Views\ListaColecciones.xaml;Views\ListaLibros.xaml;Views\MainWindow.xaml;Views\Material.xaml;
 
-False
+True
 

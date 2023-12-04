@@ -160,9 +160,15 @@ namespace WpfAppTEST.Views
             categoria.Show();
         }
 
-       
+        private void CrearCarpeta_Click(object sender, RoutedEventArgs e)
+        {
+            Carpeta carpeta = new Carpeta();
 
-       
+            carpeta.Show();
+
+        }
+
+
 
 
     }

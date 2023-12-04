@@ -16,19 +16,19 @@ namespace WpfAppTEST.Models
         }
 
 
-        private string carpeta;
+        private int? carpeta;
 
-        public string Carpeta
+        public int? id_carpeta
         {
             get { return carpeta; }
             set { carpeta = value; }
         }
 
 
-        private string categoria;
+        private int? categoria;
 
 
-        public string Categoria
+        public int? id_categoria
         {
             get { return categoria; }
             set { categoria = value; }
@@ -48,5 +48,29 @@ namespace WpfAppTEST.Models
             get { return titulo; }
             set { titulo = value; }
         }
+
+
+        private string cate;
+        public string Categorias
+        {
+            get { return cate; }
+            set { cate = value; }
+        }
+
+
+        private string carpe;
+        public string Carpetas
+        {
+            get { return carpe; }
+            set { carpe = value; }
+        }
+
+
+
+
+
+
+
+
     }
 }

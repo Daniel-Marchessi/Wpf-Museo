@@ -25,6 +25,7 @@
             <MenuItem x:Name="Material" Header="Material" Click="CrearMaterial_Click"/>
             <MenuItem x:Name="Editorial" Header="Editorial" Click="CrearEditorial_Click"/>
             <MenuItem x:Name="Categoria" Header="Categoria" Click="CrearCategoria_Click"/>
+            <MenuItem x:Name="Carpetas" Header="Carpeta" Click="CrearCarpeta_Click"/>
 
 
         </Menu>
@@ -82,13 +83,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn  Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Editar" Click="Editar_Click" CommandParameter="{Binding}" Background="GreenYellow" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+               
             </DataGrid.Columns>
         </DataGrid>
 

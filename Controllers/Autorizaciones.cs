@@ -27,7 +27,11 @@ namespace Museo.Controllers
                 {
                     if (rol == "Admin")
                     {
-                        columnaAEditar.Visibility = Visibility.Visible;
+                        if (columnaAEditar != null)
+                        {
+                            columnaAEditar.Visibility = Visibility.Visible;
+
+                        }
                         columnaAEliminar.Visibility = Visibility.Visible;
                         break;
                     }

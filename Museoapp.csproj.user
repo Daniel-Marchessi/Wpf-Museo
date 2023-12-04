@@ -31,6 +31,9 @@
     <Compile Update="Controllers\Categoria.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controllers\Carpeta.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\EditarColeccion.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -51,6 +54,9 @@
     <Page Update="Views\Autor.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Carpeta.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Categoria.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -60,16 +66,10 @@
     <Page Update="Views\EditarArchivo.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\EditarAutor.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\EditarColeccion.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\EditarLibro.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\EditarMaterial.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Editorial.xaml">
